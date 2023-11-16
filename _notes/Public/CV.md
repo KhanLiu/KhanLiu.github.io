@@ -1,0 +1,9 @@
+---
+title: CV
+feed: hide
+date: 16-11-2023
+---
+## Educational Experience
+
+- **2021.10 - 2023.09**, Master of Science (M.Sc.) in Cartography, Technical University of Munich
+- **2017.09 - 2021.06**, Bachelor of Engineering (B.Eng.) in Geodesy and Geomatics Engineering, Wuhan University
