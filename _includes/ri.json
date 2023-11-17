@@ -1,1 +1,434 @@
-{"nodes": [{"id": "565", "shared_name": "Graph Learning", "name": "Graph Learning", "SUID": 565, "selected": false, "group": 3}, {"id": "183", "shared_name": "Geographic Information Science", "name": "Geographic Information Science", "SUID": 183, "selected": false, "group": 1}, {"id": "181", "shared_name": "Urban Science", "name": "Urban Science", "SUID": 181, "selected": false, "group": 1}, {"id": "179", "shared_name": "Urban Mobility", "name": "Urban Mobility", "SUID": 179, "selected": false, "group": 2}, {"id": "177", "shared_name": "Data Science", "name": "Data Science", "SUID": 177, "selected": false, "group": 1}, {"id": "175", "shared_name": "Cartography", "name": "Cartography", "SUID": 175, "selected": false, "group": 1}, {"id": "173", "shared_name": "Machine Learning", "name": "Machine Learning", "SUID": 173, "selected": false, "group": 2}, {"id": "171", "shared_name": "GeoAI", "name": "GeoAI", "SUID": 171, "selected": false, "group": 2}, {"id": "169", "shared_name": "Network Science", "name": "Network Science", "SUID": 169, "selected": false, "group": 2}, {"id": "167", "shared_name": "Transport Network", "name": "Transport Network", "SUID": 167, "selected": false, "group": 3}, {"id": "165", "shared_name": "Spatial Modeling", "name": "Spatial Modeling", "SUID": 165, "selected": false, "group": 2}, {"id": "163", "shared_name": "Spatial Analysis", "name": "Spatial Analysis", "SUID": 163, "selected": false, "group": 2}, {"id": "161", "shared_name": "GeoVisualisation", "name": "GeoVisualisation", "SUID": 161, "selected": false, "group": 2}, {"id": "159", "shared_name": "Traffic Safety", "name": "Traffic Safety", "SUID": 159, "selected": false, "group": 3}, {"id": "157", "shared_name": "Mobility Justice", "name": "Mobility Justice", "SUID": 157, "selected": false, "group": 3}, {"id": "155", "shared_name": "Vulnerable Road Users", "name": "Vulnerable Road Users", "SUID": 155, "selected": false, "group": 3}], "links": [{"id": "229", "source": "183", "target": "165", "shared_name": "Geographic Information Science (interacts with) Spatial Modeling", "shared_interaction": "interacts with", "name": "Geographic Information Science (interacts with) Spatial Modeling", "interaction": "interacts with", "SUID": 229, "value": 1, "selected": false}, {"id": "227", "source": "183", "target": "163", "shared_name": "Geographic Information Science (interacts with) Spatial Analysis", "shared_interaction": "interacts with", "name": "Geographic Information Science (interacts with) Spatial Analysis", "interaction": "interacts with", "SUID": 227, "value": 1, "selected": false}, {"id": "225", "source": "183", "target": "181", "shared_name": "Geographic Information Science (interacts with) Urban Science", "shared_interaction": "interacts with", "name": "Geographic Information Science (interacts with) Urban Science", "interaction": "interacts with", "SUID": 225, "value": 1, "selected": false}, {"id": "223", "source": "181", "target": "179", "shared_name": "Urban Science (interacts with) Urban Mobility", "shared_interaction": "interacts with", "name": "Urban Science (interacts with) Urban Mobility", "interaction": "interacts with", "SUID": 223, "value": 1, "selected": false}, {"id": "221", "source": "177", "target": "183", "shared_name": "Data Science (interacts with) Geographic Information Science", "shared_interaction": "interacts with", "name": "Data Science (interacts with) Geographic Information Science", "interaction": "interacts with", "SUID": 221, "value": 1, "selected": false}, {"id": "219", "source": "177", "target": "181", "shared_name": "Data Science (interacts with) Urban Science", "shared_interaction": "interacts with", "name": "Data Science (interacts with) Urban Science", "interaction": "interacts with", "SUID": 219, "value": 1, "selected": false}, {"id": "217", "source": "175", "target": "183", "shared_name": "Cartography (interacts with) Geographic Information Science", "shared_interaction": "interacts with", "name": "Cartography (interacts with) Geographic Information Science", "interaction": "interacts with", "SUID": 217, "value": 1, "selected": false}, {"id": "578", "source": "173", "target": "565", "shared_name": "Machine Learning (interacts with) Graph Learning", "shared_interaction": "interacts with", "name": "Machine Learning (interacts with) Graph Learning", "interaction": "interacts with", "SUID": 578, "value": 1, "selected": false}, {"id": "215", "source": "173", "target": "177", "shared_name": "Machine Learning (interacts with) Data Science", "shared_interaction": "interacts with", "name": "Machine Learning (interacts with) Data Science", "interaction": "interacts with", "SUID": 215, "value": 1, "selected": false}, {"id": "213", "source": "171", "target": "183", "shared_name": "GeoAI (interacts with) Geographic Information Science", "shared_interaction": "interacts with", "name": "GeoAI (interacts with) Geographic Information Science", "interaction": "interacts with", "SUID": 213, "value": 1, "selected": false}, {"id": "211", "source": "171", "target": "173", "shared_name": "GeoAI (interacts with) Machine Learning", "shared_interaction": "interacts with", "name": "GeoAI (interacts with) Machine Learning", "interaction": "interacts with", "SUID": 211, "value": 1, "selected": false}, {"id": "209", "source": "171", "target": "177", "shared_name": "GeoAI (interacts with) Data Science", "shared_interaction": "interacts with", "name": "GeoAI (interacts with) Data Science", "interaction": "interacts with", "SUID": 209, "value": 1, "selected": false}, {"id": "583", "source": "169", "target": "565", "shared_name": "Network Science (interacts with) Graph Learning", "shared_interaction": "interacts with", "name": "Network Science (interacts with) Graph Learning", "interaction": "interacts with", "SUID": 583, "value": 1, "selected": false}, {"id": "207", "source": "169", "target": "177", "shared_name": "Network Science (interacts with) Data Science", "shared_interaction": "interacts with", "name": "Network Science (interacts with) Data Science", "interaction": "interacts with", "SUID": 207, "value": 1, "selected": false}, {"id": "205", "source": "169", "target": "167", "shared_name": "Network Science (interacts with) Transport Network", "shared_interaction": "interacts with", "name": "Network Science (interacts with) Transport Network", "interaction": "interacts with", "SUID": 205, "value": 1, "selected": false}, {"id": "203", "source": "167", "target": "179", "shared_name": "Transport Network (interacts with) Urban Mobility", "shared_interaction": "interacts with", "name": "Transport Network (interacts with) Urban Mobility", "interaction": "interacts with", "SUID": 203, "value": 1, "selected": false}, {"id": "201", "source": "165", "target": "169", "shared_name": "Spatial Modeling (interacts with) Network Science", "shared_interaction": "interacts with", "name": "Spatial Modeling (interacts with) Network Science", "interaction": "interacts with", "SUID": 201, "value": 1, "selected": false}, {"id": "199", "source": "165", "target": "167", "shared_name": "Spatial Modeling (interacts with) Transport Network", "shared_interaction": "interacts with", "name": "Spatial Modeling (interacts with) Transport Network", "interaction": "interacts with", "SUID": 199, "value": 1, "selected": false}, {"id": "197", "source": "161", "target": "175", "shared_name": "GeoVisualisation (interacts with) Cartography", "shared_interaction": "interacts with", "name": "GeoVisualisation (interacts with) Cartography", "interaction": "interacts with", "SUID": 197, "value": 1, "selected": false}, {"id": "195", "source": "161", "target": "183", "shared_name": "GeoVisualisation (interacts with) Geographic Information Science", "shared_interaction": "interacts with", "name": "GeoVisualisation (interacts with) Geographic Information Science", "interaction": "interacts with", "SUID": 195, "value": 1, "selected": false}, {"id": "193", "source": "161", "target": "177", "shared_name": "GeoVisualisation (interacts with) Data Science", "shared_interaction": "interacts with", "name": "GeoVisualisation (interacts with) Data Science", "interaction": "interacts with", "SUID": 193, "value": 1, "selected": false}, {"id": "191", "source": "159", "target": "179", "shared_name": "Traffic Safety (interacts with) Urban Mobility", "shared_interaction": "interacts with", "name": "Traffic Safety (interacts with) Urban Mobility", "interaction": "interacts with", "SUID": 191, "value": 1, "selected": false}, {"id": "189", "source": "157", "target": "179", "shared_name": "Mobility Justice (interacts with) Urban Mobility", "shared_interaction": "interacts with", "name": "Mobility Justice (interacts with) Urban Mobility", "interaction": "interacts with", "SUID": 189, "value": 1, "selected": false}, {"id": "187", "source": "155", "target": "157", "shared_name": "Vulnerable Road Users (interacts with) Mobility Justice", "shared_interaction": "interacts with", "name": "Vulnerable Road Users (interacts with) Mobility Justice", "interaction": "interacts with", "SUID": 187, "value": 1, "selected": false}, {"id": "185", "source": "155", "target": "159", "shared_name": "Vulnerable Road Users (interacts with) Traffic Safety", "shared_interaction": "interacts with", "name": "Vulnerable Road Users (interacts with) Traffic Safety", "interaction": "interacts with", "SUID": 185, "value": 1, "selected": false}]}
+{
+    "nodes": [
+        {
+            "id": "565",
+            "shared_name": "Graph Learning",
+            "name": "Graph Learning",
+            "SUID": 565,
+            "selected": false,
+            "group": 3
+        },
+        {
+            "id": "183",
+            "shared_name": "Geographic Information Science",
+            "name": "Geographic Information Science",
+            "SUID": 183,
+            "selected": false,
+            "group": 1
+        },
+        {
+            "id": "181",
+            "shared_name": "Urban Science",
+            "name": "Urban Science",
+            "SUID": 181,
+            "selected": false,
+            "group": 1
+        },
+        {
+            "id": "179",
+            "shared_name": "Urban Mobility",
+            "name": "Urban Mobility",
+            "SUID": 179,
+            "selected": false,
+            "group": 2
+        },
+        {
+            "id": "177",
+            "shared_name": "Data Science",
+            "name": "Data Science",
+            "SUID": 177,
+            "selected": false,
+            "group": 1
+        },
+        {
+            "id": "175",
+            "shared_name": "Cartography",
+            "name": "Cartography",
+            "SUID": 175,
+            "selected": false,
+            "group": 1
+        },
+        {
+            "id": "173",
+            "shared_name": "Machine Learning",
+            "name": "Machine Learning",
+            "SUID": 173,
+            "selected": false,
+            "group": 2
+        },
+        {
+            "id": "171",
+            "shared_name": "GeoAI",
+            "name": "GeoAI",
+            "SUID": 171,
+            "selected": false,
+            "group": 2
+        },
+        {
+            "id": "169",
+            "shared_name": "Network Science",
+            "name": "Network Science",
+            "SUID": 169,
+            "selected": false,
+            "group": 2
+        },
+        {
+            "id": "167",
+            "shared_name": "Transport Network",
+            "name": "Transport Network",
+            "SUID": 167,
+            "selected": false,
+            "group": 3
+        },
+        {
+            "id": "165",
+            "shared_name": "Spatial Modeling",
+            "name": "Spatial Modeling",
+            "SUID": 165,
+            "selected": false,
+            "group": 2
+        },
+        {
+            "id": "163",
+            "shared_name": "Spatial Analysis",
+            "name": "Spatial Analysis",
+            "SUID": 163,
+            "selected": false,
+            "group": 2
+        },
+        {
+            "id": "161",
+            "shared_name": "GeoVisualisation",
+            "name": "GeoVisualisation",
+            "SUID": 161,
+            "selected": false,
+            "group": 2
+        },
+        {
+            "id": "159",
+            "shared_name": "Traffic Safety",
+            "name": "Traffic Safety",
+            "SUID": 159,
+            "selected": false,
+            "group": 3
+        },
+        {
+            "id": "157",
+            "shared_name": "Mobility Justice",
+            "name": "Mobility Justice",
+            "SUID": 157,
+            "selected": false,
+            "group": 3
+        },
+        {
+            "id": "155",
+            "shared_name": "Vulnerable Road Users",
+            "name": "Vulnerable Road Users",
+            "SUID": 155,
+            "selected": false,
+            "group": 3
+        }
+    ],
+    "links": [
+        {
+            "id": "229",
+            "source": "183",
+            "target": "165",
+            "shared_name": "Geographic Information Science (interacts with) Spatial Modeling",
+            "shared_interaction": "interacts with",
+            "name": "Geographic Information Science (interacts with) Spatial Modeling",
+            "interaction": "interacts with",
+            "SUID": 229,
+            "value": 1,
+            "selected": false
+        },
+        {
+            "id": "227",
+            "source": "183",
+            "target": "163",
+            "shared_name": "Geographic Information Science (interacts with) Spatial Analysis",
+            "shared_interaction": "interacts with",
+            "name": "Geographic Information Science (interacts with) Spatial Analysis",
+            "interaction": "interacts with",
+            "SUID": 227,
+            "value": 1,
+            "selected": false
+        },
+        {
+            "id": "225",
+            "source": "183",
+            "target": "181",
+            "shared_name": "Geographic Information Science (interacts with) Urban Science",
+            "shared_interaction": "interacts with",
+            "name": "Geographic Information Science (interacts with) Urban Science",
+            "interaction": "interacts with",
+            "SUID": 225,
+            "value": 1,
+            "selected": false
+        },
+        {
+            "id": "223",
+            "source": "181",
+            "target": "179",
+            "shared_name": "Urban Science (interacts with) Urban Mobility",
+            "shared_interaction": "interacts with",
+            "name": "Urban Science (interacts with) Urban Mobility",
+            "interaction": "interacts with",
+            "SUID": 223,
+            "value": 1,
+            "selected": false
+        },
+        {
+            "id": "221",
+            "source": "177",
+            "target": "183",
+            "shared_name": "Data Science (interacts with) Geographic Information Science",
+            "shared_interaction": "interacts with",
+            "name": "Data Science (interacts with) Geographic Information Science",
+            "interaction": "interacts with",
+            "SUID": 221,
+            "value": 1,
+            "selected": false
+        },
+        {
+            "id": "219",
+            "source": "177",
+            "target": "181",
+            "shared_name": "Data Science (interacts with) Urban Science",
+            "shared_interaction": "interacts with",
+            "name": "Data Science (interacts with) Urban Science",
+            "interaction": "interacts with",
+            "SUID": 219,
+            "value": 1,
+            "selected": false
+        },
+        {
+            "id": "217",
+            "source": "175",
+            "target": "183",
+            "shared_name": "Cartography (interacts with) Geographic Information Science",
+            "shared_interaction": "interacts with",
+            "name": "Cartography (interacts with) Geographic Information Science",
+            "interaction": "interacts with",
+            "SUID": 217,
+            "value": 1,
+            "selected": false
+        },
+        {
+            "id": "578",
+            "source": "173",
+            "target": "565",
+            "shared_name": "Machine Learning (interacts with) Graph Learning",
+            "shared_interaction": "interacts with",
+            "name": "Machine Learning (interacts with) Graph Learning",
+            "interaction": "interacts with",
+            "SUID": 578,
+            "value": 1,
+            "selected": false
+        },
+        {
+            "id": "215",
+            "source": "173",
+            "target": "177",
+            "shared_name": "Machine Learning (interacts with) Data Science",
+            "shared_interaction": "interacts with",
+            "name": "Machine Learning (interacts with) Data Science",
+            "interaction": "interacts with",
+            "SUID": 215,
+            "value": 1,
+            "selected": false
+        },
+        {
+            "id": "213",
+            "source": "171",
+            "target": "183",
+            "shared_name": "GeoAI (interacts with) Geographic Information Science",
+            "shared_interaction": "interacts with",
+            "name": "GeoAI (interacts with) Geographic Information Science",
+            "interaction": "interacts with",
+            "SUID": 213,
+            "value": 1,
+            "selected": false
+        },
+        {
+            "id": "211",
+            "source": "171",
+            "target": "173",
+            "shared_name": "GeoAI (interacts with) Machine Learning",
+            "shared_interaction": "interacts with",
+            "name": "GeoAI (interacts with) Machine Learning",
+            "interaction": "interacts with",
+            "SUID": 211,
+            "value": 1,
+            "selected": false
+        },
+        {
+            "id": "209",
+            "source": "171",
+            "target": "177",
+            "shared_name": "GeoAI (interacts with) Data Science",
+            "shared_interaction": "interacts with",
+            "name": "GeoAI (interacts with) Data Science",
+            "interaction": "interacts with",
+            "SUID": 209,
+            "value": 1,
+            "selected": false
+        },
+        {
+            "id": "583",
+            "source": "169",
+            "target": "565",
+            "shared_name": "Network Science (interacts with) Graph Learning",
+            "shared_interaction": "interacts with",
+            "name": "Network Science (interacts with) Graph Learning",
+            "interaction": "interacts with",
+            "SUID": 583,
+            "value": 1,
+            "selected": false
+        },
+        {
+            "id": "207",
+            "source": "169",
+            "target": "177",
+            "shared_name": "Network Science (interacts with) Data Science",
+            "shared_interaction": "interacts with",
+            "name": "Network Science (interacts with) Data Science",
+            "interaction": "interacts with",
+            "SUID": 207,
+            "value": 1,
+            "selected": false
+        },
+        {
+            "id": "205",
+            "source": "169",
+            "target": "167",
+            "shared_name": "Network Science (interacts with) Transport Network",
+            "shared_interaction": "interacts with",
+            "name": "Network Science (interacts with) Transport Network",
+            "interaction": "interacts with",
+            "SUID": 205,
+            "value": 1,
+            "selected": false
+        },
+        {
+            "id": "203",
+            "source": "167",
+            "target": "179",
+            "shared_name": "Transport Network (interacts with) Urban Mobility",
+            "shared_interaction": "interacts with",
+            "name": "Transport Network (interacts with) Urban Mobility",
+            "interaction": "interacts with",
+            "SUID": 203,
+            "value": 1,
+            "selected": false
+        },
+        {
+            "id": "201",
+            "source": "165",
+            "target": "169",
+            "shared_name": "Spatial Modeling (interacts with) Network Science",
+            "shared_interaction": "interacts with",
+            "name": "Spatial Modeling (interacts with) Network Science",
+            "interaction": "interacts with",
+            "SUID": 201,
+            "value": 1,
+            "selected": false
+        },
+        {
+            "id": "199",
+            "source": "165",
+            "target": "167",
+            "shared_name": "Spatial Modeling (interacts with) Transport Network",
+            "shared_interaction": "interacts with",
+            "name": "Spatial Modeling (interacts with) Transport Network",
+            "interaction": "interacts with",
+            "SUID": 199,
+            "value": 1,
+            "selected": false
+        },
+        {
+            "id": "197",
+            "source": "161",
+            "target": "175",
+            "shared_name": "GeoVisualisation (interacts with) Cartography",
+            "shared_interaction": "interacts with",
+            "name": "GeoVisualisation (interacts with) Cartography",
+            "interaction": "interacts with",
+            "SUID": 197,
+            "value": 1,
+            "selected": false
+        },
+        {
+            "id": "195",
+            "source": "161",
+            "target": "183",
+            "shared_name": "GeoVisualisation (interacts with) Geographic Information Science",
+            "shared_interaction": "interacts with",
+            "name": "GeoVisualisation (interacts with) Geographic Information Science",
+            "interaction": "interacts with",
+            "SUID": 195,
+            "value": 1,
+            "selected": false
+        },
+        {
+            "id": "193",
+            "source": "161",
+            "target": "177",
+            "shared_name": "GeoVisualisation (interacts with) Data Science",
+            "shared_interaction": "interacts with",
+            "name": "GeoVisualisation (interacts with) Data Science",
+            "interaction": "interacts with",
+            "SUID": 193,
+            "value": 1,
+            "selected": false
+        },
+        {
+            "id": "191",
+            "source": "159",
+            "target": "179",
+            "shared_name": "Traffic Safety (interacts with) Urban Mobility",
+            "shared_interaction": "interacts with",
+            "name": "Traffic Safety (interacts with) Urban Mobility",
+            "interaction": "interacts with",
+            "SUID": 191,
+            "value": 1,
+            "selected": false
+        },
+        {
+            "id": "189",
+            "source": "157",
+            "target": "179",
+            "shared_name": "Mobility Justice (interacts with) Urban Mobility",
+            "shared_interaction": "interacts with",
+            "name": "Mobility Justice (interacts with) Urban Mobility",
+            "interaction": "interacts with",
+            "SUID": 189,
+            "value": 1,
+            "selected": false
+        },
+        {
+            "id": "187",
+            "source": "155",
+            "target": "157",
+            "shared_name": "Vulnerable Road Users (interacts with) Mobility Justice",
+            "shared_interaction": "interacts with",
+            "name": "Vulnerable Road Users (interacts with) Mobility Justice",
+            "interaction": "interacts with",
+            "SUID": 187,
+            "value": 1,
+            "selected": false
+        },
+        {
+            "id": "185",
+            "source": "155",
+            "target": "159",
+            "shared_name": "Vulnerable Road Users (interacts with) Traffic Safety",
+            "shared_interaction": "interacts with",
+            "name": "Vulnerable Road Users (interacts with) Traffic Safety",
+            "interaction": "interacts with",
+            "SUID": 185,
+            "value": 1,
+            "selected": false
+        }
+    ]
+}
