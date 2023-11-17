@@ -4,7 +4,7 @@
             .append("svg")
             .attr("width", 300)
             .attr("height", 300);
-        var color = d3.scaleOrdinal(d3.schemeCategory20);
+        <!-- var color = d3.scaleOrdinal(d3.schemeCategory20);
 
         var simulation = d3.forceSimulation()
             .force("link", d3.forceLink().id(function (d) { return d.id; }))
@@ -70,7 +70,14 @@
             if (!d3.event.active) simulation.alphaTarget(0);
             d.fx = null;
             d.fy = null;
-        }
-        
+        } -->
+
+        svg.append("circle")
+            .attr("cx", 50)
+            .attr("cy", 50)
+            .attr("r", 40)
+            .attr("stroke", "black")
+            .attr("stroke-width", 6)
+            .attr("fill", "orange");
     </script>
 </div>
