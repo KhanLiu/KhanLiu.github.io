@@ -1,6 +1,6 @@
 ---
 title: CV
-feed: hide
+feed: show
 date: 16-11-2023
 ---
 ## Educational Experience
