@@ -79,6 +79,7 @@
                     {%- if site.preferences.homepage.enabled -%}
                     <!--- Show Homepage -->
                     {%- include Homepage.html -%}
+                    {%- include ri_copy.html -%}
                     <div>
                         <script>
                             // Use D3 to select the body element and append an SVG container
@@ -94,10 +95,9 @@
                                 .attr("r", 40)
                                 .attr("stroke", "black")
                                 .attr("stroke-width", 3)
-                                .attr("fill", "red");
+                                .attr("fill", "green");
                         </script>
                     </div>
-                    {%- include ri.html -%}
                     {%- else -%}
                     <!--- Show Feed Part -->
                     <div class="column is-6-widescreen  is-8-desktop is-8-tablet is-12-mobile">
