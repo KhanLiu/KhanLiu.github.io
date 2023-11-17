@@ -55,15 +55,27 @@
     
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
+        <a href="{{'' | relative_url}}" class="navbar-item">
+          Home
+        </a>
         <a href="{{'/notes' | relative_url}}" class="navbar-item">
+          Post
+        </a>
+        <a href="../post/CV" class="navbar-item">
+          CV
+        </a>
+        <a href="../post/Contact" class="navbar-item">
+          Contact
+        </a>
+        <!-- <a href="{{'/notes' | relative_url}}" class="navbar-item">
           Demo Feed
         </a>
         <a href="../post/how-to" class="navbar-item">
           How To
         </a>
-        <!-- <a href="https://github.com/Jekyll-Garden/jekyll-garden.github.io" target="_blank" class="navbar-item">
+        <a href="https://github.com/Jekyll-Garden/jekyll-garden.github.io" target="_blank" class="navbar-item">
           Github
-        </a> -->
+        </a>
         <a href="../post/CV" class="navbar-item">
           CV
         </a>
@@ -72,10 +84,7 @@
         </a>
         <a href="https://obsidian.md/"  target="_blank" class="navbar-item">
           LinkedIn
-        </a>
-        <a>
-            <!-- placeholder -->
-        </a>
+        </a> -->
       </div>
       <div class="navbar-end is-hidden-mobile" onclick="modeSwitcher()" >
         <div class="navbar-item">
