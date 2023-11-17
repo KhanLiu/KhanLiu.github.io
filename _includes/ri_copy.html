@@ -1,6 +1,19 @@
 <svg width="480" height="300"></svg>
 <script>
+    var svg = d3.select("body")
+            .append("svg")
+            .attr("width", 100)
+            .attr("height", 100);
 
+        // Append a circle to the SVG container
+        svg.append("circle")
+            .attr("cx", 50)
+            .attr("cy", 50)
+            .attr("r", 40)
+            .attr("stroke", "black")
+            .attr("stroke-width", 3)
+            .attr("fill", "red");
+    </script>
     var svg = d3.select("svg"),
         width = +svg.attr("width"),
         height = +svg.attr("height");
