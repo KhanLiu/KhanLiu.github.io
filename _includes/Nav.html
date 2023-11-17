@@ -33,7 +33,7 @@
     <div class="navbar-brand">
       <!-- <a class="navbar-item" style="padding-left: 0;"; href="{{ site.baseurl }}/index.html"> --> 
       <!-- <a class="navbar-item" style="padding-left: 0;"; href="{{ site.baseurl }}"></a> -->
-      <a class="navbar-item" style="padding-left: 0;"; href="{{ site.url }}">
+      <a class="navbar-item" style="padding-left: 0;"; href="{{'/' | relative_url}}">
           <h6> {{site.heading}}</h6></a>
           <script src="{{ site.baseurl }}/assets/js/modeswitcher.js"></script>
           <script src="{{ site.baseurl }}/assets/js/Hamburger.js"></script>
@@ -59,7 +59,7 @@
           Home
         </a>
         <a href="{{'/notes' | relative_url}}" class="navbar-item">
-          Post
+          Note
         </a>
         <a href="../post/CV" class="navbar-item">
           CV
