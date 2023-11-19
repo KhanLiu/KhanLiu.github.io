@@ -21,6 +21,7 @@
 <script>
 
   const data = [10, 25, 15, 30, 20];
+  const graph = FileAttachment("miserables.json").json();
 
   var svg = d3.select("#research-network"),
     width = +svg.attr("width"),
@@ -43,8 +44,6 @@
     .force("charge", d3.forceManyBody())
     .force("center", d3.forceCenter(width / 2, height / 2));
 
-  const graph = FileAttachment("miserables.json").json()
-
   var link = svg.append("g")
     .attr("class", "links")
     .selectAll("line")
@@ -56,7 +55,7 @@
     .attr("class", "nodes")
     .selectAll("g")
     .data(graph.nodes)
-    .enter().append("g")
+    .enter().append("g");
 
   var circles = node.append("circle")
     .attr("r", 5)
