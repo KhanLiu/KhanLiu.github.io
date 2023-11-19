@@ -1,121 +1,33 @@
-<!DOCTYPE html>
-<meta charset="utf-8">
-<style>
-  .links line {
-    stroke: #999;
-    stroke-opacity: 0.6;
-  }
+<head>
+  <style>
+    body {
+      margin: 0;
+    }
+  </style>
 
-  .nodes circle {
-    stroke: #fff;
-    stroke-width: 1.5px;
-  }
+  <script src="//unpkg.com/force-graph"></script>
+  <!--<script src="../../dist/force-graph.js"></script>-->
+</head>
 
-  text {
-    font-family: sans-serif;
-    font-size: 10px;
-  }
-</style>
+<body>
+  <div id="graph"></div>
 
-<script src="https://d3js.org/d3.v4.min.js"></script>
-<script>
+  <script>
+    // Random tree
+    const N = 300;
+    const gData = {
+      nodes: [...Array(N).keys()].map(i => ({ id: i })),
+      links: [...Array(N).keys()]
+        .filter(id => id)
+        .map(id => ({
+          source: id,
+          target: Math.round(Math.random() * (id - 1))
+        }))
+    };
 
-  var svg = d3.select("#research-network"),
-    width = +svg.attr("width"),
-    height = +svg.attr("height");
-
-  var graph = FileAttachment("miserables.json").json();
-
-  var color = d3.scaleOrdinal(d3.schemeCategory20);
-
-  var simulation = d3.forceSimulation()
-    .force("link", d3.forceLink().id(function (d) { return d.id; }))
-    .force("charge", d3.forceManyBody())
-    .force("center", d3.forceCenter(width / 2, height / 2));
-
-  var link = svg.append("g")
-    .attr("class", "links")
-    .selectAll("line")
-    .data(graph.links)
-    .enter().append("line")
-    .attr("stroke-width", function (d) { return Math.sqrt(d.value); });
-
-  var node = svg.append("g")
-    .attr("class", "nodes")
-    .selectAll("g")
-    .data(graph.nodes)
-    .enter().append("g");
-
-  var circles = node.append("circle")
-    .attr("r", 5)
-    .attr("fill", function (d) { return color(d.group); });
-
-  // Create a drag handler and append it to the node object instead
-  var drag_handler = d3.drag()
-    .on("start", dragstarted)
-    .on("drag", dragged)
-    .on("end", dragended);
-
-  drag_handler(node);
-
-  var lables = node.append("text")
-    .text(function (d) {
-      return d.id;
-    })
-    .attr('x', 6)
-    .attr('y', 3);
-
-  node.append("title")
-    .text(function (d) { return d.id; });
-
-  simulation
-    .nodes(graph.nodes)
-    .on("tick", ticked);
-
-  simulation.force("link")
-    .links(graph.links);
-
-  function ticked() {
-    link
-      .attr("x1", function (d) { return d.source.x; })
-      .attr("y1", function (d) { return d.source.y; })
-      .attr("x2", function (d) { return d.target.x; })
-      .attr("y2", function (d) { return d.target.y; });
-
-    node
-      .attr("transform", function (d) {
-        return "translate(" + d.x + "," + d.y + ")";
-      })
-  }
-
-
-  function dragstarted(d) {
-    if (!d3.event.active) simulation.alphaTarget(0.3).restart();
-    d.fx = d.x;
-    d.fy = d.y;
-  }
-
-  function dragged(d) {
-    d.fx = d3.event.x;
-    d.fy = d3.event.y;
-  }
-
-  function dragended(d) {
-    if (!d3.event.active) simulation.alphaTarget(0);
-    d.fx = null;
-    d.fy = null;
-  }
-
-  const data = [10, 25, 15, 30, 20];
-  
-  svg.selectAll('rect')
-    .data(data)
-    .enter()
-    .append('rect')
-    .attr('x', (d, i) => i * 80)  // Set x-coordinate of the bar
-    .attr('y', d => 200 - d * 5)  // Set y-coordinate of the bar
-    .attr('width', 70)             // Set width of the bar
-    .attr('height', d => d * 5)    // Set height of the bar
-    .attr('fill', 'steelblue');    // Set fill color of the barÍ
-
-</script>
+    const Graph = ForceGraph()
+      (document.getElementById('graph'))
+      .linkDirectionalParticles(2)
+      .graphData(gData);
+  </script>
+</body>
