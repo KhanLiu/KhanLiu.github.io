@@ -35,6 +35,8 @@
   d3.json("miserables.json", function (error, graph) {
     if (error) throw error;
 
+    console.log("Hello world!");
+    
     var link = svg.append("g")
       .attr("class", "links")
       .selectAll("line")
