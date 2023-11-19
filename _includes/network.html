@@ -26,16 +26,6 @@
     width = +svg.attr("width"),
     height = +svg.attr("height");
 
-  var color = d3.scaleOrdinal(d3.schemeCategory20);
-
-  var simulation = d3.forceSimulation()
-    .force("link", d3.forceLink().id(function (d) { return d.id; }))
-    .force("charge", d3.forceManyBody())
-    .force("center", d3.forceCenter(width / 2, height / 2));
-
-  const graph = FileAttachment("miserables.json").json()
-
-
   svg.selectAll('rect')
     .data(data)
     .enter()
@@ -45,6 +35,15 @@
     .attr('width', 70)             // Set width of the bar
     .attr('height', d => d * 5)    // Set height of the bar
     .attr('fill', 'steelblue');    // Set fill color of the bar
+
+  var color = d3.scaleOrdinal(d3.schemeCategory20);
+
+  var simulation = d3.forceSimulation()
+    .force("link", d3.forceLink().id(function (d) { return d.id; }))
+    .force("charge", d3.forceManyBody())
+    .force("center", d3.forceCenter(width / 2, height / 2));
+
+  const graph = FileAttachment("miserables.json").json()
 
   var link = svg.append("g")
     .attr("class", "links")
