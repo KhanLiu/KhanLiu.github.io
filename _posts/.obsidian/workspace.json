@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "9e3894959c3d2c3c",
+        "id": "4764e4110fab917d",
         "type": "tabs",
         "children": [
           {
-            "id": "fc5ecf33f032a9dc",
+            "id": "bf74ed094ff9b87e",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2023-11-19-Contact.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -85,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "2023-11-19-Contact.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "2023-11-19-Contact.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -124,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "2023-11-19-Contact.md"
-              }
+              "state": {}
             }
           }
         ]
@@ -146,10 +138,10 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "fc5ecf33f032a9dc",
+  "active": "bf74ed094ff9b87e",
   "lastOpenFiles": [
-    "2023-11-16-CV.md",
     "2023-11-19-Contact.md",
+    "2023-11-16-CV.md",
     "2020-03-01-how-to.md",
     "CV.md"
   ]
