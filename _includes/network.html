@@ -20,22 +20,11 @@
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
 
-  const data = [10, 25, 15, 30, 20];
-  const graph = FileAttachment("miserables.json").json();
-
   var svg = d3.select("#research-network"),
     width = +svg.attr("width"),
     height = +svg.attr("height");
 
-  svg.selectAll('rect')
-    .data(data)
-    .enter()
-    .append('rect')
-    .attr('x', (d, i) => i * 80)  // Set x-coordinate of the bar
-    .attr('y', d => 200 - d * 5)  // Set y-coordinate of the bar
-    .attr('width', 70)             // Set width of the bar
-    .attr('height', d => d * 5)    // Set height of the bar
-    .attr('fill', 'steelblue');    // Set fill color of the bar
+  var graph = FileAttachment("miserables.json").json();
 
   var color = d3.scaleOrdinal(d3.schemeCategory20);
 
@@ -116,5 +105,16 @@
     d.fx = null;
     d.fy = null;
   }
+
+  const data = [10, 25, 15, 30, 20];
+  svg.selectAll('rect')
+    .data(data)
+    .enter()
+    .append('rect')
+    .attr('x', (d, i) => i * 80)  // Set x-coordinate of the bar
+    .attr('y', d => 200 - d * 5)  // Set y-coordinate of the bar
+    .attr('width', 70)             // Set width of the bar
+    .attr('height', d => d * 5)    // Set height of the bar
+    .attr('fill', 'steelblue');    // Set fill color of the barÍ
 
 </script>
