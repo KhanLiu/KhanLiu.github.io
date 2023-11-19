@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D3 Bar Chart Example</title>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <!-- Make sure to include the D3 library -->
+</head>
+
+<body>
+
+  <script>
+    // Sample data
+    const data = [10, 25, 15, 30, 20];
+
+    // Create an SVG container
+    const svg = d3.select('body')
+      .append('svg')
+      .attr('width', 400)
+      .attr('height', 200);
+
+    // Create bars
+    svg.selectAll('rect')
+      .data(data)
+      .enter()
+      .append('rect')
+      .attr('x', (d, i) => i * 80)  // Set x-coordinate of the bar
+      .attr('y', d => 200 - d * 5)  // Set y-coordinate of the bar
+      .attr('width', 70)             // Set width of the bar
+      .attr('height', d => d * 5)    // Set height of the bar
+      .attr('fill', 'steelblue');    // Set fill color of the bar
+  </script>
+
+</body>
+
+</html>
