@@ -1,0 +1,15 @@
+# Add actual flight records here when ready; no sample flights are included.
+# Required fields:
+# - date: "YYYY-MM-DD"
+#   origin:
+#     airport: "MUC"
+#     city: "Munich"
+#     country: "Germany"
+#     coordinates: [48.35, 11.79] # [latitude, longitude]
+#   destination:
+#     airport: "LHR"
+#     city: "London"
+#     country: "United Kingdom"
+#     coordinates: [51.47, -0.45]
+#   flight_number: "AB123" # optional
+[]

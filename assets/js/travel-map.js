@@ -2,11 +2,15 @@
     "use strict";
 
     var visits = [];
+    var flights = [];
     var map = null;
     var mapReady = false;
     var selectedIndex = -1;
     var selectedPlaceKey = "";
+    var selectedFlightIndex = -1;
+    var viewMode = "cities";
     var playback = null;
+    var flightPlayback = null;
     var statusMessages = [];
     var elements;
     var demoNotice;
@@ -18,6 +22,10 @@
         elements = {
             canvas: document.getElementById("travel-map-canvas"),
             status: document.getElementById("travel-map-status"),
+            cityView: document.getElementById("travel-city-view"),
+            flightView: document.getElementById("travel-flight-view"),
+            citiesButton: document.getElementById("travel-view-cities"),
+            flightsButton: document.getElementById("travel-view-flights"),
             date: document.getElementById("travel-timeline-date"),
             count: document.getElementById("travel-timeline-count"),
             range: document.getElementById("travel-timeline-range"),
@@ -32,7 +40,19 @@
             storyPlace: document.getElementById("travel-story-place"),
             description: document.getElementById("travel-story-description"),
             photoWrap: document.getElementById("travel-photo-wrap"),
-            photo: document.getElementById("travel-photo")
+            photo: document.getElementById("travel-photo"),
+            flightEmpty: document.getElementById("travel-flight-empty"),
+            flightContent: document.getElementById("travel-flight-content"),
+            flightDate: document.getElementById("travel-flight-date"),
+            flightTitle: document.getElementById("travel-flight-title"),
+            flightAirports: document.getElementById("travel-flight-airports"),
+            flightNumber: document.getElementById("travel-flight-number"),
+            flightDateControl: document.getElementById("flight-timeline-date"),
+            flightCount: document.getElementById("flight-timeline-count"),
+            flightRange: document.getElementById("flight-timeline-range"),
+            flightPrevious: document.getElementById("flight-previous"),
+            flightNext: document.getElementById("flight-next"),
+            flightPlay: document.getElementById("flight-play")
         };
         demoNotice = document.getElementById("travel-demo-notice");
 
@@ -48,6 +68,18 @@
             return;
         }
 
+        try {
+            flights = JSON.parse(document.getElementById("flight-data").textContent);
+        } catch (error) {
+            flights = [];
+            addStatus("Flight data could not be read. Check the YAML syntax in _data/flights.yml.");
+        }
+
+        if (!Array.isArray(flights)) {
+            flights = [];
+            addStatus("Flight data must be a list in _data/flights.yml.");
+        }
+
         var rejectedVisits = visits.length - visits.filter(isValidVisit).length;
         visits = visits.map(function (visit, index) {
             return Object.assign({ _index: index }, visit);
@@ -57,11 +89,18 @@
         visits.forEach(function (visit) {
             visit._placeKey = visit.city.toLocaleLowerCase() + "|" + visit.country.toLocaleLowerCase();
         });
+        var rejectedFlights = flights.length - flights.filter(isValidFlight).length;
+        flights = flights.map(function (flight, index) {
+            return Object.assign({ _index: index }, flight);
+        }).filter(isValidFlight).sort(function (a, b) {
+            return a.date.localeCompare(b.date) || a._index - b._index;
+        });
         demoNotice.hidden = !visits.some(function (visit) {
             return visit.demo === true;
         });
 
         elements.range.max = Math.max(visits.length - 1, 0);
+        elements.flightRange.max = Math.max(flights.length - 1, 0);
 
         if (typeof window.maplibregl === "undefined" || typeof window.maplibregl.Map !== "function") {
             addStatus("The interactive globe could not load. Check your connection; your travel data is still available.");
@@ -77,16 +116,25 @@
             addStatus(rejectedVisits + " visit" + (rejectedVisits === 1 ? " was" : "s were")
                 + " skipped because its data is incomplete or invalid. Check _data/trips.yml.");
         }
-
-        if (!visits.length) {
-            return;
+        if (rejectedFlights) {
+            addStatus(rejectedFlights + " flight" + (rejectedFlights === 1 ? " was" : "s were")
+                + " skipped because its data is incomplete or invalid. Check _data/flights.yml.");
         }
 
-        elements.range.disabled = false;
-        elements.previous.disabled = false;
-        elements.next.disabled = false;
-        elements.play.disabled = false;
-
+        elements.citiesButton.addEventListener("click", function () {
+            setViewMode("cities");
+        });
+        elements.flightsButton.addEventListener("click", function () {
+            setViewMode("flights");
+        });
+        elements.range.disabled = !visits.length;
+        elements.previous.disabled = !visits.length;
+        elements.next.disabled = !visits.length;
+        elements.play.disabled = !visits.length;
+        elements.flightRange.disabled = !flights.length;
+        elements.flightPrevious.disabled = !flights.length;
+        elements.flightNext.disabled = !flights.length;
+        elements.flightPlay.disabled = !flights.length;
         elements.range.addEventListener("input", function () {
             selectVisit(Number(elements.range.value), true);
         });
@@ -97,17 +145,27 @@
             selectVisit(Math.min(visits.length - 1, selectedIndex + 1), true);
         });
         elements.play.addEventListener("click", togglePlayback);
+        elements.flightRange.addEventListener("input", function () {
+            selectFlight(Number(elements.flightRange.value), true);
+        });
+        elements.flightPrevious.addEventListener("click", function () {
+            selectFlight(Math.max(0, selectedFlightIndex - 1), true);
+        });
+        elements.flightNext.addEventListener("click", function () {
+            selectFlight(Math.min(flights.length - 1, selectedFlightIndex + 1), true);
+        });
+        elements.flightPlay.addEventListener("click", toggleFlightPlayback);
 
-        selectVisit(0, false);
+        if (visits.length) {
+            selectVisit(0, false);
+        }
     }
 
     function initializeGlobe() {
         map = new window.maplibregl.Map({
             container: elements.canvas,
             style: "https://tiles.openfreemap.org/styles/positron",
-            center: visits.length
-                ? [visits[0].coordinates[1], visits[0].coordinates[0]]
-                : [0, 20],
+            center: initialMapCenter(),
             zoom: 1.1,
             minZoom: 0.8,
             maxZoom: 12,
@@ -140,6 +198,10 @@
                 type: "geojson",
                 data: createVisitFeatures()
             });
+            map.addSource("travel-flights", {
+                type: "geojson",
+                data: createFlightFeatures()
+            });
             map.addLayer({
                 id: "travel-place-halo",
                 type: "circle",
@@ -162,6 +224,68 @@
                     "circle-stroke-color": "#f8fbfa"
                 }
             });
+            map.addLayer({
+                id: "travel-flight-route",
+                type: "line",
+                source: "travel-flights",
+                filter: ["==", ["get", "kind"], "route"],
+                layout: {
+                    visibility: "none",
+                    "line-join": "round",
+                    "line-cap": "round"
+                },
+                paint: {
+                    "line-color": ["case", ["==", ["get", "index"], selectedFlightIndex], "#d2754e", "#55998d"],
+                    "line-width": ["case", ["==", ["get", "index"], selectedFlightIndex], 3, 2],
+                    "line-opacity": 0.9
+                }
+            });
+            map.addLayer({
+                id: "travel-flight-direction",
+                type: "symbol",
+                source: "travel-flights",
+                filter: ["==", ["get", "kind"], "route"],
+                layout: {
+                    visibility: "none",
+                    "symbol-placement": "line",
+                    "symbol-spacing": 220,
+                    "text-field": "▶",
+                    "text-size": 10,
+                    "text-rotation-alignment": "map",
+                    "text-keep-upright": false
+                },
+                paint: {
+                    "text-color": "#d2754e",
+                    "text-halo-color": "#fffdfb",
+                    "text-halo-width": 1
+                }
+            });
+            map.addLayer({
+                id: "travel-flight-origin",
+                type: "circle",
+                source: "travel-flights",
+                filter: ["==", ["get", "kind"], "origin"],
+                layout: { visibility: "none" },
+                paint: {
+                    "circle-radius": 5,
+                    "circle-color": "#55998d",
+                    "circle-stroke-width": 2,
+                    "circle-stroke-color": "#fffdfb"
+                }
+            });
+            map.addLayer({
+                id: "travel-flight-destination",
+                type: "circle",
+                source: "travel-flights",
+                filter: ["==", ["get", "kind"], "destination"],
+                layout: { visibility: "none" },
+                paint: {
+                    "circle-radius": 5,
+                    "circle-color": "#d2754e",
+                    "circle-stroke-width": 2,
+                    "circle-stroke-color": "#fffdfb"
+                }
+            });
             map.on("mouseenter", "travel-place-point", function () {
                 map.getCanvas().style.cursor = "pointer";
             });
@@ -174,7 +298,27 @@
                     selectVisit(Number(feature.properties.index), true);
                 }
             });
+            ["travel-flight-route", "travel-flight-origin", "travel-flight-destination"].forEach(function (layerId) {
+                map.on("mouseenter", layerId, function () {
+                    map.getCanvas().style.cursor = "pointer";
+                });
+                map.on("mouseleave", layerId, function () {
+                    map.getCanvas().style.cursor = "";
+                });
+                map.on("click", layerId, function (event) {
+                    var feature = event.features && event.features[0];
+                    if (feature) {
+                        setViewMode("flights");
+                        selectFlight(Number(feature.properties.index), true);
+                    }
+                });
+            });
+            setMapViewVisibility();
             updateSelectedPoint();
+            updateFlightSelection();
+            if (viewMode === "flights" && selectedFlightIndex >= 0) {
+                selectFlight(selectedFlightIndex, true);
+            }
         });
     }
 
@@ -205,6 +349,261 @@
         };
     }
 
+    function initialMapCenter() {
+        if (visits.length) {
+            return [visits[0].coordinates[1], visits[0].coordinates[0]];
+        }
+        if (flights.length) {
+            return [flights[0].origin.coordinates[1], flights[0].origin.coordinates[0]];
+        }
+        return [0, 20];
+    }
+
+    function createFlightFeatures() {
+        var features = [];
+        flights.forEach(function (flight, index) {
+            var origin = [flight.origin.coordinates[1], flight.origin.coordinates[0]];
+            var destination = [flight.destination.coordinates[1], flight.destination.coordinates[0]];
+            features.push({
+                type: "Feature",
+                properties: { kind: "route", index: index },
+                geometry: {
+                    type: "MultiLineString",
+                    coordinates: createGreatCircleSegments(origin, destination)
+                }
+            });
+            features.push({
+                type: "Feature",
+                properties: { kind: "origin", index: index },
+                geometry: { type: "Point", coordinates: origin }
+            });
+            features.push({
+                type: "Feature",
+                properties: { kind: "destination", index: index },
+                geometry: { type: "Point", coordinates: destination }
+            });
+        });
+        return { type: "FeatureCollection", features: features };
+    }
+
+    function createGreatCircleSegments(start, end) {
+        var startVector = coordinateToVector(start);
+        var endVector = coordinateToVector(end);
+        var dot = Math.max(-1, Math.min(1,
+            startVector[0] * endVector[0] + startVector[1] * endVector[1] + startVector[2] * endVector[2]));
+        var angle = Math.acos(dot);
+        var segments = [[]];
+        var previous = null;
+        var steps = 48;
+
+        for (var i = 0; i <= steps; i += 1) {
+            var fraction = i / steps;
+            var vector;
+            if (angle < 0.000001) {
+                vector = normalizeVector([
+                    startVector[0] + (endVector[0] - startVector[0]) * fraction,
+                    startVector[1] + (endVector[1] - startVector[1]) * fraction,
+                    startVector[2] + (endVector[2] - startVector[2]) * fraction
+                ]);
+            } else if (angle > Math.PI - 0.000001) {
+                var perpendicular = [
+                    endVector[0] - dot * startVector[0],
+                    endVector[1] - dot * startVector[1],
+                    endVector[2] - dot * startVector[2]
+                ];
+                var perpendicularLength = Math.sqrt(
+                    perpendicular[0] * perpendicular[0]
+                    + perpendicular[1] * perpendicular[1]
+                    + perpendicular[2] * perpendicular[2]
+                );
+                if (perpendicularLength < 0.000001) {
+                    perpendicular = [
+                        -startVector[1],
+                        startVector[0],
+                        0
+                    ];
+                    perpendicularLength = Math.sqrt(
+                        perpendicular[0] * perpendicular[0]
+                        + perpendicular[1] * perpendicular[1]
+                        + perpendicular[2] * perpendicular[2]
+                    );
+                    if (perpendicularLength < 0.000001) {
+                        perpendicular = [0, -startVector[2], startVector[1]];
+                        perpendicularLength = Math.sqrt(
+                            perpendicular[0] * perpendicular[0]
+                            + perpendicular[1] * perpendicular[1]
+                            + perpendicular[2] * perpendicular[2]
+                        );
+                    }
+                }
+                perpendicular = perpendicular.map(function (component) {
+                    return component / perpendicularLength;
+                });
+                vector = fraction === 1 ? endVector : [
+                    startVector[0] * Math.cos(angle * fraction) + perpendicular[0] * Math.sin(angle * fraction),
+                    startVector[1] * Math.cos(angle * fraction) + perpendicular[1] * Math.sin(angle * fraction),
+                    startVector[2] * Math.cos(angle * fraction) + perpendicular[2] * Math.sin(angle * fraction)
+                ];
+            } else {
+                var scaleA = Math.sin((1 - fraction) * angle) / Math.sin(angle);
+                var scaleB = Math.sin(fraction * angle) / Math.sin(angle);
+                vector = [
+                    startVector[0] * scaleA + endVector[0] * scaleB,
+                    startVector[1] * scaleA + endVector[1] * scaleB,
+                    startVector[2] * scaleA + endVector[2] * scaleB
+                ];
+            }
+            var coordinate = vectorToCoordinate(vector);
+
+            if (previous && Math.abs(coordinate[0] - previous[0]) > 180) {
+                var adjustedLongitude = coordinate[0] + (previous[0] > 0 ? 360 : -360);
+                var boundary = previous[0] > 0 ? 180 : -180;
+                var crossingFraction = (boundary - previous[0]) / (adjustedLongitude - previous[0]);
+                var crossingLatitude = previous[1] + (coordinate[1] - previous[1]) * crossingFraction;
+                segments[segments.length - 1].push([boundary, crossingLatitude]);
+                segments.push([[-boundary, crossingLatitude]]);
+            }
+
+            segments[segments.length - 1].push(coordinate);
+            previous = coordinate;
+        }
+
+        return segments.filter(function (segment) {
+            return segment.length > 1;
+        });
+    }
+
+    function coordinateToVector(coordinate) {
+        var latitude = coordinate[1] * Math.PI / 180;
+        var longitude = coordinate[0] * Math.PI / 180;
+        return [
+            Math.cos(latitude) * Math.cos(longitude),
+            Math.cos(latitude) * Math.sin(longitude),
+            Math.sin(latitude)
+        ];
+    }
+
+    function vectorToCoordinate(vector) {
+        return [
+            Math.atan2(vector[1], vector[0]) * 180 / Math.PI,
+            Math.atan2(vector[2], Math.sqrt(vector[0] * vector[0] + vector[1] * vector[1])) * 180 / Math.PI
+        ];
+    }
+
+    function normalizeVector(vector) {
+        var length = Math.sqrt(vector[0] * vector[0] + vector[1] * vector[1] + vector[2] * vector[2]);
+        return vector.map(function (component) {
+            return component / length;
+        });
+    }
+
+    function setViewMode(mode) {
+        if (mode === viewMode) return;
+
+        if (playback) {
+            window.clearInterval(playback);
+            playback = null;
+            setPlaybackButton(false);
+        }
+        if (flightPlayback) {
+            window.clearInterval(flightPlayback);
+            flightPlayback = null;
+            setFlightPlaybackButton(false);
+        }
+
+        viewMode = mode;
+        var showCities = mode === "cities";
+        elements.cityView.hidden = !showCities;
+        elements.flightView.hidden = showCities;
+        elements.citiesButton.classList.toggle("is-active", showCities);
+        elements.citiesButton.setAttribute("aria-pressed", String(showCities));
+        elements.flightsButton.classList.toggle("is-active", !showCities);
+        elements.flightsButton.setAttribute("aria-pressed", String(!showCities));
+        setMapViewVisibility();
+
+        if (!showCities && flights.length && selectedFlightIndex < 0) {
+            selectFlight(0, true);
+        }
+    }
+
+    function setMapViewVisibility() {
+        if (!mapReady) return;
+        var cityVisibility = viewMode === "cities" ? "visible" : "none";
+        var flightVisibility = viewMode === "flights" ? "visible" : "none";
+        ["travel-place-halo", "travel-place-point"].forEach(function (layerId) {
+            map.setLayoutProperty(layerId, "visibility", cityVisibility);
+        });
+        ["travel-flight-route", "travel-flight-direction", "travel-flight-origin", "travel-flight-destination"]
+            .forEach(function (layerId) {
+                map.setLayoutProperty(layerId, "visibility", flightVisibility);
+            });
+    }
+
+    function selectFlight(index, moveGlobe) {
+        if (index < 0 || index >= flights.length) return;
+        selectedFlightIndex = index;
+        var flight = flights[index];
+        var origin = formatFlightEndpoint(flight.origin);
+        var destination = formatFlightEndpoint(flight.destination);
+
+        elements.flightRange.value = index;
+        elements.flightDateControl.textContent = formatDate(flight.date, flight.date_precision);
+        elements.flightCount.textContent = (index + 1) + " / " + flights.length;
+        elements.flightDate.textContent = formatDate(flight.date, flight.date_precision);
+        elements.flightTitle.textContent = origin.city + " → " + destination.city;
+        elements.flightAirports.textContent = [origin.airport, destination.airport].filter(Boolean).join(" → ");
+        elements.flightAirports.hidden = !elements.flightAirports.textContent;
+        elements.flightNumber.textContent = flight.flight_number ? "Flight " + flight.flight_number : "";
+        elements.flightNumber.hidden = !flight.flight_number;
+        elements.flightEmpty.hidden = true;
+        elements.flightContent.hidden = false;
+        updateFlightSelection();
+
+        if (moveGlobe && map && mapReady) {
+            var originVector = coordinateToVector([flight.origin.coordinates[1], flight.origin.coordinates[0]]);
+            var destinationVector = coordinateToVector([flight.destination.coordinates[1], flight.destination.coordinates[0]]);
+            var midpointVector = [
+                originVector[0] + destinationVector[0],
+                originVector[1] + destinationVector[1],
+                originVector[2] + destinationVector[2]
+            ];
+            var midpointLength = Math.sqrt(
+                midpointVector[0] * midpointVector[0]
+                + midpointVector[1] * midpointVector[1]
+                + midpointVector[2] * midpointVector[2]
+            );
+            var midpoint = vectorToCoordinate(midpointLength < 0.000001
+                ? originVector
+                : normalizeVector(midpointVector));
+            map.easeTo({
+                center: midpoint,
+                zoom: 2,
+                duration: 1100,
+                essential: true
+            });
+        }
+    }
+
+    function formatFlightEndpoint(endpoint) {
+        var location = [endpoint.city, endpoint.country].filter(Boolean).join(", ");
+        return {
+            city: location || endpoint.airport,
+            airport: endpoint.airport
+        };
+    }
+
+    function updateFlightSelection() {
+        if (!mapReady) return;
+        var source = map.getSource("travel-flights");
+        if (source) {
+            source.setData(createFlightFeatures());
+        }
+        map.setPaintProperty("travel-flight-route", "line-color",
+            ["case", ["==", ["get", "index"], selectedFlightIndex], "#d2754e", "#55998d"]);
+        map.setPaintProperty("travel-flight-route", "line-width",
+            ["case", ["==", ["get", "index"], selectedFlightIndex], 3, 2]);
+    }
+
     function selectVisit(index, moveGlobe) {
         selectedIndex = index;
         var visit = visits[index];
@@ -213,9 +612,11 @@
         elements.range.value = index;
         elements.date.textContent = formatDate(visit.date, visit.date_precision);
         elements.count.textContent = (index + 1) + " / " + visits.length;
-        elements.storyDate.textContent = formatDate(visit.date, visit.date_precision);
-        elements.storyTitle.textContent = visit.title || visit.city;
-        elements.storyPlace.textContent = [visit.city, visit.country].filter(Boolean).join(", ");
+        elements.storyDate.textContent = visit.date_precision === "month"
+            ? "At least 2 days"
+            : formatDate(visit.date, visit.date_precision);
+        elements.storyTitle.textContent = visit.city;
+        elements.storyPlace.textContent = visit.country;
         elements.description.textContent = visit.description || "";
         elements.description.hidden = !visit.description;
         elements.empty.hidden = true;
@@ -308,6 +709,36 @@
         elements.play.setAttribute("aria-pressed", String(isPlaying));
     }
 
+    function toggleFlightPlayback() {
+        if (flightPlayback) {
+            window.clearInterval(flightPlayback);
+            flightPlayback = null;
+            setFlightPlaybackButton(false);
+            return;
+        }
+
+        if (selectedFlightIndex === flights.length - 1) {
+            selectFlight(0, true);
+        }
+        setFlightPlaybackButton(true);
+        flightPlayback = window.setInterval(function () {
+            if (selectedFlightIndex >= flights.length - 1) {
+                window.clearInterval(flightPlayback);
+                flightPlayback = null;
+                setFlightPlaybackButton(false);
+                return;
+            }
+            selectFlight(selectedFlightIndex + 1, true);
+        }, 1800);
+    }
+
+    function setFlightPlaybackButton(isPlaying) {
+        elements.flightPlay.innerHTML = isPlaying
+            ? '<span aria-hidden="true">Ⅱ</span> Pause'
+            : '<span aria-hidden="true">▶</span> Play';
+        elements.flightPlay.setAttribute("aria-pressed", String(isPlaying));
+    }
+
     function showError(message) {
         elements.empty.hidden = true;
         elements.content.hidden = true;
@@ -339,6 +770,33 @@
             && visit.coordinates[0] <= 90
             && visit.coordinates[1] >= -180
             && visit.coordinates[1] <= 180;
+    }
+
+    function isValidFlight(flight) {
+        return flight
+            && isValidDate(flight.date)
+            && (!flight.date_precision || ["day", "month", "year"].indexOf(flight.date_precision) !== -1)
+            && isValidFlightEndpoint(flight.origin)
+            && isValidFlightEndpoint(flight.destination)
+            && (!flight.flight_number || typeof flight.flight_number === "string");
+    }
+
+    function isValidFlightEndpoint(endpoint) {
+        return endpoint
+            && typeof endpoint.airport === "string"
+            && endpoint.airport.trim().length > 0
+            && typeof endpoint.city === "string"
+            && endpoint.city.trim().length > 0
+            && (!endpoint.country || typeof endpoint.country === "string")
+            && Array.isArray(endpoint.coordinates)
+            && endpoint.coordinates.length === 2
+            && endpoint.coordinates.every(function (coordinate) {
+                return typeof coordinate === "number" && Number.isFinite(coordinate);
+            })
+            && endpoint.coordinates[0] >= -90
+            && endpoint.coordinates[0] <= 90
+            && endpoint.coordinates[1] >= -180
+            && endpoint.coordinates[1] <= 180;
     }
 
     function isValidDate(date) {

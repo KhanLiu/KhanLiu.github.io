@@ -137,11 +137,42 @@ main {
     letter-spacing: -0.035em;
 }
 
-.travel-map__intro {
-    margin: 8px 0 0;
-    color: #6b7972;
-    font-size: 0.83rem;
-    line-height: 1.55;
+.travel-map__view-toggle {
+    display: flex;
+    gap: 6px;
+    margin-top: 14px;
+    padding: 3px;
+    border: 1px solid #e1e3dd;
+    border-radius: 5px;
+    background: #f5f6f2;
+}
+
+.travel-map__view-button {
+    flex: 1;
+    min-height: 30px;
+    border: 0;
+    border-radius: 3px;
+    background: transparent;
+    color: #64736c;
+    font: inherit;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.travel-map__view-button.is-active {
+    background: #fffdfb;
+    color: #293b36;
+    box-shadow: 0 1px 3px rgba(34, 50, 43, 0.12);
+}
+
+.travel-map__view-button:focus-visible {
+    outline: 2px solid #a76f4e;
+    outline-offset: 1px;
+}
+
+.travel-map #travel-city-view[hidden],
+.travel-map #travel-flight-view[hidden] {
+    display: none;
 }
 
 .travel-map__demo-notice {

@@ -3,41 +3,78 @@
         aria-label="Interactive 3D globe of places. Drag to rotate and select a marker to see its story."></div>
     <aside class="travel-map__panel" aria-live="polite" aria-atomic="true">
         <h1>Life</h1>
-        <p class="travel-map__intro">Cities with an overnight stay, grouped by month. Pins are approximate; review city labels.</p>
+        <div class="travel-map__view-toggle" role="group" aria-label="Map view">
+            <button id="travel-view-cities" class="travel-map__view-button is-active" type="button"
+                aria-pressed="true">Cities</button>
+            <button id="travel-view-flights" class="travel-map__view-button" type="button"
+                aria-pressed="false">Flights</button>
+        </div>
         <p id="travel-demo-notice" class="travel-map__demo-notice" hidden>
             Sample journeys — not personal travel records.
         </p>
         <p id="travel-map-status" class="travel-map__map-status" role="status" hidden></p>
-        <div class="travel-map__story">
-            <div id="travel-story-empty" class="travel-map__empty">
-                <p>Add places and dates to <code>_data/trips.yml</code>.</p>
-            </div>
-            <div id="travel-story-content" class="travel-map__story-content" hidden>
-                <div class="travel-map__photo-wrap" id="travel-photo-wrap" hidden>
-                    <img id="travel-photo" class="travel-map__photo" alt="">
+        <div id="travel-city-view">
+            <div class="travel-map__story">
+                <div id="travel-story-empty" class="travel-map__empty">
+                    <p>Add places and dates to <code>_data/trips.yml</code>.</p>
                 </div>
-                <p id="travel-story-date" class="travel-map__story-date"></p>
-                <h3 id="travel-story-title"></h3>
-                <p id="travel-story-place" class="travel-map__place"></p>
-                <p id="travel-story-description" class="travel-map__description"></p>
+                <div id="travel-story-content" class="travel-map__story-content" hidden>
+                    <div class="travel-map__photo-wrap" id="travel-photo-wrap" hidden>
+                        <img id="travel-photo" class="travel-map__photo" alt="">
+                    </div>
+                    <p id="travel-story-date" class="travel-map__story-date"></p>
+                    <h3 id="travel-story-title"></h3>
+                    <p id="travel-story-place" class="travel-map__place"></p>
+                    <p id="travel-story-description" class="travel-map__description"></p>
+                </div>
+                <p id="travel-story-error" class="travel-map__error" role="status" hidden></p>
             </div>
-            <p id="travel-story-error" class="travel-map__error" role="status" hidden></p>
+            <div class="travel-map__timeline" aria-label="Travel timeline">
+                <div class="travel-map__timeline-top">
+                    <span id="travel-timeline-date" class="travel-map__timeline-date">No places yet</span>
+                    <span id="travel-timeline-count" class="travel-map__timeline-count">0 / 0</span>
+                </div>
+                <input id="travel-timeline-range" class="travel-map__range" type="range" min="0" max="0" value="0"
+                    aria-label="Browse city stops" disabled>
+                <div class="travel-map__controls">
+                    <button id="travel-previous" class="travel-map__control" type="button" aria-label="Previous place"
+                        disabled>←</button>
+                    <button id="travel-play" class="travel-map__play" type="button" aria-pressed="false" disabled>
+                        <span aria-hidden="true">▶</span> Play
+                    </button>
+                    <button id="travel-next" class="travel-map__control" type="button" aria-label="Next place"
+                        disabled>→</button>
+                </div>
+            </div>
         </div>
-        <div class="travel-map__timeline" aria-label="Travel timeline">
-            <div class="travel-map__timeline-top">
-                <span id="travel-timeline-date" class="travel-map__timeline-date">No places yet</span>
-                <span id="travel-timeline-count" class="travel-map__timeline-count">0 / 0</span>
+        <div id="travel-flight-view" hidden>
+            <div class="travel-map__story">
+                <div id="travel-flight-empty" class="travel-map__empty">
+                    <p>Flight routes will appear here when flight records are added to <code>_data/flights.yml</code>.</p>
+                </div>
+                <div id="travel-flight-content" class="travel-map__story-content" hidden>
+                    <p id="travel-flight-date" class="travel-map__story-date"></p>
+                    <h3 id="travel-flight-title"></h3>
+                    <p id="travel-flight-airports" class="travel-map__place"></p>
+                    <p id="travel-flight-number" class="travel-map__description"></p>
+                </div>
             </div>
-            <input id="travel-timeline-range" class="travel-map__range" type="range" min="0" max="0" value="0"
-                aria-label="Browse travel moments" disabled>
-            <div class="travel-map__controls">
-                <button id="travel-previous" class="travel-map__control" type="button" aria-label="Previous place"
-                    disabled>←</button>
-                <button id="travel-play" class="travel-map__play" type="button" aria-pressed="false" disabled>
-                    <span aria-hidden="true">▶</span> Play
-                </button>
-                <button id="travel-next" class="travel-map__control" type="button" aria-label="Next place"
-                    disabled>→</button>
+            <div class="travel-map__timeline" aria-label="Flight timeline">
+                <div class="travel-map__timeline-top">
+                    <span id="flight-timeline-date" class="travel-map__timeline-date">No flights yet</span>
+                    <span id="flight-timeline-count" class="travel-map__timeline-count">0 / 0</span>
+                </div>
+                <input id="flight-timeline-range" class="travel-map__range" type="range" min="0" max="0" value="0"
+                    aria-label="Browse flights" disabled>
+                <div class="travel-map__controls">
+                    <button id="flight-previous" class="travel-map__control" type="button" aria-label="Previous flight"
+                        disabled>←</button>
+                    <button id="flight-play" class="travel-map__play" type="button" aria-pressed="false" disabled>
+                        <span aria-hidden="true">▶</span> Play
+                    </button>
+                    <button id="flight-next" class="travel-map__control" type="button" aria-label="Next flight"
+                        disabled>→</button>
+                </div>
             </div>
         </div>
     </aside>
