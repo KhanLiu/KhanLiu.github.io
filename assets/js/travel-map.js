@@ -5,6 +5,7 @@
     var map = null;
     var mapReady = false;
     var selectedIndex = -1;
+    var selectedPlaceKey = "";
     var playback = null;
     var statusMessages = [];
     var elements;
@@ -52,6 +53,9 @@
             return Object.assign({ _index: index }, visit);
         }).filter(isValidVisit).sort(function (a, b) {
             return a.date.localeCompare(b.date) || a._index - b._index;
+        });
+        visits.forEach(function (visit) {
+            visit._placeKey = visit.city.toLocaleLowerCase() + "|" + visit.country.toLocaleLowerCase();
         });
         demoNotice.hidden = !visits.some(function (visit) {
             return visit.demo === true;
@@ -173,29 +177,36 @@
     }
 
     function createVisitFeatures() {
+        var seenPlaces = Object.create(null);
+        var features = [];
+        visits.forEach(function (visit, index) {
+            if (seenPlaces[visit._placeKey]) return;
+            seenPlaces[visit._placeKey] = true;
+            features.push({
+                type: "Feature",
+                properties: {
+                    index: index,
+                    placeKey: visit._placeKey,
+                    title: visit.title || visit.city,
+                    city: visit.city,
+                    country: visit.country
+                },
+                geometry: {
+                    type: "Point",
+                    coordinates: [visit.coordinates[1], visit.coordinates[0]]
+                }
+            });
+        });
         return {
             type: "FeatureCollection",
-            features: visits.map(function (visit, index) {
-                return {
-                    type: "Feature",
-                    properties: {
-                        index: index,
-                        title: visit.title || visit.city,
-                        city: visit.city,
-                        country: visit.country
-                    },
-                    geometry: {
-                        type: "Point",
-                        coordinates: [visit.coordinates[1], visit.coordinates[0]]
-                    }
-                };
-            })
+            features: features
         };
     }
 
     function selectVisit(index, moveGlobe) {
         selectedIndex = index;
         var visit = visits[index];
+        selectedPlaceKey = visit._placeKey;
 
         elements.range.value = index;
         elements.date.textContent = formatDate(visit.date, visit.date_precision);
@@ -229,15 +240,15 @@
         }
         if (selectedIndex >= 0) {
             map.setPaintProperty("travel-place-halo", "circle-radius",
-                ["case", ["==", ["get", "index"], selectedIndex], 19, 13]);
+                ["case", ["==", ["get", "placeKey"], selectedPlaceKey], 19, 13]);
             map.setPaintProperty("travel-place-halo", "circle-color",
-                ["case", ["==", ["get", "index"], selectedIndex], "#e99672", "#78cfc3"]);
+                ["case", ["==", ["get", "placeKey"], selectedPlaceKey], "#e99672", "#78cfc3"]);
             map.setPaintProperty("travel-place-point", "circle-radius",
-                ["case", ["==", ["get", "index"], selectedIndex], 7, 4.5]);
+                ["case", ["==", ["get", "placeKey"], selectedPlaceKey], 7, 4.5]);
             map.setPaintProperty("travel-place-point", "circle-color",
-                ["case", ["==", ["get", "index"], selectedIndex], "#f09b75", "#8ce1d2"]);
+                ["case", ["==", ["get", "placeKey"], selectedPlaceKey], "#f09b75", "#8ce1d2"]);
             map.setPaintProperty("travel-place-point", "circle-stroke-width",
-                ["case", ["==", ["get", "index"], selectedIndex], 2.5, 1.5]);
+                ["case", ["==", ["get", "placeKey"], selectedPlaceKey], 2.5, 1.5]);
         }
     }
 
@@ -339,6 +350,12 @@
     function formatDate(date, precision) {
         if (precision === "year") {
             return date.slice(0, 4);
+        }
+        if (precision === "month") {
+            return new Date(date + "T12:00:00").toLocaleDateString(undefined, {
+                year: "numeric",
+                month: "long"
+            });
         }
         return new Date(date + "T12:00:00").toLocaleDateString(undefined, {
             year: "numeric",

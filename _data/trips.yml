@@ -1,130 +1,3223 @@
-# Provisional city-level summary derived locally from the supplied GPS export.
-# Each city is shown once, with dates grouped by year. Coordinates are
-# approximate city-centre pins, not recorded GPS points. Review before adding
-# more detail or sharing a more precise travel history.
-- date: "2017-01-01"
-  date_precision: year
+# Provisional month-level stop candidates, derived locally from the supplied GPS export.
+# Only approximate settlement/metro-centre coordinates are included; raw GPS fixes are not stored here.
+# Place labels are automated candidates and should be reviewed before treating this as a verified travel history.
+- date: "2017-08-01"
+  date_precision: month
+  city: "Xintai"
+  country: "China"
+  coordinates: [35.90, 117.75]
+  title: "Xintai - 2017-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2017-09-01"
+  date_precision: month
   city: "Wuhan area"
   country: "China"
-  coordinates: [30.5928, 114.3055]
-  title: "Repeated presence · 2017–2021"
-  description: "Frequent location records across several years, grouped to a broad city area. Individual trips and exact dates are not shown."
-- date: "2018-01-01"
-  date_precision: year
-  city: "Beijing"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2017-09"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2017-10-01"
+  date_precision: month
+  city: "Wuhan area"
   country: "China"
-  coordinates: [39.9042, 116.4074]
-  title: "Beijing · 2018, 2019, 2021, 2025"
-  description: "Possible stays inferred in these years. Dates are year-level only; marker is an approximate city-centre location."
-- date: "2019-01-01"
-  date_precision: year
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2017-10"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2017-11-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2017-11"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2017-12-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2017-12"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2018-01-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2018-01"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2018-02-01"
+  date_precision: month
+  city: "Xintai"
+  country: "China"
+  coordinates: [35.90, 117.75]
+  title: "Xintai - 2018-02"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2018-03-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2018-03"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2018-04-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2018-04"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2018-05-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2018-05"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2018-06-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2018-06"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2018-07-01"
+  date_precision: month
   city: "Suzhou"
   country: "China"
-  coordinates: [31.2989, 120.5853]
-  title: "Suzhou · 2019, 2021"
-  description: "Possible stays inferred in these years. Dates are year-level only; marker is an approximate city-centre location."
-- date: "2019-01-01"
-  date_precision: year
-  city: "Johor Bahru"
-  country: "Malaysia"
-  coordinates: [1.4927, 103.7414]
-  title: "Johor Bahru · 2019"
-  description: "Possible stay inferred from location records. Year-level date and approximate city-centre marker."
-- date: "2020-01-01"
-  date_precision: year
+  coordinates: [31.30, 120.59]
+  title: "Suzhou - 2018-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2018-07-01"
+  date_precision: month
+  city: "Tai'an"
+  country: "China"
+  coordinates: [36.19, 117.12]
+  title: "Tai'an - 2018-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2018-07-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2018-07"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2018-08-01"
+  date_precision: month
+  city: "Beijing"
+  country: "China"
+  coordinates: [39.90, 116.41]
+  title: "Beijing - 2018-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2018-08-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  title: "Dongdu - 2018-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2018-08-01"
+  date_precision: month
   city: "Jinan"
   country: "China"
-  coordinates: [36.6512, 117.1201]
-  title: "Jinan · 2020, 2021, 2025"
-  description: "Possible stays inferred in these years. Dates are year-level only; marker is an approximate city-centre location."
+  coordinates: [36.65, 117.12]
+  title: "Jinan - 2018-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2018-08-01"
+  date_precision: month
+  city: "Tai'an"
+  country: "China"
+  coordinates: [36.19, 117.12]
+  title: "Tai'an - 2018-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2018-08-01"
+  date_precision: month
+  city: "Tiyuguan"
+  country: "China"
+  coordinates: [39.11, 117.19]
+  title: "Tiyuguan - 2018-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2018-08-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2018-08"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2018-08-01"
+  date_precision: month
+  city: "Xintai"
+  country: "China"
+  coordinates: [35.90, 117.75]
+  title: "Xintai - 2018-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2018-09-01"
+  date_precision: month
+  city: "Changsha"
+  country: "China"
+  coordinates: [28.20, 112.97]
+  title: "Changsha - 2018-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2018-09-01"
+  date_precision: month
+  city: "Furong Beilu"
+  country: "China"
+  coordinates: [28.24, 112.98]
+  title: "Furong Beilu - 2018-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2018-09-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2018-09"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2018-10-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2018-10"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2018-11-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2018-11"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2018-12-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2018-12"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2019-01-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2019-01"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2019-02-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  title: "Dongdu - 2019-02"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2019-02-01"
+  date_precision: month
+  city: "Qingzhou"
+  country: "China"
+  coordinates: [36.70, 118.48]
+  title: "Qingzhou - 2019-02"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2019-02-01"
+  date_precision: month
+  city: "Weifang"
+  country: "China"
+  coordinates: [36.71, 119.10]
+  title: "Weifang - 2019-02"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2019-03-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2019-03"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2019-04-01"
+  date_precision: month
+  city: "Jingzhou"
+  country: "China"
+  coordinates: [30.35, 112.19]
+  title: "Jingzhou - 2019-04"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2019-04-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2019-04"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2019-04-01"
+  date_precision: month
+  city: "Xicheng"
+  country: "China"
+  coordinates: [30.36, 112.18]
+  title: "Xicheng - 2019-04"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2019-05-01"
+  date_precision: month
+  city: "Gongming"
+  country: "China"
+  coordinates: [22.79, 113.88]
+  title: "Gongming - 2019-05"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2019-05-01"
+  date_precision: month
+  city: "Minzhi"
+  country: "China"
+  coordinates: [22.62, 114.04]
+  title: "Minzhi - 2019-05"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2019-05-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2019-05"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2019-06-01"
+  date_precision: month
+  city: "Fushan"
+  country: "China"
+  coordinates: [29.87, 114.31]
+  title: "Fushan - 2019-06"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2019-06-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2019-06"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2019-07-01"
+  date_precision: month
+  city: "Fushan"
+  country: "China"
+  coordinates: [29.87, 114.31]
+  title: "Fushan - 2019-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2019-07-01"
+  date_precision: month
+  city: "Singapore"
+  country: "Singapore"
+  coordinates: [1.35, 103.82]
+  title: "Singapore - 2019-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2019-07-01"
+  date_precision: month
+  city: "Suzhou"
+  country: "China"
+  coordinates: [31.30, 120.59]
+  title: "Suzhou - 2019-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2019-07-01"
+  date_precision: month
+  city: "Tuen Mun"
+  country: "Hong Kong"
+  coordinates: [22.39, 113.97]
+  title: "Tuen Mun - 2019-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2019-07-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2019-07"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2019-08-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  title: "Dongdu - 2019-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2019-08-01"
+  date_precision: month
+  city: "Guling"
+  country: "China"
+  coordinates: [29.57, 115.98]
+  title: "Guling - 2019-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2019-08-01"
+  date_precision: month
+  city: "Haihui"
+  country: "China"
+  coordinates: [29.54, 116.05]
+  title: "Haihui - 2019-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2019-08-01"
+  date_precision: month
+  city: "Johor Bahru"
+  country: "Malaysia"
+  coordinates: [1.49, 103.74]
+  title: "Johor Bahru - 2019-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2019-08-01"
+  date_precision: month
+  city: "Singapore"
+  country: "Singapore"
+  coordinates: [1.35, 103.82]
+  title: "Singapore - 2019-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2019-08-01"
+  date_precision: month
+  city: "Tuen Mun"
+  country: "Hong Kong"
+  coordinates: [22.39, 113.97]
+  title: "Tuen Mun - 2019-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2019-08-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2019-08"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2019-09-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2019-09"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2019-10-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2019-10"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2019-11-01"
+  date_precision: month
+  city: "Beijing"
+  country: "China"
+  coordinates: [39.90, 116.41]
+  title: "Beijing - 2019-11"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2019-11-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2019-11"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2019-12-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2019-12"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2020-01-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  title: "Dongdu - 2020-01"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2020-01-01"
+  date_precision: month
+  city: "Hangzhou"
+  country: "China"
+  coordinates: [30.29, 120.16]
+  title: "Hangzhou - 2020-01"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2020-01-01"
+  date_precision: month
+  city: "Jinan"
+  country: "China"
+  coordinates: [36.65, 117.12]
+  title: "Jinan - 2020-01"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2020-01-01"
+  date_precision: month
+  city: "Shanghai"
+  country: "China"
+  coordinates: [31.23, 121.47]
+  title: "Shanghai - 2020-01"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2020-01-01"
+  date_precision: month
+  city: "Sijiqing"
+  country: "China"
+  coordinates: [30.25, 120.18]
+  title: "Sijiqing - 2020-01"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2020-01-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2020-01"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2020-01-01"
+  date_precision: month
+  city: "Xihu"
+  country: "China"
+  coordinates: [30.24, 120.12]
+  title: "Xihu - 2020-01"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2020-02-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  title: "Dongdu - 2020-02"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2020-03-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  title: "Dongdu - 2020-03"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2020-03-01"
+  date_precision: month
+  city: "Xintai"
+  country: "China"
+  coordinates: [35.90, 117.75]
+  title: "Xintai - 2020-03"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2020-04-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  title: "Dongdu - 2020-04"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2020-04-01"
+  date_precision: month
+  city: "Xintai"
+  country: "China"
+  coordinates: [35.90, 117.75]
+  title: "Xintai - 2020-04"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2020-05-01"
+  date_precision: month
+  city: "Jinan"
+  country: "China"
+  coordinates: [36.65, 117.12]
+  title: "Jinan - 2020-05"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2020-05-01"
+  date_precision: month
+  city: "Sishui"
+  country: "China"
+  coordinates: [35.65, 117.28]
+  title: "Sishui - 2020-05"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2020-05-01"
+  date_precision: month
+  city: "Xintai"
+  country: "China"
+  coordinates: [35.90, 117.75]
+  title: "Xintai - 2020-05"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2020-06-01"
+  date_precision: month
+  city: "Jinan"
+  country: "China"
+  coordinates: [36.65, 117.12]
+  title: "Jinan - 2020-06"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2020-07-01"
+  date_precision: month
+  city: "Haikou"
+  country: "China"
+  coordinates: [20.05, 110.34]
+  title: "Haikou - 2020-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2020-07-01"
+  date_precision: month
+  city: "Haitangwan"
+  country: "China"
+  coordinates: [18.40, 109.75]
+  title: "Haitangwan - 2020-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2020-07-01"
+  date_precision: month
+  city: "Jinan"
+  country: "China"
+  coordinates: [36.65, 117.12]
+  title: "Jinan - 2020-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2020-07-01"
+  date_precision: month
+  city: "Lingshan"
+  country: "China"
+  coordinates: [19.97, 110.43]
+  title: "Lingshan - 2020-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2020-07-01"
+  date_precision: month
+  city: "Qiongshan"
+  country: "China"
+  coordinates: [20.01, 110.35]
+  title: "Qiongshan - 2020-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2020-07-01"
+  date_precision: month
+  city: "Sanya"
+  country: "China"
+  coordinates: [18.24, 109.50]
+  title: "Sanya - 2020-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2020-07-01"
+  date_precision: month
+  city: "Tiandu"
+  country: "China"
+  coordinates: [18.28, 109.58]
+  title: "Tiandu - 2020-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2020-08-01"
+  date_precision: month
+  city: "Jinan"
+  country: "China"
+  coordinates: [36.65, 117.12]
+  title: "Jinan - 2020-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2020-08-01"
+  date_precision: month
+  city: "Tai'an"
+  country: "China"
+  coordinates: [36.19, 117.12]
+  title: "Tai'an - 2020-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2020-09-01"
+  date_precision: month
+  city: "Jinan"
+  country: "China"
+  coordinates: [36.65, 117.12]
+  title: "Jinan - 2020-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2020-09-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2020-09"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2020-10-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2020-10"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2020-11-01"
+  date_precision: month
+  city: "Chongqing"
+  country: "China"
+  coordinates: [29.56, 106.55]
+  title: "Chongqing - 2020-11"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2020-11-01"
+  date_precision: month
+  city: "Daji"
+  country: "China"
+  coordinates: [30.51, 114.04]
+  title: "Daji - 2020-11"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2020-11-01"
+  date_precision: month
+  city: "Enshi"
+  country: "China"
+  coordinates: [30.30, 109.48]
+  title: "Enshi - 2020-11"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2020-11-01"
+  date_precision: month
+  city: "Tanjiagang"
+  country: "China"
+  coordinates: [29.54, 106.46]
+  title: "Tanjiagang - 2020-11"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2020-11-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2020-11"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2020-11-01"
+  date_precision: month
+  city: "Xiaoduchuan"
+  country: "China"
+  coordinates: [30.29, 109.48]
+  title: "Xiaoduchuan - 2020-11"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2020-12-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2020-12"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
 - date: "2021-01-01"
-  date_precision: year
+  date_precision: month
+  city: "Jinan"
+  country: "China"
+  coordinates: [36.65, 117.12]
+  title: "Jinan - 2021-01"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2021-01-01"
+  date_precision: month
+  city: "Mingshui"
+  country: "China"
+  coordinates: [36.72, 117.50]
+  title: "Mingshui - 2021-01"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2021-01-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2021-01"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2021-02-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  title: "Dongdu - 2021-02"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2021-02-01"
+  date_precision: month
+  city: "Feicheng"
+  country: "China"
+  coordinates: [36.25, 116.77]
+  title: "Feicheng - 2021-02"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2021-02-01"
+  date_precision: month
+  city: "Jinan"
+  country: "China"
+  coordinates: [36.65, 117.12]
+  title: "Jinan - 2021-02"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2021-02-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2021-02"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2021-02-01"
+  date_precision: month
+  city: "Xintai"
+  country: "China"
+  coordinates: [35.90, 117.75]
+  title: "Xintai - 2021-02"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2021-03-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2021-03"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2021-04-01"
+  date_precision: month
+  city: "Caidian"
+  country: "China"
+  coordinates: [30.58, 114.03]
+  title: "Caidian - 2021-04"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2021-04-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2021-04"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2021-05-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2021-05"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2021-06-01"
+  date_precision: month
+  city: "Shanghai"
+  country: "China"
+  coordinates: [31.23, 121.47]
+  title: "Shanghai - 2021-06"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2021-06-01"
+  date_precision: month
+  city: "Sijiqing"
+  country: "China"
+  coordinates: [30.25, 120.18]
+  title: "Sijiqing - 2021-06"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2021-06-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2021-06"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2021-06-01"
+  date_precision: month
+  city: "Xiasha"
+  country: "China"
+  coordinates: [30.31, 120.32]
+  title: "Xiasha - 2021-06"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2021-07-01"
+  date_precision: month
+  city: "Beijing"
+  country: "China"
+  coordinates: [39.90, 116.41]
+  title: "Beijing - 2021-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2021-07-01"
+  date_precision: month
+  city: "Mishixiang"
+  country: "China"
+  coordinates: [30.29, 120.14]
+  title: "Mishixiang - 2021-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2021-07-01"
+  date_precision: month
+  city: "Shanghai"
+  country: "China"
+  coordinates: [31.23, 121.47]
+  title: "Shanghai - 2021-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2021-07-01"
+  date_precision: month
+  city: "Suzhou"
+  country: "China"
+  coordinates: [31.30, 120.59]
+  title: "Suzhou - 2021-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2021-07-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2021-07"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2021-07-01"
+  date_precision: month
+  city: "Xixing"
+  country: "China"
+  coordinates: [30.19, 120.23]
+  title: "Xixing - 2021-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2021-08-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  title: "Wuhan area - 2021-08"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2021-09-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  title: "Dongdu - 2021-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2021-09-01"
+  date_precision: month
+  city: "Feicheng"
+  country: "China"
+  coordinates: [36.25, 116.77]
+  title: "Feicheng - 2021-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2021-09-01"
+  date_precision: month
+  city: "Frankfurt am Main"
+  country: "Germany"
+  coordinates: [50.11, 8.68]
+  title: "Frankfurt am Main - 2021-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2021-09-01"
+  date_precision: month
+  city: "Jinan"
+  country: "China"
+  coordinates: [36.65, 117.12]
+  title: "Jinan - 2021-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2021-09-01"
+  date_precision: month
+  city: "Laogang"
+  country: "China"
+  coordinates: [31.03, 121.84]
+  title: "Laogang - 2021-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2021-09-01"
+  date_precision: month
   city: "Munich area"
   country: "Germany"
-  coordinates: [48.1372, 11.5756]
-  title: "Repeated presence · 2021–2026"
-  description: "Frequent location records across several years, grouped to a broad metro area. Individual trips and exact dates are not shown."
-- date: "2022-01-01"
-  date_precision: year
-  city: "Dresden"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2021-09"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2021-09-01"
+  date_precision: month
+  city: "Tuen Mun"
+  country: "Hong Kong"
+  coordinates: [22.39, 113.97]
+  title: "Tuen Mun - 2021-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2021-09-01"
+  date_precision: month
+  city: "Xintai"
+  country: "China"
+  coordinates: [35.90, 117.75]
+  title: "Xintai - 2021-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2021-10-01"
+  date_precision: month
+  city: "Andechs"
   country: "Germany"
-  coordinates: [51.0504, 13.7373]
-  title: "Dresden · 2022, 2023"
-  description: "Possible stays inferred in these years. Dates are year-level only; marker is an approximate city-centre location."
+  coordinates: [47.97, 11.18]
+  title: "Andechs - 2021-10"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2021-10-01"
+  date_precision: month
+  city: "Herrsching am Ammersee"
+  country: "Germany"
+  coordinates: [48.00, 11.18]
+  title: "Herrsching am Ammersee - 2021-10"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2021-10-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2021-10"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2021-10-01"
+  date_precision: month
+  city: "Rottach-Egern"
+  country: "Germany"
+  coordinates: [47.69, 11.77]
+  title: "Rottach-Egern - 2021-10"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2021-10-01"
+  date_precision: month
+  city: "Tegernsee"
+  country: "Germany"
+  coordinates: [47.71, 11.76]
+  title: "Tegernsee - 2021-10"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2021-11-01"
+  date_precision: month
+  city: "Kochel"
+  country: "Germany"
+  coordinates: [47.66, 11.37]
+  title: "Kochel - 2021-11"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2021-11-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2021-11"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2021-11-01"
+  date_precision: month
+  city: "Nuremberg"
+  country: "Germany"
+  coordinates: [49.45, 11.08]
+  title: "Nuremberg - 2021-11"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2021-12-01"
+  date_precision: month
+  city: "Helsinki"
+  country: "Finland"
+  coordinates: [60.17, 24.94]
+  title: "Helsinki - 2021-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2021-12-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2021-12"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
 - date: "2022-01-01"
-  date_precision: year
+  date_precision: month
+  city: "Helsinki"
+  country: "Finland"
+  coordinates: [60.17, 24.94]
+  title: "Helsinki - 2022-01"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2022-01-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2022-01"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2022-01-01"
+  date_precision: month
+  city: "Vantaa"
+  country: "Finland"
+  coordinates: [60.29, 25.04]
+  title: "Vantaa - 2022-01"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2022-02-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2022-02"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2022-03-01"
+  date_precision: month
   city: "Vienna"
   country: "Austria"
-  coordinates: [48.2082, 16.3738]
-  title: "Vienna · 2022, 2026"
-  description: "Possible stays inferred in these years. Dates are year-level only; marker is an approximate city-centre location."
-- date: "2022-01-01"
-  date_precision: year
+  coordinates: [48.21, 16.37]
+  title: "Vienna - 2022-03"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2022-04-01"
+  date_precision: month
   city: "Olomouc"
   country: "Czechia"
-  coordinates: [49.5938, 17.2509]
-  title: "Olomouc · 2022"
-  description: "Possible stay inferred from location records. Year-level date and approximate city-centre marker."
-- date: "2022-01-01"
-  date_precision: year
+  coordinates: [49.59, 17.25]
+  title: "Olomouc - 2022-04"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2022-04-01"
+  date_precision: month
+  city: "Sesto San Giovanni"
+  country: "Italy"
+  coordinates: [45.53, 9.23]
+  title: "Sesto San Giovanni - 2022-04"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2022-04-01"
+  date_precision: month
+  city: "Venice"
+  country: "Italy"
+  coordinates: [45.44, 12.32]
+  title: "Venice - 2022-04"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2022-04-01"
+  date_precision: month
+  city: "Vienna"
+  country: "Austria"
+  coordinates: [48.21, 16.37]
+  title: "Vienna - 2022-04"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2022-05-01"
+  date_precision: month
+  city: "Vienna"
+  country: "Austria"
+  coordinates: [48.21, 16.37]
+  title: "Vienna - 2022-05"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2022-06-01"
+  date_precision: month
+  city: "Bratislava"
+  country: "Slovakia"
+  coordinates: [48.15, 17.11]
+  title: "Bratislava - 2022-06"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2022-06-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2022-06"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2022-06-01"
+  date_precision: month
+  city: "Vienna"
+  country: "Austria"
+  coordinates: [48.21, 16.37]
+  title: "Vienna - 2022-06"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2022-07-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2022-07"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2022-08-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2022-08"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2022-09-01"
+  date_precision: month
+  city: "Aich"
+  country: "Austria"
+  coordinates: [47.42, 13.82]
+  title: "Aich - 2022-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2022-09-01"
+  date_precision: month
+  city: "Berchtesgaden"
+  country: "Germany"
+  coordinates: [47.63, 13.00]
+  title: "Berchtesgaden - 2022-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2022-09-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2022-09"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2022-09-01"
+  date_precision: month
+  city: "Schladming"
+  country: "Austria"
+  coordinates: [47.39, 13.69]
+  title: "Schladming - 2022-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2022-10-01"
+  date_precision: month
+  city: "Dresden"
+  country: "Germany"
+  coordinates: [51.05, 13.74]
+  title: "Dresden - 2022-10"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2022-10-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2022-10"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2022-10-01"
+  date_precision: month
+  city: "Schladming"
+  country: "Austria"
+  coordinates: [47.39, 13.69]
+  title: "Schladming - 2022-10"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2022-10-01"
+  date_precision: month
+  city: "Stadt Wehlen"
+  country: "Germany"
+  coordinates: [50.96, 14.03]
+  title: "Stadt Wehlen - 2022-10"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2022-11-01"
+  date_precision: month
   city: "Berlin"
   country: "Germany"
-  coordinates: [52.5200, 13.4050]
-  title: "Berlin · 2022–2025"
-  description: "Possible stays inferred across these years. Dates are year-level only; marker is an approximate city-centre location."
+  coordinates: [52.52, 13.40]
+  title: "Berlin - 2022-11"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2022-11-01"
+  date_precision: month
+  city: "Dresden"
+  country: "Germany"
+  coordinates: [51.05, 13.74]
+  title: "Dresden - 2022-11"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2022-11-01"
+  date_precision: month
+  city: "Geising"
+  country: "Germany"
+  coordinates: [50.76, 13.79]
+  title: "Geising - 2022-11"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2022-12-01"
+  date_precision: month
+  city: "Berlin"
+  country: "Germany"
+  coordinates: [52.52, 13.40]
+  title: "Berlin - 2022-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2022-12-01"
+  date_precision: month
+  city: "Dresden"
+  country: "Germany"
+  coordinates: [51.05, 13.74]
+  title: "Dresden - 2022-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2022-12-01"
+  date_precision: month
+  city: "Mala Strana"
+  country: "Czechia"
+  coordinates: [50.09, 14.40]
+  title: "Mala Strana - 2022-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2022-12-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2022-12"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2022-12-01"
+  date_precision: month
+  city: "Nuremberg"
+  country: "Germany"
+  coordinates: [49.45, 11.08]
+  title: "Nuremberg - 2022-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2022-12-01"
+  date_precision: month
+  city: "Stare Mesto"
+  country: "Czechia"
+  coordinates: [50.09, 14.42]
+  title: "Stare Mesto - 2022-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
 - date: "2023-01-01"
-  date_precision: year
+  date_precision: month
+  city: "Berlin"
+  country: "Germany"
+  coordinates: [52.52, 13.40]
+  title: "Berlin - 2023-01"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2023-01-01"
+  date_precision: month
+  city: "Dresden"
+  country: "Germany"
+  coordinates: [51.05, 13.74]
+  title: "Dresden - 2023-01"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2023-02-01"
+  date_precision: month
+  city: "Berlin"
+  country: "Germany"
+  coordinates: [52.52, 13.40]
+  title: "Berlin - 2023-02"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2023-02-01"
+  date_precision: month
+  city: "Dresden"
+  country: "Germany"
+  coordinates: [51.05, 13.74]
+  title: "Dresden - 2023-02"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2023-03-01"
+  date_precision: month
+  city: "Dresden"
+  country: "Germany"
+  coordinates: [51.05, 13.74]
+  title: "Dresden - 2023-03"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2023-03-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2023-03"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2023-04-01"
+  date_precision: month
+  city: "Garmisch-Partenkirchen"
+  country: "Germany"
+  coordinates: [47.49, 11.10]
+  title: "Garmisch-Partenkirchen - 2023-04"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2023-04-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2023-04"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2023-05-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2023-05"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2023-05-01"
+  date_precision: month
+  city: "Schliersee"
+  country: "Germany"
+  coordinates: [47.74, 11.86]
+  title: "Schliersee - 2023-05"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2023-06-01"
+  date_precision: month
+  city: "Farchant"
+  country: "Germany"
+  coordinates: [47.53, 11.11]
+  title: "Farchant - 2023-06"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2023-06-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2023-06"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2023-06-01"
+  date_precision: month
+  city: "Oberau"
+  country: "Germany"
+  coordinates: [47.56, 11.14]
+  title: "Oberau - 2023-06"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2023-07-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2023-07"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2023-07-01"
+  date_precision: month
+  city: "Stuttgart"
+  country: "Germany"
+  coordinates: [48.78, 9.18]
+  title: "Stuttgart - 2023-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2023-08-01"
+  date_precision: month
+  city: "Ashton"
+  country: "South Africa"
+  coordinates: [-33.83, 20.06]
+  title: "Ashton - 2023-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2023-08-01"
+  date_precision: month
   city: "Cape Town"
   country: "South Africa"
-  coordinates: [-33.9249, 18.4241]
-  title: "Cape Town · 2023"
-  description: "Possible stay inferred from location records. Year-level date and approximate city-centre marker."
-- date: "2024-01-01"
-  date_precision: year
-  city: "Stockholm"
-  country: "Sweden"
-  coordinates: [59.3293, 18.0686]
-  title: "Stockholm · 2024"
-  description: "Possible stay inferred from location records. Year-level date and approximate city-centre marker."
-- date: "2024-01-01"
-  date_precision: year
+  coordinates: [-33.92, 18.42]
+  title: "Cape Town - 2023-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2023-08-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2023-08"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2023-08-01"
+  date_precision: month
+  city: "Retreat"
+  country: "South Africa"
+  coordinates: [-34.06, 18.48]
+  title: "Retreat - 2023-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2023-09-01"
+  date_precision: month
+  city: "Kochel"
+  country: "Germany"
+  coordinates: [47.66, 11.37]
+  title: "Kochel - 2023-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2023-09-01"
+  date_precision: month
+  city: "Kreuth"
+  country: "Germany"
+  coordinates: [47.65, 11.75]
+  title: "Kreuth - 2023-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2023-09-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2023-09"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2023-10-01"
+  date_precision: month
+  city: "Biberwier"
+  country: "Austria"
+  coordinates: [47.38, 10.90]
+  title: "Biberwier - 2023-10"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2023-10-01"
+  date_precision: month
+  city: "Ehrwald"
+  country: "Austria"
+  coordinates: [47.40, 10.92]
+  title: "Ehrwald - 2023-10"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2023-10-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2023-10"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2023-10-01"
+  date_precision: month
+  city: "Schlehdorf"
+  country: "Germany"
+  coordinates: [47.65, 11.32]
+  title: "Schlehdorf - 2023-10"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2023-11-01"
+  date_precision: month
+  city: "Grainau"
+  country: "Germany"
+  coordinates: [47.48, 11.02]
+  title: "Grainau - 2023-11"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2023-11-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2023-11"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2023-11-01"
+  date_precision: month
+  city: "Soelden"
+  country: "Austria"
+  coordinates: [46.97, 11.00]
+  title: "Soelden - 2023-11"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2023-12-01"
+  date_precision: month
+  city: "Altstadt Nord"
+  country: "Germany"
+  coordinates: [50.94, 6.96]
+  title: "Altstadt Nord - 2023-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2023-12-01"
+  date_precision: month
+  city: "Bonn"
+  country: "Germany"
+  coordinates: [50.73, 7.10]
+  title: "Bonn - 2023-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2023-12-01"
+  date_precision: month
+  city: "Dusseldorf"
+  country: "Germany"
+  coordinates: [51.23, 6.77]
+  title: "Dusseldorf - 2023-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2023-12-01"
+  date_precision: month
+  city: "Dresden"
+  country: "Germany"
+  coordinates: [51.05, 13.74]
+  title: "Dresden - 2023-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2023-12-01"
+  date_precision: month
+  city: "Frankfurt am Main"
+  country: "Germany"
+  coordinates: [50.11, 8.68]
+  title: "Frankfurt am Main - 2023-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2023-12-01"
+  date_precision: month
   city: "Hamburg"
   country: "Germany"
-  coordinates: [53.5511, 9.9937]
-  title: "Hamburg · 2024"
-  description: "Possible stay inferred from location records. Year-level date and approximate city-centre marker."
+  coordinates: [53.55, 9.99]
+  title: "Hamburg - 2023-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2023-12-01"
+  date_precision: month
+  city: "Heidelberg"
+  country: "Germany"
+  coordinates: [49.41, 8.69]
+  title: "Heidelberg - 2023-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2023-12-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2023-12"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2023-12-01"
+  date_precision: month
+  city: "Neustift im Stubaital"
+  country: "Austria"
+  coordinates: [47.12, 11.32]
+  title: "Neustift im Stubaital - 2023-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2023-12-01"
+  date_precision: month
+  city: "Soelden"
+  country: "Austria"
+  coordinates: [46.97, 11.00]
+  title: "Soelden - 2023-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2023-12-01"
+  date_precision: month
+  city: "Wuppertal"
+  country: "Germany"
+  coordinates: [51.27, 7.17]
+  title: "Wuppertal - 2023-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-01-01"
+  date_precision: month
+  city: "Hamburg"
+  country: "Germany"
+  coordinates: [53.55, 9.99]
+  title: "Hamburg - 2024-01"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-01-01"
+  date_precision: month
+  city: "Lenggries"
+  country: "Germany"
+  coordinates: [47.68, 11.57]
+  title: "Lenggries - 2024-01"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-01-01"
+  date_precision: month
+  city: "Schliersee"
+  country: "Germany"
+  coordinates: [47.74, 11.86]
+  title: "Schliersee - 2024-01"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-01-01"
+  date_precision: month
+  city: "Travemuende"
+  country: "Germany"
+  coordinates: [53.96, 10.87]
+  title: "Travemuende - 2024-01"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-02-01"
+  date_precision: month
+  city: "Lenggries"
+  country: "Germany"
+  coordinates: [47.68, 11.57]
+  title: "Lenggries - 2024-02"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-02-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2024-02"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2024-02-01"
+  date_precision: month
+  city: "Rosenheim"
+  country: "Germany"
+  coordinates: [47.86, 12.12]
+  title: "Rosenheim - 2024-02"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-03-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2024-03"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2024-03-01"
+  date_precision: month
+  city: "Schwangau"
+  country: "Germany"
+  coordinates: [47.58, 10.73]
+  title: "Schwangau - 2024-03"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-04-01"
+  date_precision: month
+  city: "Ghaxaq"
+  country: "Malta"
+  coordinates: [35.85, 14.52]
+  title: "Ghaxaq - 2024-04"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-04-01"
+  date_precision: month
+  city: "Gudja"
+  country: "Malta"
+  coordinates: [35.85, 14.50]
+  title: "Gudja - 2024-04"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-04-01"
+  date_precision: month
+  city: "Imdina"
+  country: "Malta"
+  coordinates: [35.89, 14.40]
+  title: "Imdina - 2024-04"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-04-01"
+  date_precision: month
+  city: "Imgarr"
+  country: "Malta"
+  coordinates: [35.92, 14.37]
+  title: "Imgarr - 2024-04"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-04-01"
+  date_precision: month
+  city: "Mellieha"
+  country: "Malta"
+  coordinates: [35.96, 14.36]
+  title: "Mellieha - 2024-04"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-04-01"
+  date_precision: month
+  city: "Mosta"
+  country: "Malta"
+  coordinates: [35.91, 14.43]
+  title: "Mosta - 2024-04"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-04-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2024-04"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2024-04-01"
+  date_precision: month
+  city: "Nadur"
+  country: "Malta"
+  coordinates: [36.04, 14.29]
+  title: "Nadur - 2024-04"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-04-01"
+  date_precision: month
+  city: "Neustift im Stubaital"
+  country: "Austria"
+  coordinates: [47.12, 11.32]
+  title: "Neustift im Stubaital - 2024-04"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-04-01"
+  date_precision: month
+  city: "Qala"
+  country: "Malta"
+  coordinates: [36.04, 14.31]
+  title: "Qala - 2024-04"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-04-01"
+  date_precision: month
+  city: "Qrendi"
+  country: "Malta"
+  coordinates: [35.83, 14.46]
+  title: "Qrendi - 2024-04"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-04-01"
+  date_precision: month
+  city: "Salzweg"
+  country: "Germany"
+  coordinates: [48.62, 13.48]
+  title: "Salzweg - 2024-04"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-04-01"
+  date_precision: month
+  city: "San Lawrenz"
+  country: "Malta"
+  coordinates: [36.06, 14.20]
+  title: "San Lawrenz - 2024-04"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-04-01"
+  date_precision: month
+  city: "Soelden"
+  country: "Austria"
+  coordinates: [46.97, 11.00]
+  title: "Soelden - 2024-04"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-04-01"
+  date_precision: month
+  city: "Valletta"
+  country: "Malta"
+  coordinates: [35.90, 14.51]
+  title: "Valletta - 2024-04"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-04-01"
+  date_precision: month
+  city: "Zebbug"
+  country: "Malta"
+  coordinates: [36.07, 14.24]
+  title: "Zebbug - 2024-04"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-05-01"
+  date_precision: month
+  city: "Konigsdorf"
+  country: "Germany"
+  coordinates: [47.82, 11.48]
+  title: "Konigsdorf - 2024-05"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-05-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2024-05"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2024-05-01"
+  date_precision: month
+  city: "Ramsau"
+  country: "Germany"
+  coordinates: [47.62, 12.90]
+  title: "Ramsau - 2024-05"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-05-01"
+  date_precision: month
+  city: "Salzburg"
+  country: "Austria"
+  coordinates: [47.81, 13.05]
+  title: "Salzburg - 2024-05"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-05-01"
+  date_precision: month
+  city: "Schoenau am Koenigssee"
+  country: "Germany"
+  coordinates: [47.60, 12.99]
+  title: "Schoenau am Koenigssee - 2024-05"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-05-01"
+  date_precision: month
+  city: "Vohringen"
+  country: "Germany"
+  coordinates: [48.28, 10.08]
+  title: "Vohringen - 2024-05"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-06-01"
+  date_precision: month
+  city: "Bratislava"
+  country: "Slovakia"
+  coordinates: [48.15, 17.11]
+  title: "Bratislava - 2024-06"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-06-01"
+  date_precision: month
+  city: "Linz"
+  country: "Austria"
+  coordinates: [48.31, 14.29]
+  title: "Linz - 2024-06"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-06-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2024-06"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2024-06-01"
+  date_precision: month
+  city: "Rajka"
+  country: "Hungary"
+  coordinates: [48.00, 17.20]
+  title: "Rajka - 2024-06"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-06-01"
+  date_precision: month
+  city: "Salzburg"
+  country: "Austria"
+  coordinates: [47.81, 13.05]
+  title: "Salzburg - 2024-06"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-06-01"
+  date_precision: month
+  city: "Semmering"
+  country: "Austria"
+  coordinates: [47.63, 15.83]
+  title: "Semmering - 2024-06"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-06-01"
+  date_precision: month
+  city: "Vienna"
+  country: "Austria"
+  coordinates: [48.21, 16.37]
+  title: "Vienna - 2024-06"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-07-01"
+  date_precision: month
+  city: "Berlin"
+  country: "Germany"
+  coordinates: [52.52, 13.40]
+  title: "Berlin - 2024-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-07-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2024-07"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2024-07-01"
+  date_precision: month
+  city: "Salzburg"
+  country: "Austria"
+  coordinates: [47.81, 13.05]
+  title: "Salzburg - 2024-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-07-01"
+  date_precision: month
+  city: "Sankt Wolfgang im Salzkammergut"
+  country: "Austria"
+  coordinates: [47.74, 13.45]
+  title: "Sankt Wolfgang im Salzkammergut - 2024-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-08-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2024-08"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2024-08-01"
+  date_precision: month
+  city: "Nuremberg"
+  country: "Germany"
+  coordinates: [49.45, 11.08]
+  title: "Nuremberg - 2024-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-09-01"
+  date_precision: month
+  city: "Akersberga"
+  country: "Sweden"
+  coordinates: [59.48, 18.30]
+  title: "Akersberga - 2024-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-09-01"
+  date_precision: month
+  city: "Burghausen"
+  country: "Germany"
+  coordinates: [48.17, 12.83]
+  title: "Burghausen - 2024-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-09-01"
+  date_precision: month
+  city: "Mehring"
+  country: "Germany"
+  coordinates: [48.18, 12.78]
+  title: "Mehring - 2024-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-09-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2024-09"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2024-09-01"
+  date_precision: month
+  city: "Stockholm"
+  country: "Sweden"
+  coordinates: [59.33, 18.07]
+  title: "Stockholm - 2024-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-10-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2024-10"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2024-11-01"
+  date_precision: month
+  city: "Mala Strana"
+  country: "Czechia"
+  coordinates: [50.09, 14.40]
+  title: "Mala Strana - 2024-11"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-11-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2024-11"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2024-11-01"
+  date_precision: month
+  city: "Schwangau"
+  country: "Germany"
+  coordinates: [47.58, 10.73]
+  title: "Schwangau - 2024-11"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-12-01"
+  date_precision: month
+  city: "Fujisawa"
+  country: "Japan"
+  coordinates: [35.34, 139.47]
+  title: "Fujisawa - 2024-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-12-01"
+  date_precision: month
+  city: "Futtsu"
+  country: "Japan"
+  coordinates: [35.31, 139.82]
+  title: "Futtsu - 2024-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-12-01"
+  date_precision: month
+  city: "Hakone"
+  country: "Japan"
+  coordinates: [35.18, 139.03]
+  title: "Hakone - 2024-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-12-01"
+  date_precision: month
+  city: "Jinan"
+  country: "China"
+  coordinates: [36.65, 117.12]
+  title: "Jinan - 2024-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-12-01"
+  date_precision: month
+  city: "Kaizuka"
+  country: "Japan"
+  coordinates: [34.45, 135.35]
+  title: "Kaizuka - 2024-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-12-01"
+  date_precision: month
+  city: "Kamakura"
+  country: "Japan"
+  coordinates: [35.31, 139.55]
+  title: "Kamakura - 2024-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-12-01"
+  date_precision: month
+  city: "Kyoto"
+  country: "Japan"
+  coordinates: [35.02, 135.75]
+  title: "Kyoto - 2024-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-12-01"
+  date_precision: month
+  city: "Laogang"
+  country: "China"
+  coordinates: [31.03, 121.84]
+  title: "Laogang - 2024-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-12-01"
+  date_precision: month
+  city: "Metzingen"
+  country: "Germany"
+  coordinates: [48.54, 9.28]
+  title: "Metzingen - 2024-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-12-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2024-12"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2024-12-01"
+  date_precision: month
+  city: "Ninomiya"
+  country: "Japan"
+  coordinates: [35.30, 139.25]
+  title: "Ninomiya - 2024-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-12-01"
+  date_precision: month
+  city: "Odawara"
+  country: "Japan"
+  coordinates: [35.26, 139.16]
+  title: "Odawara - 2024-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-12-01"
+  date_precision: month
+  city: "Osaka-shi"
+  country: "Japan"
+  coordinates: [34.69, 135.50]
+  title: "Osaka-shi - 2024-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-12-01"
+  date_precision: month
+  city: "Pingdu"
+  country: "China"
+  coordinates: [36.78, 119.95]
+  title: "Pingdu - 2024-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-12-01"
+  date_precision: month
+  city: "Qingdao"
+  country: "China"
+  coordinates: [36.07, 120.37]
+  title: "Qingdao - 2024-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-12-01"
+  date_precision: month
+  city: "Shanghai"
+  country: "China"
+  coordinates: [31.23, 121.47]
+  title: "Shanghai - 2024-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-12-01"
+  date_precision: month
+  city: "Tokyo"
+  country: "Japan"
+  coordinates: [35.69, 139.69]
+  title: "Tokyo - 2024-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-12-01"
+  date_precision: month
+  city: "Urayasu"
+  country: "Japan"
+  coordinates: [35.67, 139.89]
+  title: "Urayasu - 2024-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2024-12-01"
+  date_precision: month
+  city: "Yokohama"
+  country: "Japan"
+  coordinates: [35.45, 139.64]
+  title: "Yokohama - 2024-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
 - date: "2025-01-01"
-  date_precision: year
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  title: "Dongdu - 2025-01"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-01-01"
+  date_precision: month
+  city: "Laogang"
+  country: "China"
+  coordinates: [31.03, 121.84]
+  title: "Laogang - 2025-01"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-01-01"
+  date_precision: month
+  city: "Mingshui"
+  country: "China"
+  coordinates: [36.72, 117.50]
+  title: "Mingshui - 2025-01"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-01-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2025-01"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2025-01-01"
+  date_precision: month
+  city: "Shanghai"
+  country: "China"
+  coordinates: [31.23, 121.47]
+  title: "Shanghai - 2025-01"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-01-01"
+  date_precision: month
+  city: "Tai'an"
+  country: "China"
+  coordinates: [36.19, 117.12]
+  title: "Tai'an - 2025-01"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-01-01"
+  date_precision: month
+  city: "Xintai"
+  country: "China"
+  coordinates: [35.90, 117.75]
+  title: "Xintai - 2025-01"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-02-01"
+  date_precision: month
+  city: "Grainau"
+  country: "Germany"
+  coordinates: [47.48, 11.02]
+  title: "Grainau - 2025-02"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-02-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2025-02"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2025-02-01"
+  date_precision: month
+  city: "Wuerzburg"
+  country: "Germany"
+  coordinates: [49.79, 9.95]
+  title: "Wuerzburg - 2025-02"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-03-01"
+  date_precision: month
+  city: "Altstadt Nord"
+  country: "Germany"
+  coordinates: [50.94, 6.96]
+  title: "Altstadt Nord - 2025-03"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-03-01"
+  date_precision: month
+  city: "Dusseldorf"
+  country: "Germany"
+  coordinates: [51.23, 6.77]
+  title: "Dusseldorf - 2025-03"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-03-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2025-03"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2025-04-01"
+  date_precision: month
+  city: "Andechs"
+  country: "Germany"
+  coordinates: [47.97, 11.18]
+  title: "Andechs - 2025-04"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-04-01"
+  date_precision: month
+  city: "Egnach"
+  country: "Switzerland"
+  coordinates: [47.54, 9.38]
+  title: "Egnach - 2025-04"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-04-01"
+  date_precision: month
+  city: "Herrsching am Ammersee"
+  country: "Germany"
+  coordinates: [48.00, 11.18]
+  title: "Herrsching am Ammersee - 2025-04"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-04-01"
+  date_precision: month
+  city: "Konstanz"
+  country: "Germany"
+  coordinates: [47.66, 9.18]
+  title: "Konstanz - 2025-04"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-04-01"
+  date_precision: month
+  city: "Meersburg"
+  country: "Germany"
+  coordinates: [47.69, 9.27]
+  title: "Meersburg - 2025-04"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-04-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2025-04"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2025-04-01"
+  date_precision: month
+  city: "Noerdlingen"
+  country: "Germany"
+  coordinates: [48.85, 10.49]
+  title: "Noerdlingen - 2025-04"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-05-01"
+  date_precision: month
+  city: "Berlin"
+  country: "Germany"
+  coordinates: [52.52, 13.40]
+  title: "Berlin - 2025-05"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-05-01"
+  date_precision: month
+  city: "Kempten (Allgaeu)"
+  country: "Germany"
+  coordinates: [47.73, 10.31]
+  title: "Kempten (Allgaeu) - 2025-05"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-05-01"
+  date_precision: month
+  city: "Miedzyzdroje"
+  country: "Poland"
+  coordinates: [53.93, 14.45]
+  title: "Miedzyzdroje - 2025-05"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-05-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2025-05"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2025-05-01"
+  date_precision: month
+  city: "Passow"
+  country: "Germany"
+  coordinates: [53.14, 14.11]
+  title: "Passow - 2025-05"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-05-01"
+  date_precision: month
+  city: "Potsdam"
+  country: "Germany"
+  coordinates: [52.40, 13.07]
+  title: "Potsdam - 2025-05"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-05-01"
+  date_precision: month
+  city: "Schlehdorf"
+  country: "Germany"
+  coordinates: [47.65, 11.32]
+  title: "Schlehdorf - 2025-05"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-05-01"
+  date_precision: month
+  city: "Swinoujscie"
+  country: "Poland"
+  coordinates: [53.91, 14.25]
+  title: "Swinoujscie - 2025-05"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-05-01"
+  date_precision: month
+  city: "Szczecin"
+  country: "Poland"
+  coordinates: [53.43, 14.55]
+  title: "Szczecin - 2025-05"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-05-01"
+  date_precision: month
+  city: "Wannsee"
+  country: "Germany"
+  coordinates: [52.42, 13.16]
+  title: "Wannsee - 2025-05"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-06-01"
+  date_precision: month
+  city: "Baden-Baden"
+  country: "Germany"
+  coordinates: [48.76, 8.24]
+  title: "Baden-Baden - 2025-06"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-06-01"
+  date_precision: month
+  city: "Karlsruhe"
+  country: "Germany"
+  coordinates: [49.01, 8.40]
+  title: "Karlsruhe - 2025-06"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-06-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2025-06"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2025-06-01"
+  date_precision: month
+  city: "Schwangau"
+  country: "Germany"
+  coordinates: [47.58, 10.73]
+  title: "Schwangau - 2025-06"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-06-01"
+  date_precision: month
+  city: "Strasbourg"
+  country: "France"
+  coordinates: [48.58, 7.75]
+  title: "Strasbourg - 2025-06"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-07-01"
+  date_precision: month
+  city: "Donaustauf"
+  country: "Germany"
+  coordinates: [49.03, 12.20]
+  title: "Donaustauf - 2025-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-07-01"
+  date_precision: month
+  city: "Glasgow"
+  country: "United Kingdom"
+  coordinates: [55.86, -4.25]
+  title: "Glasgow - 2025-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-07-01"
+  date_precision: month
+  city: "Lappersdorf"
+  country: "Germany"
+  coordinates: [49.05, 12.09]
+  title: "Lappersdorf - 2025-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-07-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2025-07"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2025-07-01"
+  date_precision: month
+  city: "Tuebingen"
+  country: "Germany"
+  coordinates: [48.52, 9.05]
+  title: "Tuebingen - 2025-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-08-01"
+  date_precision: month
+  city: "Banff"
+  country: "Canada"
+  coordinates: [51.18, -115.57]
+  title: "Banff - 2025-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-08-01"
+  date_precision: month
+  city: "Calgary"
+  country: "Canada"
+  coordinates: [51.05, -114.09]
+  title: "Calgary - 2025-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-08-01"
+  date_precision: month
+  city: "Conon Bridge"
+  country: "United Kingdom"
+  coordinates: [57.57, -4.44]
+  title: "Conon Bridge - 2025-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-08-01"
+  date_precision: month
+  city: "Dingwall"
+  country: "United Kingdom"
+  coordinates: [57.60, -4.43]
+  title: "Dingwall - 2025-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-08-01"
+  date_precision: month
+  city: "Edinburgh"
+  country: "United Kingdom"
+  coordinates: [55.95, -3.20]
+  title: "Edinburgh - 2025-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-08-01"
+  date_precision: month
+  city: "Fort William"
+  country: "United Kingdom"
+  coordinates: [56.82, -5.11]
+  title: "Fort William - 2025-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-08-01"
+  date_precision: month
+  city: "Glasgow"
+  country: "United Kingdom"
+  coordinates: [55.86, -4.25]
+  title: "Glasgow - 2025-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-08-01"
+  date_precision: month
+  city: "Golden"
+  country: "Canada"
+  coordinates: [51.30, -116.97]
+  title: "Golden - 2025-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-08-01"
+  date_precision: month
+  city: "Jasper Park Lodge"
+  country: "Canada"
+  coordinates: [52.89, -118.06]
+  title: "Jasper Park Lodge - 2025-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-08-01"
+  date_precision: month
+  city: "Kingussie"
+  country: "United Kingdom"
+  coordinates: [57.08, -4.05]
+  title: "Kingussie - 2025-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-08-01"
+  date_precision: month
+  city: "Lake Louise"
+  country: "Canada"
+  coordinates: [51.40, -116.28]
+  title: "Lake Louise - 2025-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-08-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2025-08"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2025-08-01"
+  date_precision: month
+  city: "North Saanich"
+  country: "Canada"
+  coordinates: [48.67, -123.42]
+  title: "North Saanich - 2025-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-08-01"
+  date_precision: month
+  city: "Point Roberts"
+  country: "United States"
+  coordinates: [48.99, -123.08]
+  title: "Point Roberts - 2025-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-08-01"
+  date_precision: month
+  city: "Port Alberni"
+  country: "Canada"
+  coordinates: [49.24, -124.80]
+  title: "Port Alberni - 2025-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-08-01"
+  date_precision: month
+  city: "Portree"
+  country: "United Kingdom"
+  coordinates: [57.41, -6.19]
+  title: "Portree - 2025-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-08-01"
+  date_precision: month
+  city: "Ratho"
+  country: "United Kingdom"
+  coordinates: [55.92, -3.38]
+  title: "Ratho - 2025-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-08-01"
+  date_precision: month
+  city: "Seafield"
+  country: "United Kingdom"
+  coordinates: [55.97, -3.15]
+  title: "Seafield - 2025-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-08-01"
+  date_precision: month
+  city: "Sooke"
+  country: "Canada"
+  coordinates: [48.37, -123.73]
+  title: "Sooke - 2025-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-08-01"
+  date_precision: month
+  city: "Ucluelet"
+  country: "Canada"
+  coordinates: [48.94, -125.55]
+  title: "Ucluelet - 2025-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-08-01"
+  date_precision: month
+  city: "Ullapool"
+  country: "United Kingdom"
+  coordinates: [57.90, -5.16]
+  title: "Ullapool - 2025-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-08-01"
+  date_precision: month
   city: "Vancouver"
   country: "Canada"
-  coordinates: [49.2827, -123.1207]
-  title: "Vancouver · 2025"
-  description: "Possible stay inferred from location records. Year-level date and approximate city-centre marker."
-- date: "2025-01-01"
-  date_precision: year
+  coordinates: [49.28, -123.12]
+  title: "Vancouver - 2025-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-08-01"
+  date_precision: month
+  city: "Victoria"
+  country: "Canada"
+  coordinates: [48.43, -123.37]
+  title: "Victoria - 2025-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-09-01"
+  date_precision: month
+  city: "Metz"
+  country: "France"
+  coordinates: [49.12, 6.17]
+  title: "Metz - 2025-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-09-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2025-09"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2025-09-01"
+  date_precision: month
   city: "Paris"
   country: "France"
-  coordinates: [48.8566, 2.3522]
-  title: "Paris · 2025"
-  description: "Possible stay inferred from location records. Year-level date and approximate city-centre marker."
-- date: "2025-01-01"
-  date_precision: year
-  city: "Düsseldorf"
+  coordinates: [48.86, 2.35]
+  title: "Paris - 2025-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-09-01"
+  date_precision: month
+  city: "Saarbrucken"
   country: "Germany"
-  coordinates: [51.2277, 6.7735]
-  title: "Düsseldorf · 2025, 2026"
-  description: "Possible stays inferred in these years. Dates are year-level only; marker is an approximate city-centre location."
+  coordinates: [49.24, 6.98]
+  title: "Saarbrucken - 2025-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-09-01"
+  date_precision: month
+  city: "Vancouver"
+  country: "Canada"
+  coordinates: [49.28, -123.12]
+  title: "Vancouver - 2025-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-09-01"
+  date_precision: month
+  city: "Versailles"
+  country: "France"
+  coordinates: [48.80, 2.13]
+  title: "Versailles - 2025-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-09-01"
+  date_precision: month
+  city: "Whistler"
+  country: "Canada"
+  coordinates: [50.12, -122.97]
+  title: "Whistler - 2025-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-10-01"
+  date_precision: month
+  city: "Kiefersfelden"
+  country: "Germany"
+  coordinates: [47.61, 12.19]
+  title: "Kiefersfelden - 2025-10"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-10-01"
+  date_precision: month
+  city: "Kufstein"
+  country: "Austria"
+  coordinates: [47.58, 12.17]
+  title: "Kufstein - 2025-10"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-10-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2025-10"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2025-11-01"
+  date_precision: month
+  city: "Frankfurt am Main"
+  country: "Germany"
+  coordinates: [50.11, 8.68]
+  title: "Frankfurt am Main - 2025-11"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-11-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2025-11"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2025-11-01"
+  date_precision: month
+  city: "Salzburg"
+  country: "Austria"
+  coordinates: [47.81, 13.05]
+  title: "Salzburg - 2025-11"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-11-01"
+  date_precision: month
+  city: "Wiesbaden"
+  country: "Germany"
+  coordinates: [50.08, 8.25]
+  title: "Wiesbaden - 2025-11"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-12-01"
+  date_precision: month
+  city: "Beijing"
+  country: "China"
+  coordinates: [39.90, 116.41]
+  title: "Beijing - 2025-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-12-01"
+  date_precision: month
+  city: "Daliang"
+  country: "China"
+  coordinates: [22.84, 113.25]
+  title: "Daliang - 2025-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-12-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  title: "Dongdu - 2025-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-12-01"
+  date_precision: month
+  city: "Guangzhou"
+  country: "China"
+  coordinates: [23.12, 113.25]
+  title: "Guangzhou - 2025-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-12-01"
+  date_precision: month
+  city: "Jinan"
+  country: "China"
+  coordinates: [36.65, 117.12]
+  title: "Jinan - 2025-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-12-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2025-12"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2025-12-01"
+  date_precision: month
+  city: "Nanjie"
+  country: "China"
+  coordinates: [26.09, 119.29]
+  title: "Nanjie - 2025-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-12-01"
+  date_precision: month
+  city: "Quanzhou"
+  country: "China"
+  coordinates: [24.91, 118.59]
+  title: "Quanzhou - 2025-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-12-01"
+  date_precision: month
+  city: "Shekou"
+  country: "China"
+  coordinates: [22.49, 113.92]
+  title: "Shekou - 2025-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-12-01"
+  date_precision: month
+  city: "Shenzhen"
+  country: "China"
+  coordinates: [22.55, 114.07]
+  title: "Shenzhen - 2025-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-12-01"
+  date_precision: month
+  city: "Wushan"
+  country: "China"
+  coordinates: [23.16, 113.35]
+  title: "Wushan - 2025-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-12-01"
+  date_precision: month
+  city: "Zhanggang"
+  country: "China"
+  coordinates: [25.92, 119.63]
+  title: "Zhanggang - 2025-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2025-12-01"
+  date_precision: month
+  city: "Zumiao"
+  country: "China"
+  coordinates: [23.03, 113.13]
+  title: "Zumiao - 2025-12"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
 - date: "2026-01-01"
-  date_precision: year
+  date_precision: month
+  city: "Beijing"
+  country: "China"
+  coordinates: [39.90, 116.41]
+  title: "Beijing - 2026-01"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-01-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  title: "Dongdu - 2026-01"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-01-01"
+  date_precision: month
+  city: "Ehrwald"
+  country: "Austria"
+  coordinates: [47.40, 10.92]
+  title: "Ehrwald - 2026-01"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-01-01"
+  date_precision: month
+  city: "Metzingen"
+  country: "Germany"
+  coordinates: [48.54, 9.28]
+  title: "Metzingen - 2026-01"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-01-01"
+  date_precision: month
+  city: "Mingshui"
+  country: "China"
+  coordinates: [36.72, 117.50]
+  title: "Mingshui - 2026-01"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-01-01"
+  date_precision: month
+  city: "Mittenwald"
+  country: "Germany"
+  coordinates: [47.44, 11.26]
+  title: "Mittenwald - 2026-01"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-01-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2026-01"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2026-01-01"
+  date_precision: month
+  city: "Tai'an"
+  country: "China"
+  coordinates: [36.19, 117.12]
+  title: "Tai'an - 2026-01"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-01-01"
+  date_precision: month
+  city: "Xintai"
+  country: "China"
+  coordinates: [35.90, 117.75]
+  title: "Xintai - 2026-01"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-02-01"
+  date_precision: month
+  city: "Altstadt Nord"
+  country: "Germany"
+  coordinates: [50.94, 6.96]
+  title: "Altstadt Nord - 2026-02"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-02-01"
+  date_precision: month
   city: "Barcelona"
   country: "Spain"
-  coordinates: [41.3874, 2.1686]
-  title: "Barcelona · 2026"
-  description: "Possible stay inferred from location records. Year-level date and approximate city-centre marker."
-- date: "2026-01-01"
-  date_precision: year
+  coordinates: [41.39, 2.17]
+  title: "Barcelona - 2026-02"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-02-01"
+  date_precision: month
+  city: "Bolsterlang"
+  country: "Germany"
+  coordinates: [47.47, 10.23]
+  title: "Bolsterlang - 2026-02"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-02-01"
+  date_precision: month
+  city: "Dusseldorf"
+  country: "Germany"
+  coordinates: [51.23, 6.77]
+  title: "Dusseldorf - 2026-02"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-02-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2026-02"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2026-02-01"
+  date_precision: month
+  city: "Obermaiselstein"
+  country: "Germany"
+  coordinates: [47.45, 10.23]
+  title: "Obermaiselstein - 2026-02"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-02-01"
+  date_precision: month
+  city: "Ofterschwang"
+  country: "Germany"
+  coordinates: [47.50, 10.23]
+  title: "Ofterschwang - 2026-02"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-02-01"
+  date_precision: month
+  city: "Trier"
+  country: "Germany"
+  coordinates: [49.76, 6.64]
+  title: "Trier - 2026-02"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-03-01"
+  date_precision: month
+  city: "Andechs"
+  country: "Germany"
+  coordinates: [47.97, 11.18]
+  title: "Andechs - 2026-03"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-03-01"
+  date_precision: month
+  city: "Kochel"
+  country: "Germany"
+  coordinates: [47.66, 11.37]
+  title: "Kochel - 2026-03"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-03-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2026-03"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2026-04-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2026-04"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2026-05-01"
+  date_precision: month
+  city: "Coburg"
+  country: "Germany"
+  coordinates: [50.26, 10.96]
+  title: "Coburg - 2026-05"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-05-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2026-05"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2026-05-01"
+  date_precision: month
+  city: "Rottach-Egern"
+  country: "Germany"
+  coordinates: [47.69, 11.77]
+  title: "Rottach-Egern - 2026-05"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-05-01"
+  date_precision: month
+  city: "Tegernsee"
+  country: "Germany"
+  coordinates: [47.71, 11.76]
+  title: "Tegernsee - 2026-05"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-06-01"
+  date_precision: month
+  city: "Bergen"
+  country: "Germany"
+  coordinates: [47.81, 12.59]
+  title: "Bergen - 2026-06"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-06-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2026-06"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2026-06-01"
+  date_precision: month
+  city: "Prien am Chiemsee"
+  country: "Germany"
+  coordinates: [47.86, 12.35]
+  title: "Prien am Chiemsee - 2026-06"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-06-01"
+  date_precision: month
+  city: "Schlehdorf"
+  country: "Germany"
+  coordinates: [47.65, 11.32]
+  title: "Schlehdorf - 2026-06"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-06-01"
+  date_precision: month
+  city: "Wallgau"
+  country: "Germany"
+  coordinates: [47.52, 11.28]
+  title: "Wallgau - 2026-06"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-07-01"
+  date_precision: month
+  city: "Andechs"
+  country: "Germany"
+  coordinates: [47.97, 11.18]
+  title: "Andechs - 2026-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-07-01"
+  date_precision: month
+  city: "Ingolstadt"
+  country: "Germany"
+  coordinates: [48.77, 11.42]
+  title: "Ingolstadt - 2026-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-07-01"
+  date_precision: month
+  city: "L'Ancienne-Lorette"
+  country: "Canada"
+  coordinates: [46.79, -71.35]
+  title: "L'Ancienne-Lorette - 2026-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-07-01"
+  date_precision: month
+  city: "Montreal"
+  country: "Canada"
+  coordinates: [45.50, -73.57]
+  title: "Montreal - 2026-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-07-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2026-07"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2026-07-01"
+  date_precision: month
+  city: "Niagara Falls"
+  country: "Canada"
+  coordinates: [43.10, -79.07]
+  title: "Niagara Falls - 2026-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-07-01"
+  date_precision: month
+  city: "Ottawa"
+  country: "Canada"
+  coordinates: [45.41, -75.70]
+  title: "Ottawa - 2026-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-07-01"
+  date_precision: month
+  city: "Quebec"
+  country: "Canada"
+  coordinates: [46.81, -71.21]
+  title: "Quebec - 2026-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-07-01"
+  date_precision: month
   city: "Toronto"
   country: "Canada"
-  coordinates: [43.6532, -79.3832]
-  title: "Toronto · 2026"
-  description: "Possible stay inferred from location records. Year-level date and approximate city-centre marker."
+  coordinates: [43.65, -79.38]
+  title: "Toronto - 2026-07"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-08-01"
+  date_precision: month
+  city: "Dali"
+  country: "China"
+  coordinates: [25.58, 100.21]
+  title: "Dali - 2026-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-08-01"
+  date_precision: month
+  city: "Frankfurt am Main"
+  country: "Germany"
+  coordinates: [50.11, 8.68]
+  title: "Frankfurt am Main - 2026-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-08-01"
+  date_precision: month
+  city: "Guilin"
+  country: "China"
+  coordinates: [25.28, 110.29]
+  title: "Guilin - 2026-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-08-01"
+  date_precision: month
+  city: "Huangshan"
+  country: "China"
+  coordinates: [26.83, 100.22]
+  title: "Huangshan - 2026-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-08-01"
+  date_precision: month
+  city: "Jinan"
+  country: "China"
+  coordinates: [36.65, 117.12]
+  title: "Jinan - 2026-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-08-01"
+  date_precision: month
+  city: "Kowloon"
+  country: "Hong Kong"
+  coordinates: [22.32, 114.18]
+  title: "Kowloon - 2026-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-08-01"
+  date_precision: month
+  city: "Kunming"
+  country: "China"
+  coordinates: [25.04, 102.72]
+  title: "Kunming - 2026-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-08-01"
+  date_precision: month
+  city: "Laogang"
+  country: "China"
+  coordinates: [31.03, 121.84]
+  title: "Laogang - 2026-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-08-01"
+  date_precision: month
+  city: "Lijiang"
+  country: "China"
+  coordinates: [26.87, 100.22]
+  title: "Lijiang - 2026-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-08-01"
+  date_precision: month
+  city: "Liuzhou"
+  country: "China"
+  coordinates: [24.31, 109.39]
+  title: "Liuzhou - 2026-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-08-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2026-08"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2026-08-01"
+  date_precision: month
+  city: "Shangjie"
+  country: "China"
+  coordinates: [25.67, 99.98]
+  title: "Shangjie - 2026-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-08-01"
+  date_precision: month
+  city: "Tai'an"
+  country: "China"
+  coordinates: [36.19, 117.12]
+  title: "Tai'an - 2026-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-08-01"
+  date_precision: month
+  city: "Xintai"
+  country: "China"
+  coordinates: [35.90, 117.75]
+  title: "Xintai - 2026-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-08-01"
+  date_precision: month
+  city: "Yangshuo"
+  country: "China"
+  coordinates: [24.78, 110.49]
+  title: "Yangshuo - 2026-08"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-09-01"
+  date_precision: month
+  city: "Bad Endorf"
+  country: "Germany"
+  coordinates: [47.91, 12.30]
+  title: "Bad Endorf - 2026-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-09-01"
+  date_precision: month
+  city: "Chiemsee"
+  country: "Germany"
+  coordinates: [47.87, 12.42]
+  title: "Chiemsee - 2026-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-09-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  title: "Dongdu - 2026-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-09-01"
+  date_precision: month
+  city: "Eschenlohe"
+  country: "Germany"
+  coordinates: [47.60, 11.18]
+  title: "Eschenlohe - 2026-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-09-01"
+  date_precision: month
+  city: "Grafing bei Munchen"
+  country: "Germany"
+  coordinates: [48.05, 11.97]
+  title: "Grafing bei Munchen - 2026-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-09-01"
+  date_precision: month
+  city: "Helsinki"
+  country: "Finland"
+  coordinates: [60.17, 24.94]
+  title: "Helsinki - 2026-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-09-01"
+  date_precision: month
+  city: "Liujia"
+  country: "China"
+  coordinates: [24.96, 102.72]
+  title: "Liujia - 2026-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-09-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2026-09"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2026-09-01"
+  date_precision: month
+  city: "Murnau am Staffelsee"
+  country: "Germany"
+  coordinates: [47.68, 11.20]
+  title: "Murnau am Staffelsee - 2026-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-09-01"
+  date_precision: month
+  city: "Nanjing"
+  country: "China"
+  coordinates: [32.06, 118.78]
+  title: "Nanjing - 2026-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-09-01"
+  date_precision: month
+  city: "Ningnan"
+  country: "China"
+  coordinates: [31.99, 118.78]
+  title: "Ningnan - 2026-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-09-01"
+  date_precision: month
+  city: "Oberammergau"
+  country: "Germany"
+  coordinates: [47.60, 11.07]
+  title: "Oberammergau - 2026-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-09-01"
+  date_precision: month
+  city: "Oberau"
+  country: "Germany"
+  coordinates: [47.56, 11.14]
+  title: "Oberau - 2026-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-09-01"
+  date_precision: month
+  city: "Oberhausen"
+  country: "Germany"
+  coordinates: [47.78, 11.13]
+  title: "Oberhausen - 2026-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-09-01"
+  date_precision: month
+  city: "Ohlstadt"
+  country: "Germany"
+  coordinates: [47.63, 11.23]
+  title: "Ohlstadt - 2026-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-09-01"
+  date_precision: month
+  city: "Rosenheim"
+  country: "Germany"
+  coordinates: [47.86, 12.12]
+  title: "Rosenheim - 2026-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-09-01"
+  date_precision: month
+  city: "Rott"
+  country: "Germany"
+  coordinates: [47.92, 12.09]
+  title: "Rott - 2026-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-09-01"
+  date_precision: month
+  city: "Stephanskirchen"
+  country: "Germany"
+  coordinates: [47.85, 12.19]
+  title: "Stephanskirchen - 2026-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-09-01"
+  date_precision: month
+  city: "Tutzing"
+  country: "Germany"
+  coordinates: [47.91, 11.28]
+  title: "Tutzing - 2026-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-09-01"
+  date_precision: month
+  city: "Uffing"
+  country: "Germany"
+  coordinates: [47.71, 11.15]
+  title: "Uffing - 2026-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-09-01"
+  date_precision: month
+  city: "Vantaa"
+  country: "Finland"
+  coordinates: [60.29, 25.04]
+  title: "Vantaa - 2026-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-09-01"
+  date_precision: month
+  city: "Weilheim"
+  country: "Germany"
+  coordinates: [47.84, 11.15]
+  title: "Weilheim - 2026-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-09-01"
+  date_precision: month
+  city: "Wulaocun"
+  country: "China"
+  coordinates: [32.03, 118.80]
+  title: "Wulaocun - 2026-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-09-01"
+  date_precision: month
+  city: "Yunyang"
+  country: "China"
+  coordinates: [32.00, 119.56]
+  title: "Yunyang - 2026-09"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-10-01"
+  date_precision: month
+  city: "Baar-Ebenhausen"
+  country: "Germany"
+  coordinates: [48.67, 11.45]
+  title: "Baar-Ebenhausen - 2026-10"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-10-01"
+  date_precision: month
+  city: "Budapest"
+  country: "Hungary"
+  coordinates: [47.50, 19.04]
+  title: "Budapest - 2026-10"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-10-01"
+  date_precision: month
+  city: "Gmund am Tegernsee"
+  country: "Germany"
+  coordinates: [47.75, 11.74]
+  title: "Gmund am Tegernsee - 2026-10"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-10-01"
+  date_precision: month
+  city: "Ingolstadt"
+  country: "Germany"
+  coordinates: [48.77, 11.42]
+  title: "Ingolstadt - 2026-10"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-10-01"
+  date_precision: month
+  city: "Lenting"
+  country: "Germany"
+  coordinates: [48.80, 11.47]
+  title: "Lenting - 2026-10"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-10-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2026-10"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
+- date: "2026-10-01"
+  date_precision: month
+  city: "Nickelsdorf"
+  country: "Austria"
+  coordinates: [47.94, 17.07]
+  title: "Nickelsdorf - 2026-10"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-10-01"
+  date_precision: month
+  city: "Petershausen"
+  country: "Germany"
+  coordinates: [48.40, 11.47]
+  title: "Petershausen - 2026-10"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-10-01"
+  date_precision: month
+  city: "Pfaffenhofen an der Ilm"
+  country: "Germany"
+  coordinates: [48.53, 11.51]
+  title: "Pfaffenhofen an der Ilm - 2026-10"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-10-01"
+  date_precision: month
+  city: "Reichertshausen"
+  country: "Germany"
+  coordinates: [48.47, 11.52]
+  title: "Reichertshausen - 2026-10"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-10-01"
+  date_precision: month
+  city: "Rohrbach"
+  country: "Germany"
+  coordinates: [48.62, 11.57]
+  title: "Rohrbach - 2026-10"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-10-01"
+  date_precision: month
+  city: "Trunkelsberg"
+  country: "Germany"
+  coordinates: [48.00, 10.22]
+  title: "Trunkelsberg - 2026-10"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-10-01"
+  date_precision: month
+  city: "Vienna"
+  country: "Austria"
+  coordinates: [48.21, 16.37]
+  title: "Vienna - 2026-10"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-10-01"
+  date_precision: month
+  city: "Warngau"
+  country: "Germany"
+  coordinates: [47.83, 11.72]
+  title: "Warngau - 2026-10"
+  description: "Possible stop inferred from location records. Shown by month at an approximate settlement-centre location; verify the place name."
+- date: "2026-11-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  title: "Munich area - 2026-11"
+  description: "Repeated location records in this broad metro area. Shown by month at an approximate city-level location; not an individual trip or exact stop."
