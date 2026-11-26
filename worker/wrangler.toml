@@ -8,7 +8,7 @@ SITE_ORIGIN = "https://khanliu.github.io"
 ADMIN_GITHUB_LOGIN = "KhanLiu"
 GITHUB_REPOSITORY = "KhanLiu/KhanLiu.github.io"
 GITHUB_BRANCH = "main"
-GITHUB_CLIENT_ID = "SET_AFTER_CREATING_THE_GITHUB_OAUTH_APP"
+GITHUB_CLIENT_ID = "Ov23liQPIWOuNYNH58zs"
 
 [[kv_namespaces]]
 binding = "TRAVEL_ADMIN_AUTHy"

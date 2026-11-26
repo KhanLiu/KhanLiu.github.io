@@ -13,7 +13,7 @@ The public site is static GitHub Pages, so the admin editor uses a Cloudflare Wo
 
    Replace the configured namespace ID in `wrangler.toml` with the returned ID.
 
-2. In Cloudflare, choose or confirm your `workers.dev` subdomain. The Worker origin will be `https://khanliu-travel-admin.<your-workers-subdomain>.workers.dev`. Create a GitHub OAuth App with homepage `https://khanliu.github.io/admin/` and callback `<worker-origin>/auth/callback`. The callback must exactly match the Worker URL. Keep its client secret private.
+2. The configured Worker origin is `https://khanliu-travel-admin.cnkhanliu.workers.dev`. Create a GitHub OAuth App with homepage `https://khanliu.github.io/admin/` and callback `https://khanliu-travel-admin.cnkhanliu.workers.dev/auth/callback`. The callback must exactly match the Worker URL. Keep its client secret private.
 
 3. Create a fine-grained personal access token for **only** `KhanLiu/KhanLiu.github.io`, with repository permission **Contents: Read and write**. Do not paste the token into chat or commit it.
 
@@ -27,9 +27,9 @@ The public site is static GitHub Pages, so the admin editor uses a Cloudflare Wo
 
    Wrangler prompts for each secret value. Use the Cloudflare dashboard's Worker settings instead if preferred.
 
-5. In `admin/index.html`, set the `travel-admin-api` meta value to the exact Worker origin, for example `https://khanliu-travel-admin.<your-workers-subdomain>.workers.dev`. Commit and push that change to deploy the Pages editor. The public map and admin editor both update automatically when the Worker writes `_data/trips.yml` to `main`.
+5. `admin/index.html` is already configured with the Worker origin. The public map and admin editor both update automatically when the Worker writes `_data/trips.yml` to `main`.
 
-The Worker OAuth callback is `https://<worker-origin>/auth/callback`. Only the configured GitHub login is accepted. OAuth requests only `read:user`; repository writes use the separate repository-scoped token. Browser sessions are random, expire after two hours, and are held in the configured KV namespace. API calls require the exact Pages origin and a bearer session token.
+The Worker OAuth callback is `https://khanliu-travel-admin.cnkhanliu.workers.dev/auth/callback`. Only the configured GitHub login is accepted. OAuth requests only `read:user`; repository writes use the separate repository-scoped token. Browser sessions are random, expire after two hours, and are held in the configured KV namespace. API calls require the exact Pages origin and a bearer session token.
 
 ## Local checks
 
