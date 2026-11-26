@@ -30,6 +30,11 @@
     <link href="{{ site.baseurl }}/assets/css/main.css" rel="stylesheet" media="all" class="default" />
     <link href="{{ site.baseurl }}/assets/css/Util.css" rel="stylesheet" media="all" class="default" />
     <link href="{{ site.baseurl }}/assets/css/vendor/Katex.css" rel="stylesheet" media="all" class="default" />
+    {%- if page.permalink == "/" -%}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <link href="{{ '/assets/css/travel-map.css' | relative_url }}" rel="stylesheet" />
+    {%- endif -%}
     <script src="https://d3js.org/d3.v6.min.js"></script>
 
     <!--[if IE]>

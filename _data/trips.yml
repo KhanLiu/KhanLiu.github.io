@@ -1,0 +1,12 @@
+# Add one entry for each place and date you want to show on the map.
+# Coordinates are [latitude, longitude]. Photos are optional; add them under
+# assets/travel/ and use a path such as /assets/travel/my-photo.jpg.
+#
+# - date: "2024-06-15"
+#   city: "City"
+#   country: "Country"
+#   coordinates: [0.0, 0.0]
+#   title: "A moment to remember"
+#   description: "A short note about this visit."
+#   photo: "/assets/travel/my-photo.jpg"
+[]
