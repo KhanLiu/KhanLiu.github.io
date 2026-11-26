@@ -52,8 +52,14 @@ function randomToken() {
 function requireConfiguration(env) {
     const required = ["SITE_ORIGIN", "ADMIN_GITHUB_LOGIN", "GITHUB_REPOSITORY", "GITHUB_BRANCH",
         "GITHUB_CLIENT_ID", "GITHUB_CLIENT_SECRET", "GITHUB_WRITE_TOKEN"];
-    if (!env.TRAVEL_ADMIN_AUTHy || required.some(function (key) { return !env[key]; })) {
-        throw new Error("Admin worker is missing required configuration.");
+    const missing = required.filter(function (key) {
+        return typeof env[key] !== "string" || !env[key].trim();
+    });
+    if (!env.TRAVEL_ADMIN_AUTHy) {
+        missing.unshift("TRAVEL_ADMIN_AUTHy");
+    }
+    if (missing.length) {
+        throw new Error("Admin worker is missing required configuration: " + missing.join(", ") + ".");
     }
 }
 

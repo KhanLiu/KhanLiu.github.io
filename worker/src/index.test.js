@@ -69,6 +69,24 @@ test("requires the configured Pages origin before serving admin APIs", async () 
     assert.equal((await response.json()).error, "origin_not_allowed");
 });
 
+test("identifies missing Worker binding names without exposing secret values", async () => {
+    const response = await handleRequest(new Request("https://admin.workers.dev/api/session", {
+        headers: { Origin: "https://khanliu.github.io" }
+    }), {
+        SITE_ORIGIN: "https://khanliu.github.io",
+        ADMIN_GITHUB_LOGIN: "KhanLiu",
+        GITHUB_REPOSITORY: "KhanLiu/KhanLiu.github.io",
+        GITHUB_BRANCH: "main",
+        GITHUB_CLIENT_ID: "client-id",
+        GITHUB_WRITE_TOKEN: "private-token-placeholder",
+        TRAVEL_ADMIN_AUTHy: {}
+    });
+    const body = await response.json();
+    assert.equal(response.status, 500);
+    assert.match(body.error, /GITHUB_CLIENT_SECRET/);
+    assert.doesNotMatch(body.error, /private-token-placeholder/);
+});
+
 test("consumes OAuth state once and issues a short session only to the configured GitHub login", async () => {
     const store = new Map();
     const kv = {
