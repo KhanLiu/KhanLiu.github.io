@@ -1,75 +1,44 @@
 <section class="travel-map" id="travel-map" data-baseurl="{{ site.baseurl | escape }}">
-    <header class="travel-map__header">
-        <div>
-            <p class="travel-map__eyebrow">THE JOURNEY SO FAR</p>
-            <h2>Places, in their own time.</h2>
-            <p class="travel-map__intro">A rotating globe of the places that have made a mark.</p>
-        </div>
-        <div class="travel-map__stats" aria-label="Travel overview">
-            <div><strong id="travel-place-count">0</strong><span>places</span></div>
-            <div><strong id="travel-country-count">0</strong><span>countries</span></div>
-            <div><strong id="travel-visit-count">0</strong><span>moments</span></div>
-        </div>
-    </header>
-    <p id="travel-demo-notice" class="travel-map__demo-notice" hidden>
-        <span>DEMO DATA</span> Illustrative sample journeys — these are not personal travel records.
-    </p>
-
-    <div class="travel-map__workspace">
-        <div class="travel-map__map-column">
-            <div class="travel-map__map-shell">
-                <div class="travel-map__globe-frame">
-                    <div id="travel-map-canvas" class="travel-map__canvas" role="application"
-                        aria-label="Interactive 3D globe of visited places. Drag to rotate and select a marker to see its story."></div>
-                    <div class="travel-map__globe-caption">
-                        <span class="travel-map__globe-live"><span></span> INTERACTIVE GLOBE</span>
-                        <span class="travel-map__gesture-hint travel-map__gesture-hint--desktop">
-                            DRAG TO ROTATE <i aria-hidden="true">·</i> CTRL / ⌘ + SCROLL TO ZOOM
-                        </span>
-                        <span class="travel-map__gesture-hint travel-map__gesture-hint--touch">
-                            TWO FINGERS TO ROTATE <i aria-hidden="true">·</i> PINCH TO ZOOM
-                        </span>
-                    </div>
-                </div>
-                <p id="travel-map-status" class="travel-map__map-status" role="status" hidden></p>
-            </div>
-            <div class="travel-map__timeline" aria-label="Travel timeline">
-                <div class="travel-map__timeline-top">
-                    <span id="travel-timeline-date" class="travel-map__timeline-date">No moments yet</span>
-                    <span id="travel-timeline-count" class="travel-map__timeline-count">0 / 0</span>
-                </div>
-                <input id="travel-timeline-range" class="travel-map__range" type="range" min="0" max="0" value="0"
-                    aria-label="Browse travel moments" disabled>
-                <div class="travel-map__controls">
-                    <button id="travel-previous" class="travel-map__control" type="button" aria-label="Previous moment"
-                        disabled>←</button>
-                    <button id="travel-play" class="travel-map__play" type="button" aria-pressed="false" disabled>
-                        <span aria-hidden="true">▶</span> Play timeline
-                    </button>
-                    <button id="travel-next" class="travel-map__control" type="button" aria-label="Next moment"
-                        disabled>→</button>
-                </div>
-            </div>
-        </div>
-
-        <article class="travel-map__story" aria-live="polite" aria-atomic="true">
+    <div id="travel-map-canvas" class="travel-map__canvas" role="application"
+        aria-label="Interactive 3D globe of places. Drag to rotate and select a marker to see its story."></div>
+    <aside class="travel-map__panel" aria-live="polite" aria-atomic="true">
+        <h1>Life</h1>
+        <p class="travel-map__intro">Places, dates and stories. Select a point to explore.</p>
+        <p id="travel-demo-notice" class="travel-map__demo-notice" hidden>
+            Sample journeys — not personal travel records.
+        </p>
+        <p id="travel-map-status" class="travel-map__map-status" role="status" hidden></p>
+        <div class="travel-map__story">
             <div id="travel-story-empty" class="travel-map__empty">
-                <span class="travel-map__empty-mark" aria-hidden="true">✳</span>
-                <p class="travel-map__eyebrow">YOUR MAP STARTS HERE</p>
-                <h3>Your next story begins with a place.</h3>
-                <p>Add your own visits to <code>_data/trips.yml</code> to put them on the map. Include a date, place,
-                    coordinates, and a few words; a photo is optional.</p>
+                <p>Add places and dates to <code>_data/trips.yml</code>.</p>
             </div>
             <div id="travel-story-content" class="travel-map__story-content" hidden>
                 <div class="travel-map__photo-wrap" id="travel-photo-wrap" hidden>
                     <img id="travel-photo" class="travel-map__photo" alt="">
                 </div>
-                <p id="travel-story-date" class="travel-map__eyebrow"></p>
+                <p id="travel-story-date" class="travel-map__story-date"></p>
                 <h3 id="travel-story-title"></h3>
                 <p id="travel-story-place" class="travel-map__place"></p>
                 <p id="travel-story-description" class="travel-map__description"></p>
             </div>
             <p id="travel-story-error" class="travel-map__error" role="status" hidden></p>
-        </article>
-    </div>
+        </div>
+        <div class="travel-map__timeline" aria-label="Travel timeline">
+            <div class="travel-map__timeline-top">
+                <span id="travel-timeline-date" class="travel-map__timeline-date">No places yet</span>
+                <span id="travel-timeline-count" class="travel-map__timeline-count">0 / 0</span>
+            </div>
+            <input id="travel-timeline-range" class="travel-map__range" type="range" min="0" max="0" value="0"
+                aria-label="Browse travel moments" disabled>
+            <div class="travel-map__controls">
+                <button id="travel-previous" class="travel-map__control" type="button" aria-label="Previous place"
+                    disabled>←</button>
+                <button id="travel-play" class="travel-map__play" type="button" aria-pressed="false" disabled>
+                    <span aria-hidden="true">▶</span> Play
+                </button>
+                <button id="travel-next" class="travel-map__control" type="button" aria-label="Next place"
+                    disabled>→</button>
+            </div>
+        </div>
+    </aside>
 </section>

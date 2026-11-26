@@ -17,9 +17,6 @@
         elements = {
             canvas: document.getElementById("travel-map-canvas"),
             status: document.getElementById("travel-map-status"),
-            placeCount: document.getElementById("travel-place-count"),
-            countryCount: document.getElementById("travel-country-count"),
-            visitCount: document.getElementById("travel-visit-count"),
             date: document.getElementById("travel-timeline-date"),
             count: document.getElementById("travel-timeline-count"),
             range: document.getElementById("travel-timeline-range"),
@@ -60,15 +57,16 @@
             return visit.demo === true;
         });
 
-        updateCounts();
         elements.range.max = Math.max(visits.length - 1, 0);
 
-        if (typeof window.maplibregl === "undefined") {
+        if (typeof window.maplibregl === "undefined" || typeof window.maplibregl.Map !== "function") {
             addStatus("The interactive globe could not load. Check your connection; your travel data is still available.");
-        } else if (!window.maplibregl.supported()) {
-            addStatus("This browser cannot display the 3D globe. Try a browser with WebGL enabled.");
         } else {
-            initializeGlobe();
+            try {
+                initializeGlobe();
+            } catch (error) {
+                addStatus("The globe could not start. Check that WebGL is enabled in your browser.");
+            }
         }
 
         if (rejectedVisits) {
@@ -104,7 +102,7 @@
             container: elements.canvas,
             style: "https://tiles.openfreemap.org/styles/positron",
             center: [0, 20],
-            zoom: 1.55,
+            zoom: 1.1,
             minZoom: 0.8,
             maxZoom: 12,
             projection: { type: "globe" },
@@ -124,19 +122,14 @@
         }), "bottom-right");
 
         map.on("error", function (event) {
-            if (event && event.error && !mapReady) {
+            if (event && event.error) {
                 addStatus("The globe is having trouble loading map data. Check your connection to OpenFreeMap.");
             }
         });
 
         map.on("load", function () {
             mapReady = true;
-            map.setFog({
-                color: "rgb(223, 233, 239)",
-                "high-color": "rgb(37, 89, 123)",
-                "space-color": "rgb(7, 17, 29)",
-                "star-intensity": 0.25
-            });
+            map.setProjection({ type: "globe" });
             map.addSource("travel-places", {
                 type: "geojson",
                 data: createVisitFeatures()
@@ -300,18 +293,6 @@
             ? '<span aria-hidden="true">Ⅱ</span> Pause timeline'
             : '<span aria-hidden="true">▶</span> Play timeline';
         elements.play.setAttribute("aria-pressed", String(isPlaying));
-    }
-
-    function updateCounts() {
-        var places = new Set(visits.map(function (visit) {
-            return visit.city.toLocaleLowerCase() + "|" + visit.country.toLocaleLowerCase();
-        }));
-        var countries = new Set(visits.map(function (visit) {
-            return visit.country.toLocaleLowerCase();
-        }));
-        elements.placeCount.textContent = places.size;
-        elements.countryCount.textContent = countries.size;
-        elements.visitCount.textContent = visits.length;
     }
 
     function showError(message) {

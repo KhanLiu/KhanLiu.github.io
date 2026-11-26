@@ -5,64 +5,28 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f6f7f3">
-    <meta name="description" content="A personal atlas of places, journeys, and the moments in between.">
-    <meta property="og:title" content="A Life in Places">
-    <meta property="og:description" content="A personal atlas of places, journeys, and the moments in between.">
+    <meta name="theme-color" content="#f8f8f5">
+    <meta name="description" content="A simple globe of places, journeys, and the moments in between.">
+    <meta property="og:title" content="Life in Places">
+    <meta property="og:description" content="A simple globe of places, journeys, and the moments in between.">
     <meta property="og:type" content="website">
-    <title>A Life in Places — A personal travel atlas</title>
+    <title>Life in Places</title>
     <link rel="preconnect" href="https://unpkg.com" crossorigin>
     <link rel="preconnect" href="https://tiles.openfreemap.org" crossorigin>
     <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.css">
     <link rel="stylesheet" href="{{ '/assets/css/travel-map.css' | relative_url }}">
 </head>
 <body>
-    <div class="site-shell">
-        <header class="site-header">
-            <a class="site-brand" href="{{ '/' | relative_url }}" aria-label="A Life in Places home">
-                <span class="site-brand__mark" aria-hidden="true">
-                    <svg viewBox="0 0 32 32" fill="none">
-                        <path d="M5 22.5 12 9l5.2 9 3.3-5.3L27 25" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-                        <circle cx="21" cy="12.5" r="2.1" fill="currentColor"/>
-                    </svg>
-                </span>
-                <span class="site-brand__name">FIELD<span>NOTES</span></span>
-            </a>
-            <div class="site-header__label">A PERSONAL TRAVEL ATLAS</div>
-            <a class="site-header__link" href="#travel-map">Explore the map <span aria-hidden="true">↘</span></a>
-        </header>
-
-        <main>
-            <section class="site-intro" aria-labelledby="page-title">
-                <div class="site-intro__copy">
-                    <p class="site-kicker"><span></span> A JOURNAL OF ELSEWHERE</p>
-                    <h1 id="page-title">A life,<br><em>in places.</em></h1>
-                    <p class="site-intro__text">A little atlas of places, journeys, and the moments worth keeping.</p>
-                </div>
-                <div class="site-intro__note">
-                    <span class="site-intro__note-index">01 — THE COLLECTION</span>
-                    <p>Every pin holds a date, a place, and a story. Follow the timeline to travel through them.</p>
-                    <a href="#travel-map">Start exploring <span aria-hidden="true">↓</span></a>
-                </div>
-                <div class="site-intro__ornament" aria-hidden="true">
-                    <span class="site-intro__sun"></span>
-                    <span class="site-intro__horizon"></span>
-                    <span class="site-intro__hill site-intro__hill--back"></span>
-                    <span class="site-intro__hill site-intro__hill--front"></span>
-                </div>
-            </section>
-
-            {%- include TravelMap.html -%}
-        </main>
-
-        <footer class="site-footer">
-            <span>FIELDNOTES <span aria-hidden="true">·</span> A PERSONAL ATLAS</span>
-            <a href="#page-title">Back to top ↑</a>
-        </footer>
-    </div>
+    <header class="site-header">
+        <a href="{{ '/' | relative_url }}" aria-label="Life in Places home">Life</a>
+        <span>Traveling</span>
+    </header>
+    <main>
+        {%- include TravelMap.html -%}
+    </main>
 
     <script id="travel-data" type="application/json">{{ site.data.trips | jsonify | replace: '</', '<\/' }}</script>
     <script src="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.js" defer></script>
-    <script src="{{ '/assets/js/travel-map.js' | relative_url }}" defer></script>
+    <script src="{{ '/assets/js/travel-map.js' | relative_url }}?v=2" defer></script>
 </body>
 </html>
