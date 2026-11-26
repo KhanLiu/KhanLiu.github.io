@@ -9,8 +9,6 @@
     var selectedPlaceKey = "";
     var selectedFlightIndex = -1;
     var viewMode = "cities";
-    var playback = null;
-    var flightPlayback = null;
     var statusMessages = [];
     var renderedPlaceVisitsKey = "";
     var elements;
@@ -27,12 +25,6 @@
             flightView: document.getElementById("travel-flight-view"),
             citiesButton: document.getElementById("travel-view-cities"),
             flightsButton: document.getElementById("travel-view-flights"),
-            date: document.getElementById("travel-timeline-date"),
-            count: document.getElementById("travel-timeline-count"),
-            range: document.getElementById("travel-timeline-range"),
-            previous: document.getElementById("travel-previous"),
-            next: document.getElementById("travel-next"),
-            play: document.getElementById("travel-play"),
             empty: document.getElementById("travel-story-empty"),
             content: document.getElementById("travel-story-content"),
             storyError: document.getElementById("travel-story-error"),
@@ -51,13 +43,7 @@
             flightDate: document.getElementById("travel-flight-date"),
             flightTitle: document.getElementById("travel-flight-title"),
             flightAirports: document.getElementById("travel-flight-airports"),
-            flightNumber: document.getElementById("travel-flight-number"),
-            flightDateControl: document.getElementById("flight-timeline-date"),
-            flightCount: document.getElementById("flight-timeline-count"),
-            flightRange: document.getElementById("flight-timeline-range"),
-            flightPrevious: document.getElementById("flight-previous"),
-            flightNext: document.getElementById("flight-next"),
-            flightPlay: document.getElementById("flight-play")
+            flightNumber: document.getElementById("travel-flight-number")
         };
         demoNotice = document.getElementById("travel-demo-notice");
 
@@ -113,9 +99,6 @@
             return visit.demo === true;
         });
 
-        elements.range.max = Math.max(visits.length - 1, 0);
-        elements.flightRange.max = Math.max(flights.length - 1, 0);
-
         if (typeof window.maplibregl === "undefined" || typeof window.maplibregl.Map !== "function") {
             addStatus("The interactive globe could not load. Check your connection; your travel data is still available.");
         } else {
@@ -141,35 +124,6 @@
         elements.flightsButton.addEventListener("click", function () {
             setViewMode("flights");
         });
-        elements.range.disabled = !visits.length;
-        elements.previous.disabled = !visits.length;
-        elements.next.disabled = !visits.length;
-        elements.play.disabled = !visits.length;
-        elements.flightRange.disabled = !flights.length;
-        elements.flightPrevious.disabled = !flights.length;
-        elements.flightNext.disabled = !flights.length;
-        elements.flightPlay.disabled = !flights.length;
-        elements.range.addEventListener("input", function () {
-            selectVisit(Number(elements.range.value), true);
-        });
-        elements.previous.addEventListener("click", function () {
-            selectVisit(Math.max(0, selectedIndex - 1), true);
-        });
-        elements.next.addEventListener("click", function () {
-            selectVisit(Math.min(visits.length - 1, selectedIndex + 1), true);
-        });
-        elements.play.addEventListener("click", togglePlayback);
-        elements.flightRange.addEventListener("input", function () {
-            selectFlight(Number(elements.flightRange.value), true);
-        });
-        elements.flightPrevious.addEventListener("click", function () {
-            selectFlight(Math.max(0, selectedFlightIndex - 1), true);
-        });
-        elements.flightNext.addEventListener("click", function () {
-            selectFlight(Math.min(flights.length - 1, selectedFlightIndex + 1), true);
-        });
-        elements.flightPlay.addEventListener("click", toggleFlightPlayback);
-
         if (visits.length) {
             selectVisit(initialVisitIndex(), false);
         }
@@ -244,49 +198,6 @@
                 }
             });
             map.addLayer({
-                id: "travel-place-label",
-                type: "symbol",
-                source: "travel-places",
-                filter: ["!=", ["get", "placeKey"], selectedPlaceKey],
-                minzoom: 2.6,
-                layout: {
-                    "text-field": ["get", "city"],
-                    "text-font": ["Noto Sans Regular"],
-                    "text-size": 12,
-                    "text-offset": [0, 1.1],
-                    "text-anchor": "top",
-                    "text-max-width": 10,
-                    "text-allow-overlap": true,
-                    "text-ignore-placement": true
-                },
-                paint: {
-                    "text-color": "#293b36",
-                    "text-halo-color": "#fffdfb",
-                    "text-halo-width": 1.5
-                }
-            });
-            map.addLayer({
-                id: "travel-place-selected-label",
-                type: "symbol",
-                source: "travel-places",
-                filter: ["==", ["get", "placeKey"], selectedPlaceKey],
-                layout: {
-                    "text-field": ["get", "city"],
-                    "text-font": ["Noto Sans Regular"],
-                    "text-size": 13,
-                    "text-offset": [0, 1.25],
-                    "text-anchor": "top",
-                    "text-max-width": 10,
-                    "text-allow-overlap": true,
-                    "text-ignore-placement": true
-                },
-                paint: {
-                    "text-color": "#8d5d42",
-                    "text-halo-color": "#fffdfb",
-                    "text-halo-width": 2
-                }
-            });
-            map.addLayer({
                 id: "travel-flight-route",
                 type: "line",
                 source: "travel-flights",
@@ -348,7 +259,7 @@
                     "circle-stroke-color": "#fffdfb"
                 }
             });
-            ["travel-place-point", "travel-place-label"].forEach(function (layerId) {
+            ["travel-place-point"].forEach(function (layerId) {
                 map.on("mouseenter", layerId, function () {
                     map.getCanvas().style.cursor = "pointer";
                 });
@@ -389,17 +300,13 @@
     function createVisitFeatures() {
         var seenPlaces = Object.create(null);
         var features = [];
-        visits.forEach(function (visit, index) {
+        visits.forEach(function (visit) {
             if (seenPlaces[visit._placeKey]) return;
             seenPlaces[visit._placeKey] = true;
             features.push({
                 type: "Feature",
                 properties: {
-                    index: index,
                     placeKey: visit._placeKey,
-                    title: visit.title || visit.city,
-                    city: visit.city,
-                    country: visit.country,
                     livedHere: visit._livedHere
                 },
                 geometry: {
@@ -573,17 +480,6 @@
     function setViewMode(mode) {
         if (mode === viewMode) return;
 
-        if (playback) {
-            window.clearInterval(playback);
-            playback = null;
-            setPlaybackButton(false);
-        }
-        if (flightPlayback) {
-            window.clearInterval(flightPlayback);
-            flightPlayback = null;
-            setFlightPlaybackButton(false);
-        }
-
         viewMode = mode;
         var showCities = mode === "cities";
         elements.cityView.hidden = !showCities;
@@ -603,7 +499,7 @@
         if (!mapReady) return;
         var cityVisibility = viewMode === "cities" ? "visible" : "none";
         var flightVisibility = viewMode === "flights" ? "visible" : "none";
-        ["travel-place-halo", "travel-place-point", "travel-place-label", "travel-place-selected-label"]
+        ["travel-place-halo", "travel-place-point"]
             .forEach(function (layerId) {
             map.setLayoutProperty(layerId, "visibility", cityVisibility);
         });
@@ -620,9 +516,6 @@
         var origin = formatFlightEndpoint(flight.origin);
         var destination = formatFlightEndpoint(flight.destination);
 
-        elements.flightRange.value = index;
-        elements.flightDateControl.textContent = formatDate(flight.date, flight.date_precision);
-        elements.flightCount.textContent = (index + 1) + " / " + flights.length;
         elements.flightDate.textContent = formatDate(flight.date, flight.date_precision);
         elements.flightTitle.textContent = origin.city + " → " + destination.city;
         elements.flightAirports.textContent = [origin.airport, destination.airport].filter(Boolean).join(" → ");
@@ -698,9 +591,6 @@
         var preserveExpandedVisits = selectedPlaceKey === visit._placeKey && elements.placeVisits.open;
         selectedPlaceKey = visit._placeKey;
 
-        elements.range.value = index;
-        elements.date.textContent = formatDate(visit.date, visit.date_precision);
-        elements.count.textContent = (index + 1) + " / " + visits.length;
         elements.storyDate.textContent = formatStayDays(visit.stay_days);
         elements.storyTitle.textContent = visit.city;
         elements.livedHere.hidden = !visit._livedHere;
@@ -730,8 +620,6 @@
         if (source) {
             source.setData(createVisitFeatures());
         }
-        map.setFilter("travel-place-label", ["!=", ["get", "placeKey"], selectedPlaceKey]);
-        map.setFilter("travel-place-selected-label", ["==", ["get", "placeKey"], selectedPlaceKey]);
         if (selectedIndex >= 0) {
             map.setPaintProperty("travel-place-halo", "circle-radius",
                 ["case", ["==", ["get", "placeKey"], selectedPlaceKey], 19,
@@ -825,66 +713,6 @@
             elements.photoWrap.hidden = true;
         };
         elements.photo.src = path.charAt(0) === "/" ? baseurl + path : path;
-    }
-
-    function togglePlayback() {
-        if (playback) {
-            window.clearInterval(playback);
-            playback = null;
-            setPlaybackButton(false);
-            return;
-        }
-
-        if (selectedIndex === visits.length - 1) {
-            selectVisit(0, true);
-        }
-        setPlaybackButton(true);
-        playback = window.setInterval(function () {
-            if (selectedIndex >= visits.length - 1) {
-                window.clearInterval(playback);
-                playback = null;
-                setPlaybackButton(false);
-                return;
-            }
-            selectVisit(selectedIndex + 1, true);
-        }, 1800);
-    }
-
-    function setPlaybackButton(isPlaying) {
-        elements.play.innerHTML = isPlaying
-            ? '<span aria-hidden="true">Ⅱ</span> Pause timeline'
-            : '<span aria-hidden="true">▶</span> Play timeline';
-        elements.play.setAttribute("aria-pressed", String(isPlaying));
-    }
-
-    function toggleFlightPlayback() {
-        if (flightPlayback) {
-            window.clearInterval(flightPlayback);
-            flightPlayback = null;
-            setFlightPlaybackButton(false);
-            return;
-        }
-
-        if (selectedFlightIndex === flights.length - 1) {
-            selectFlight(0, true);
-        }
-        setFlightPlaybackButton(true);
-        flightPlayback = window.setInterval(function () {
-            if (selectedFlightIndex >= flights.length - 1) {
-                window.clearInterval(flightPlayback);
-                flightPlayback = null;
-                setFlightPlaybackButton(false);
-                return;
-            }
-            selectFlight(selectedFlightIndex + 1, true);
-        }, 1800);
-    }
-
-    function setFlightPlaybackButton(isPlaying) {
-        elements.flightPlay.innerHTML = isPlaying
-            ? '<span aria-hidden="true">Ⅱ</span> Pause'
-            : '<span aria-hidden="true">▶</span> Play';
-        elements.flightPlay.setAttribute("aria-pressed", String(isPlaying));
     }
 
     function showError(message) {
