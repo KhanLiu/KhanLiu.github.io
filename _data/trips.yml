@@ -1,12 +1,32 @@
-# Add one entry for each place and date you want to show on the map.
+# These fictional showcase entries are for preview only, not personal travel
+# history. Replace them with your own visits and remove `demo: true`.
 # Coordinates are [latitude, longitude]. Photos are optional; add them under
 # assets/travel/ and use a path such as /assets/travel/my-photo.jpg.
-#
-# - date: "2024-06-15"
-#   city: "City"
-#   country: "Country"
-#   coordinates: [0.0, 0.0]
-#   title: "A moment to remember"
-#   description: "A short note about this visit."
-#   photo: "/assets/travel/my-photo.jpg"
-[]
+- date: "2024-04-12"
+  city: "Kyoto"
+  country: "Japan"
+  coordinates: [35.0116, 135.7681]
+  title: "A morning among quiet lanes"
+  description: "Showcase sample — replace this with a memory from your own journey."
+  demo: true
+- date: "2024-08-03"
+  city: "Lisbon"
+  country: "Portugal"
+  coordinates: [38.7223, -9.1393]
+  title: "Light over the old rooftops"
+  description: "Showcase sample — replace this with a memory from your own journey."
+  demo: true
+- date: "2025-02-19"
+  city: "Mexico City"
+  country: "Mexico"
+  coordinates: [19.4326, -99.1332]
+  title: "A day in the city"
+  description: "Showcase sample — replace this with a memory from your own journey."
+  demo: true
+- date: "2025-09-07"
+  city: "Queenstown"
+  country: "New Zealand"
+  coordinates: [-45.0312, 168.6626]
+  title: "Mountains at the edge of town"
+  description: "Showcase sample — replace this with a memory from your own journey."
+  demo: true
