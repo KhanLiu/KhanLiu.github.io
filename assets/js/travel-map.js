@@ -171,7 +171,7 @@
         elements.flightPlay.addEventListener("click", toggleFlightPlayback);
 
         if (visits.length) {
-            selectVisit(0, false);
+            selectVisit(initialVisitIndex(), false);
         }
     }
 
@@ -416,12 +416,20 @@
 
     function initialMapCenter() {
         if (visits.length) {
-            return [visits[0].coordinates[1], visits[0].coordinates[0]];
+            var visit = visits[initialVisitIndex()];
+            return [visit.coordinates[1], visit.coordinates[0]];
         }
         if (flights.length) {
             return [flights[0].origin.coordinates[1], flights[0].origin.coordinates[0]];
         }
         return [0, 20];
+    }
+
+    function initialVisitIndex() {
+        var munichIndex = visits.findIndex(function (visit) {
+            return /^munich(?:\s|$)/i.test(visit.city.trim());
+        });
+        return munichIndex >= 0 ? munichIndex : 0;
     }
 
     function createFlightFeatures() {
