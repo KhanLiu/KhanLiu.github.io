@@ -105,7 +105,9 @@
         map = new window.maplibregl.Map({
             container: elements.canvas,
             style: "https://tiles.openfreemap.org/styles/positron",
-            center: [0, 20],
+            center: visits.length
+                ? [visits[0].coordinates[1], visits[0].coordinates[0]]
+                : [0, 20],
             zoom: 1.1,
             minZoom: 0.8,
             maxZoom: 12,
