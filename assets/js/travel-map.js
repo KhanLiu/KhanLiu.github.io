@@ -12,6 +12,7 @@
     var playback = null;
     var flightPlayback = null;
     var statusMessages = [];
+    var renderedPlaceVisitsKey = "";
     var elements;
     var demoNotice;
 
@@ -39,6 +40,9 @@
             storyTitle: document.getElementById("travel-story-title"),
             storyPlace: document.getElementById("travel-story-place"),
             description: document.getElementById("travel-story-description"),
+            placeVisits: document.getElementById("travel-city-visits"),
+            placeVisitsSummary: document.getElementById("travel-city-visits-summary"),
+            placeVisitsList: document.getElementById("travel-city-visits-list"),
             photoWrap: document.getElementById("travel-photo-wrap"),
             photo: document.getElementById("travel-photo"),
             flightEmpty: document.getElementById("travel-flight-empty"),
@@ -225,6 +229,49 @@
                 }
             });
             map.addLayer({
+                id: "travel-place-label",
+                type: "symbol",
+                source: "travel-places",
+                filter: ["!=", ["get", "placeKey"], selectedPlaceKey],
+                minzoom: 2.6,
+                layout: {
+                    "text-field": ["get", "city"],
+                    "text-font": ["Noto Sans Regular"],
+                    "text-size": 12,
+                    "text-offset": [0, 1.1],
+                    "text-anchor": "top",
+                    "text-max-width": 10,
+                    "text-allow-overlap": true,
+                    "text-ignore-placement": true
+                },
+                paint: {
+                    "text-color": "#293b36",
+                    "text-halo-color": "#fffdfb",
+                    "text-halo-width": 1.5
+                }
+            });
+            map.addLayer({
+                id: "travel-place-selected-label",
+                type: "symbol",
+                source: "travel-places",
+                filter: ["==", ["get", "placeKey"], selectedPlaceKey],
+                layout: {
+                    "text-field": ["get", "city"],
+                    "text-font": ["Noto Sans Regular"],
+                    "text-size": 13,
+                    "text-offset": [0, 1.25],
+                    "text-anchor": "top",
+                    "text-max-width": 10,
+                    "text-allow-overlap": true,
+                    "text-ignore-placement": true
+                },
+                paint: {
+                    "text-color": "#8d5d42",
+                    "text-halo-color": "#fffdfb",
+                    "text-halo-width": 2
+                }
+            });
+            map.addLayer({
                 id: "travel-flight-route",
                 type: "line",
                 source: "travel-flights",
@@ -286,17 +333,19 @@
                     "circle-stroke-color": "#fffdfb"
                 }
             });
-            map.on("mouseenter", "travel-place-point", function () {
-                map.getCanvas().style.cursor = "pointer";
-            });
-            map.on("mouseleave", "travel-place-point", function () {
-                map.getCanvas().style.cursor = "";
-            });
-            map.on("click", "travel-place-point", function (event) {
-                var feature = event.features && event.features[0];
-                if (feature) {
-                    selectVisit(Number(feature.properties.index), true);
-                }
+            ["travel-place-point", "travel-place-label"].forEach(function (layerId) {
+                map.on("mouseenter", layerId, function () {
+                    map.getCanvas().style.cursor = "pointer";
+                });
+                map.on("mouseleave", layerId, function () {
+                    map.getCanvas().style.cursor = "";
+                });
+                map.on("click", layerId, function (event) {
+                    var feature = event.features && event.features[0];
+                    if (feature) {
+                        selectPlace(feature.properties.placeKey, true, true);
+                    }
+                });
             });
             ["travel-flight-route", "travel-flight-origin", "travel-flight-destination"].forEach(function (layerId) {
                 map.on("mouseenter", layerId, function () {
@@ -530,7 +579,8 @@
         if (!mapReady) return;
         var cityVisibility = viewMode === "cities" ? "visible" : "none";
         var flightVisibility = viewMode === "flights" ? "visible" : "none";
-        ["travel-place-halo", "travel-place-point"].forEach(function (layerId) {
+        ["travel-place-halo", "travel-place-point", "travel-place-label", "travel-place-selected-label"]
+            .forEach(function (layerId) {
             map.setLayoutProperty(layerId, "visibility", cityVisibility);
         });
         ["travel-flight-route", "travel-flight-direction", "travel-flight-origin", "travel-flight-destination"]
@@ -604,17 +654,30 @@
             ["case", ["==", ["get", "index"], selectedFlightIndex], 3, 2]);
     }
 
-    function selectVisit(index, moveGlobe) {
+    function selectPlace(placeKey, moveGlobe, expandVisits) {
+        var index = -1;
+        if (selectedPlaceKey === placeKey) {
+            index = selectedIndex;
+        } else {
+            index = visits.findIndex(function (visit) {
+                return visit._placeKey === placeKey;
+            });
+        }
+        if (index >= 0) {
+            selectVisit(index, moveGlobe, expandVisits);
+        }
+    }
+
+    function selectVisit(index, moveGlobe, expandVisits) {
         selectedIndex = index;
         var visit = visits[index];
+        var preserveExpandedVisits = selectedPlaceKey === visit._placeKey && elements.placeVisits.open;
         selectedPlaceKey = visit._placeKey;
 
         elements.range.value = index;
         elements.date.textContent = formatDate(visit.date, visit.date_precision);
         elements.count.textContent = (index + 1) + " / " + visits.length;
-        elements.storyDate.textContent = visit.date_precision === "month"
-            ? "At least 2 days"
-            : formatDate(visit.date, visit.date_precision);
+        elements.storyDate.textContent = formatStayDays(visit.stay_days);
         elements.storyTitle.textContent = visit.city;
         elements.storyPlace.textContent = visit.country;
         elements.description.textContent = visit.description || "";
@@ -622,6 +685,7 @@
         elements.empty.hidden = true;
         elements.content.hidden = false;
 
+        renderPlaceVisits(visit, Boolean(expandVisits || preserveExpandedVisits));
         renderPhoto(visit);
         updateSelectedPoint();
 
@@ -641,6 +705,8 @@
         if (source) {
             source.setData(createVisitFeatures());
         }
+        map.setFilter("travel-place-label", ["!=", ["get", "placeKey"], selectedPlaceKey]);
+        map.setFilter("travel-place-selected-label", ["==", ["get", "placeKey"], selectedPlaceKey]);
         if (selectedIndex >= 0) {
             map.setPaintProperty("travel-place-halo", "circle-radius",
                 ["case", ["==", ["get", "placeKey"], selectedPlaceKey], 19, 13]);
@@ -653,6 +719,58 @@
             map.setPaintProperty("travel-place-point", "circle-stroke-width",
                 ["case", ["==", ["get", "placeKey"], selectedPlaceKey], 2.5, 1.5]);
         }
+    }
+
+    function renderPlaceVisits(visit, expanded) {
+        var indexes = [];
+        visits.forEach(function (candidate, index) {
+            if (candidate._placeKey === visit._placeKey) {
+                indexes.push(index);
+            }
+        });
+
+        elements.placeVisits.hidden = indexes.length < 2;
+        if (indexes.length < 2) {
+            elements.placeVisits.open = false;
+            renderedPlaceVisitsKey = "";
+            return;
+        }
+
+        elements.placeVisitsSummary.textContent = indexes.length + " stays";
+        elements.placeVisits.open = expanded;
+
+        if (renderedPlaceVisitsKey !== visit._placeKey) {
+            elements.placeVisitsList.textContent = "";
+            indexes.forEach(function (index) {
+                var button = document.createElement("button");
+                button.type = "button";
+                button.addEventListener("click", function () {
+                    selectVisit(index, true, true);
+                });
+                var item = document.createElement("li");
+                item.appendChild(button);
+                elements.placeVisitsList.appendChild(item);
+            });
+            renderedPlaceVisitsKey = visit._placeKey;
+        }
+
+        Array.prototype.forEach.call(elements.placeVisitsList.children, function (item, position) {
+            var button = item.firstElementChild;
+            var index = indexes[position];
+            var candidate = visits[index];
+            button.textContent = formatDate(candidate.date, candidate.date_precision)
+                + " · " + formatStayDays(candidate.stay_days);
+            button.classList.toggle("is-current", index === selectedIndex);
+            if (index === selectedIndex) {
+                button.setAttribute("aria-current", "true");
+            } else {
+                button.removeAttribute("aria-current");
+            }
+        });
+    }
+
+    function formatStayDays(days) {
+        return "~" + days + (days === 1 ? " day" : " days");
     }
 
     function renderPhoto(visit) {
@@ -769,7 +887,9 @@
             && visit.coordinates[0] >= -90
             && visit.coordinates[0] <= 90
             && visit.coordinates[1] >= -180
-            && visit.coordinates[1] <= 180;
+            && visit.coordinates[1] <= 180
+            && Number.isInteger(visit.stay_days)
+            && visit.stay_days > 0;
     }
 
     function isValidFlight(flight) {

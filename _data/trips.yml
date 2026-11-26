@@ -1,934 +1,2484 @@
-# Filtered GPS-derived stops: a city is included only with stationary-stop records
-# on two consecutive local calendar dates, a conservative overnight-stay proxy.
-# Dates are month-level; all coordinates are rounded settlement or metro centres.
-# No raw GPS fixes or household-level coordinates are included. Place labels remain inferred.
+# Night-anchored city stays inferred from GPS fixes with horizontal accuracy <= 100 m.
+# Night location uses local time 20:00-05:59; other days extend a stay only when >=70% of
+# at least two matched fixes agree on the same city. City match is within 50 km of an
+# approximate city centre. Stays require a night anchor; one day without accurate fixes may be bridged.
+# stay_days is an estimated inclusive span from first city day to last night; no exact dates
+# or raw GPS fixes are published. Timeline date and city-centre coordinates remain approximate.
+- date: "2017-07-01"
+  date_precision: month
+  city: "Chongqing"
+  country: "China"
+  coordinates: [29.56, 106.55]
+  stay_days: 2
+- date: "2017-09-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 1
+- date: "2017-10-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 1
+- date: "2017-12-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 1
+- date: "2017-12-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 2
 - date: "2018-01-01"
   date_precision: month
   city: "Wuhan area"
   country: "China"
   coordinates: [30.59, 114.31]
+  stay_days: 1
+- date: "2018-01-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 1
+- date: "2018-03-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 1
+- date: "2018-03-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 2
+- date: "2018-03-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 2
+- date: "2018-03-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 3
+- date: "2018-03-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 8
 - date: "2018-04-01"
   date_precision: month
   city: "Wuhan area"
   country: "China"
   coordinates: [30.59, 114.31]
+  stay_days: 20
 - date: "2018-05-01"
   date_precision: month
   city: "Wuhan area"
   country: "China"
   coordinates: [30.59, 114.31]
+  stay_days: 3
+- date: "2018-05-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 4
+- date: "2018-05-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 8
 - date: "2018-06-01"
   date_precision: month
   city: "Wuhan area"
   country: "China"
   coordinates: [30.59, 114.31]
+  stay_days: 14
+- date: "2018-06-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 1
+- date: "2018-06-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 2
+- date: "2018-06-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 3
 - date: "2018-07-01"
   date_precision: month
   city: "Wuhan area"
   country: "China"
   coordinates: [30.59, 114.31]
+  stay_days: 10
+- date: "2018-07-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 5
+- date: "2018-07-01"
+  date_precision: month
+  city: "Tai'an"
+  country: "China"
+  coordinates: [36.19, 117.12]
+  stay_days: 1
+- date: "2018-08-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  stay_days: 4
+- date: "2018-08-01"
+  date_precision: month
+  city: "Jinan"
+  country: "China"
+  coordinates: [36.65, 117.12]
+  stay_days: 1
+- date: "2018-08-01"
+  date_precision: month
+  city: "Beijing"
+  country: "China"
+  coordinates: [39.90, 116.41]
+  stay_days: 5
+- date: "2018-08-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 11
 - date: "2018-09-01"
   date_precision: month
   city: "Wuhan area"
   country: "China"
   coordinates: [30.59, 114.31]
+  stay_days: 8
+- date: "2018-09-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 39
 - date: "2018-10-01"
   date_precision: month
   city: "Wuhan area"
   country: "China"
   coordinates: [30.59, 114.31]
+  stay_days: 2
+- date: "2018-10-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 15
 - date: "2018-11-01"
   date_precision: month
   city: "Wuhan area"
   country: "China"
   coordinates: [30.59, 114.31]
+  stay_days: 2
+- date: "2018-11-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 19
 - date: "2018-12-01"
   date_precision: month
   city: "Wuhan area"
   country: "China"
   coordinates: [30.59, 114.31]
+  stay_days: 1
+- date: "2018-12-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 4
+- date: "2018-12-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 7
+- date: "2018-12-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 7
 - date: "2019-01-01"
   date_precision: month
   city: "Wuhan area"
   country: "China"
   coordinates: [30.59, 114.31]
+  stay_days: 1
+- date: "2019-01-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 10
+- date: "2019-01-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  stay_days: 2
+- date: "2019-02-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  stay_days: 1
+- date: "2019-02-01"
+  date_precision: month
+  city: "Xintai"
+  country: "China"
+  coordinates: [35.90, 117.75]
+  stay_days: 1
+- date: "2019-02-01"
+  date_precision: month
+  city: "Xintai"
+  country: "China"
+  coordinates: [35.90, 117.75]
+  stay_days: 1
 - date: "2019-03-01"
   date_precision: month
   city: "Wuhan area"
   country: "China"
   coordinates: [30.59, 114.31]
-- date: "2019-04-01"
-  date_precision: month
-  city: "Wuhan area"
-  country: "China"
-  coordinates: [30.59, 114.31]
+  stay_days: 60
 - date: "2019-05-01"
   date_precision: month
   city: "Wuhan area"
   country: "China"
   coordinates: [30.59, 114.31]
-- date: "2019-06-01"
+  stay_days: 2
+- date: "2019-05-01"
   date_precision: month
   city: "Wuhan area"
   country: "China"
   coordinates: [30.59, 114.31]
-- date: "2019-07-01"
-  date_precision: month
-  city: "Wuhan area"
-  country: "China"
-  coordinates: [30.59, 114.31]
-- date: "2019-08-01"
-  date_precision: month
-  city: "Wuhan area"
-  country: "China"
-  coordinates: [30.59, 114.31]
-- date: "2019-09-01"
-  date_precision: month
-  city: "Wuhan area"
-  country: "China"
-  coordinates: [30.59, 114.31]
-- date: "2019-10-01"
-  date_precision: month
-  city: "Wuhan area"
-  country: "China"
-  coordinates: [30.59, 114.31]
-- date: "2019-11-01"
-  date_precision: month
-  city: "Wuhan area"
-  country: "China"
-  coordinates: [30.59, 114.31]
-- date: "2019-12-01"
-  date_precision: month
-  city: "Wuhan area"
-  country: "China"
-  coordinates: [30.59, 114.31]
-- date: "2020-01-01"
-  date_precision: month
-  city: "Wuhan area"
-  country: "China"
-  coordinates: [30.59, 114.31]
-- date: "2020-09-01"
-  date_precision: month
-  city: "Wuhan area"
-  country: "China"
-  coordinates: [30.59, 114.31]
-- date: "2020-10-01"
-  date_precision: month
-  city: "Wuhan area"
-  country: "China"
-  coordinates: [30.59, 114.31]
-- date: "2020-11-01"
-  date_precision: month
-  city: "Wuhan area"
-  country: "China"
-  coordinates: [30.59, 114.31]
-- date: "2020-12-01"
-  date_precision: month
-  city: "Wuhan area"
-  country: "China"
-  coordinates: [30.59, 114.31]
-- date: "2021-02-01"
-  date_precision: month
-  city: "Wuhan area"
-  country: "China"
-  coordinates: [30.59, 114.31]
-- date: "2021-03-01"
-  date_precision: month
-  city: "Wuhan area"
-  country: "China"
-  coordinates: [30.59, 114.31]
-- date: "2021-04-01"
-  date_precision: month
-  city: "Wuhan area"
-  country: "China"
-  coordinates: [30.59, 114.31]
-- date: "2021-05-01"
-  date_precision: month
-  city: "Wuhan area"
-  country: "China"
-  coordinates: [30.59, 114.31]
-- date: "2021-06-01"
-  date_precision: month
-  city: "Wuhan area"
-  country: "China"
-  coordinates: [30.59, 114.31]
-- date: "2021-07-01"
-  date_precision: month
-  city: "Wuhan area"
-  country: "China"
-  coordinates: [30.59, 114.31]
-- date: "2021-08-01"
-  date_precision: month
-  city: "Wuhan area"
-  country: "China"
-  coordinates: [30.59, 114.31]
-- date: "2018-08-01"
-  date_precision: month
-  city: "Beijing"
-  country: "China"
-  coordinates: [39.90, 116.41]
-- date: "2019-11-01"
-  date_precision: month
-  city: "Beijing"
-  country: "China"
-  coordinates: [39.90, 116.41]
-- date: "2021-07-01"
-  date_precision: month
-  city: "Beijing"
-  country: "China"
-  coordinates: [39.90, 116.41]
-- date: "2025-12-01"
-  date_precision: month
-  city: "Beijing"
-  country: "China"
-  coordinates: [39.90, 116.41]
-- date: "2026-01-01"
-  date_precision: month
-  city: "Beijing"
-  country: "China"
-  coordinates: [39.90, 116.41]
-- date: "2018-08-01"
-  date_precision: month
-  city: "Dongdu"
-  country: "China"
-  coordinates: [35.85, 117.70]
-- date: "2020-01-01"
-  date_precision: month
-  city: "Dongdu"
-  country: "China"
-  coordinates: [35.85, 117.70]
-- date: "2020-02-01"
-  date_precision: month
-  city: "Dongdu"
-  country: "China"
-  coordinates: [35.85, 117.70]
-- date: "2020-03-01"
-  date_precision: month
-  city: "Dongdu"
-  country: "China"
-  coordinates: [35.85, 117.70]
-- date: "2020-04-01"
-  date_precision: month
-  city: "Dongdu"
-  country: "China"
-  coordinates: [35.85, 117.70]
-- date: "2025-12-01"
-  date_precision: month
-  city: "Dongdu"
-  country: "China"
-  coordinates: [35.85, 117.70]
-- date: "2018-08-01"
-  date_precision: month
-  city: "Jinan"
-  country: "China"
-  coordinates: [36.65, 117.12]
-- date: "2020-05-01"
-  date_precision: month
-  city: "Jinan"
-  country: "China"
-  coordinates: [36.65, 117.12]
-- date: "2020-06-01"
-  date_precision: month
-  city: "Jinan"
-  country: "China"
-  coordinates: [36.65, 117.12]
-- date: "2020-07-01"
-  date_precision: month
-  city: "Jinan"
-  country: "China"
-  coordinates: [36.65, 117.12]
-- date: "2020-08-01"
-  date_precision: month
-  city: "Jinan"
-  country: "China"
-  coordinates: [36.65, 117.12]
-- date: "2021-01-01"
-  date_precision: month
-  city: "Jinan"
-  country: "China"
-  coordinates: [36.65, 117.12]
-- date: "2021-02-01"
-  date_precision: month
-  city: "Jinan"
-  country: "China"
-  coordinates: [36.65, 117.12]
-- date: "2021-09-01"
-  date_precision: month
-  city: "Jinan"
-  country: "China"
-  coordinates: [36.65, 117.12]
-- date: "2025-12-01"
-  date_precision: month
-  city: "Jinan"
-  country: "China"
-  coordinates: [36.65, 117.12]
-- date: "2018-09-01"
-  date_precision: month
-  city: "Changsha"
-  country: "China"
-  coordinates: [28.20, 112.97]
-- date: "2018-09-01"
-  date_precision: month
-  city: "Furong Beilu"
-  country: "China"
-  coordinates: [28.24, 112.98]
+  stay_days: 3
 - date: "2019-05-01"
   date_precision: month
   city: "Gongming"
   country: "China"
   coordinates: [22.79, 113.88]
+  stay_days: 1
+- date: "2019-05-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 12
+- date: "2019-05-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 3
+- date: "2019-05-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 25
 - date: "2019-06-01"
   date_precision: month
   city: "Fushan"
   country: "China"
   coordinates: [29.87, 114.31]
+  stay_days: 9
+- date: "2019-07-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 1
 - date: "2019-07-01"
   date_precision: month
   city: "Fushan"
   country: "China"
   coordinates: [29.87, 114.31]
-- date: "2019-07-01"
-  date_precision: month
-  city: "Singapore"
-  country: "Singapore"
-  coordinates: [1.35, 103.82]
+  stay_days: 7
 - date: "2019-07-01"
   date_precision: month
   city: "Suzhou"
   country: "China"
   coordinates: [31.30, 120.59]
-- date: "2021-07-01"
+  stay_days: 6
+- date: "2019-07-01"
   date_precision: month
-  city: "Suzhou"
+  city: "Wuhan area"
   country: "China"
-  coordinates: [31.30, 120.59]
+  coordinates: [30.59, 114.31]
+  stay_days: 2
+- date: "2019-07-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 7
 - date: "2019-07-01"
   date_precision: month
   city: "Tuen Mun"
   country: "Hong Kong"
   coordinates: [22.39, 113.97]
+  stay_days: 1
+- date: "2019-07-01"
+  date_precision: month
+  city: "Singapore"
+  country: "Singapore"
+  coordinates: [1.35, 103.82]
+  stay_days: 1
 - date: "2019-08-01"
   date_precision: month
   city: "Johor Bahru"
   country: "Malaysia"
   coordinates: [1.49, 103.74]
+  stay_days: 1
+- date: "2019-08-01"
+  date_precision: month
+  city: "Singapore"
+  country: "Singapore"
+  coordinates: [1.35, 103.82]
+  stay_days: 5
+- date: "2019-08-01"
+  date_precision: month
+  city: "Singapore"
+  country: "Singapore"
+  coordinates: [1.35, 103.82]
+  stay_days: 4
+- date: "2019-08-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 6
+- date: "2019-09-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 10
+- date: "2019-09-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 6
+- date: "2019-09-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 7
+- date: "2019-10-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 1
+- date: "2019-10-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 6
+- date: "2019-10-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 12
+- date: "2019-11-01"
+  date_precision: month
+  city: "Beijing"
+  country: "China"
+  coordinates: [39.90, 116.41]
+  stay_days: 6
+- date: "2019-11-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 1
+- date: "2019-11-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 1
+- date: "2019-11-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 3
+- date: "2019-11-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 12
+- date: "2019-12-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 2
+- date: "2019-12-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 2
+- date: "2019-12-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 10
+- date: "2019-12-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 1
+- date: "2019-12-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 9
 - date: "2020-01-01"
   date_precision: month
-  city: "Shanghai"
+  city: "Wuhan area"
   country: "China"
-  coordinates: [31.23, 121.47]
-- date: "2021-06-01"
-  date_precision: month
-  city: "Shanghai"
-  country: "China"
-  coordinates: [31.23, 121.47]
-- date: "2025-01-01"
-  date_precision: month
-  city: "Shanghai"
-  country: "China"
-  coordinates: [31.23, 121.47]
+  coordinates: [30.59, 114.31]
+  stay_days: 4
 - date: "2020-01-01"
   date_precision: month
   city: "Sijiqing"
   country: "China"
   coordinates: [30.25, 120.18]
+  stay_days: 3
+- date: "2020-01-01"
+  date_precision: month
+  city: "Shanghai"
+  country: "China"
+  coordinates: [31.23, 121.47]
+  stay_days: 1
+- date: "2020-01-01"
+  date_precision: month
+  city: "Jinan"
+  country: "China"
+  coordinates: [36.65, 117.12]
+  stay_days: 2
+- date: "2020-01-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  stay_days: 6
+- date: "2020-02-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  stay_days: 7
+- date: "2020-02-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  stay_days: 7
+- date: "2020-02-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  stay_days: 10
+- date: "2020-03-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  stay_days: 1
+- date: "2020-03-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  stay_days: 2
+- date: "2020-03-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  stay_days: 1
+- date: "2020-03-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  stay_days: 4
+- date: "2020-03-01"
+  date_precision: month
+  city: "Xintai"
+  country: "China"
+  coordinates: [35.90, 117.75]
+  stay_days: 1
+- date: "2020-04-01"
+  date_precision: month
+  city: "Xintai"
+  country: "China"
+  coordinates: [35.90, 117.75]
+  stay_days: 2
+- date: "2020-04-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  stay_days: 5
+- date: "2020-04-01"
+  date_precision: month
+  city: "Xintai"
+  country: "China"
+  coordinates: [35.90, 117.75]
+  stay_days: 2
 - date: "2020-05-01"
   date_precision: month
-  city: "Xintai"
+  city: "Jinan"
   country: "China"
-  coordinates: [35.90, 117.75]
-- date: "2021-02-01"
+  coordinates: [36.65, 117.12]
+  stay_days: 2
+- date: "2020-05-01"
   date_precision: month
-  city: "Xintai"
+  city: "Jinan"
   country: "China"
-  coordinates: [35.90, 117.75]
-- date: "2021-09-01"
+  coordinates: [36.65, 117.12]
+  stay_days: 3
+- date: "2020-05-01"
   date_precision: month
-  city: "Xintai"
+  city: "Jinan"
   country: "China"
-  coordinates: [35.90, 117.75]
+  coordinates: [36.65, 117.12]
+  stay_days: 3
+- date: "2020-05-01"
+  date_precision: month
+  city: "Jinan"
+  country: "China"
+  coordinates: [36.65, 117.12]
+  stay_days: 17
+- date: "2020-06-01"
+  date_precision: month
+  city: "Jinan"
+  country: "China"
+  coordinates: [36.65, 117.12]
+  stay_days: 2
+- date: "2020-06-01"
+  date_precision: month
+  city: "Jinan"
+  country: "China"
+  coordinates: [36.65, 117.12]
+  stay_days: 3
+- date: "2020-06-01"
+  date_precision: month
+  city: "Jinan"
+  country: "China"
+  coordinates: [36.65, 117.12]
+  stay_days: 3
+- date: "2020-06-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  stay_days: 1
+- date: "2020-06-01"
+  date_precision: month
+  city: "Jinan"
+  country: "China"
+  coordinates: [36.65, 117.12]
+  stay_days: 2
 - date: "2020-07-01"
   date_precision: month
-  city: "Haikou"
+  city: "Jinan"
   country: "China"
-  coordinates: [20.05, 110.34]
+  coordinates: [36.65, 117.12]
+  stay_days: 2
 - date: "2020-07-01"
   date_precision: month
-  city: "Qiongshan"
+  city: "Jinan"
   country: "China"
-  coordinates: [20.01, 110.35]
+  coordinates: [36.65, 117.12]
+  stay_days: 1
+- date: "2020-07-01"
+  date_precision: month
+  city: "Daliang"
+  country: "China"
+  coordinates: [22.84, 113.25]
+  stay_days: 1
 - date: "2020-07-01"
   date_precision: month
   city: "Sanya"
   country: "China"
   coordinates: [18.24, 109.50]
+  stay_days: 3
 - date: "2020-07-01"
   date_precision: month
-  city: "Tiandu"
+  city: "Qiongshan"
   country: "China"
-  coordinates: [18.28, 109.58]
+  coordinates: [20.01, 110.35]
+  stay_days: 1
+- date: "2020-07-01"
+  date_precision: month
+  city: "Jinan"
+  country: "China"
+  coordinates: [36.65, 117.12]
+  stay_days: 1
+- date: "2020-07-01"
+  date_precision: month
+  city: "Jinan"
+  country: "China"
+  coordinates: [36.65, 117.12]
+  stay_days: 1
+- date: "2020-08-01"
+  date_precision: month
+  city: "Jinan"
+  country: "China"
+  coordinates: [36.65, 117.12]
+  stay_days: 16
+- date: "2020-08-01"
+  date_precision: month
+  city: "Tai'an"
+  country: "China"
+  coordinates: [36.19, 117.12]
+  stay_days: 1
+- date: "2020-08-01"
+  date_precision: month
+  city: "Jinan"
+  country: "China"
+  coordinates: [36.65, 117.12]
+  stay_days: 1
+- date: "2020-09-01"
+  date_precision: month
+  city: "Jinan"
+  country: "China"
+  coordinates: [36.65, 117.12]
+  stay_days: 4
+- date: "2020-09-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 1
+- date: "2020-09-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 3
+- date: "2020-09-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 4
+- date: "2020-09-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 7
+- date: "2020-09-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 11
+- date: "2020-10-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 3
+- date: "2020-10-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 10
 - date: "2020-11-01"
   date_precision: month
   city: "Chongqing"
   country: "China"
   coordinates: [29.56, 106.55]
+  stay_days: 3
+- date: "2020-11-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 8
+- date: "2020-11-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 1
+- date: "2020-11-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 29
+- date: "2020-12-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 6
+- date: "2021-01-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 2
+- date: "2021-01-01"
+  date_precision: month
+  city: "Jinan"
+  country: "China"
+  coordinates: [36.65, 117.12]
+  stay_days: 1
+- date: "2021-01-01"
+  date_precision: month
+  city: "Jinan"
+  country: "China"
+  coordinates: [36.65, 117.12]
+  stay_days: 2
+- date: "2021-02-01"
+  date_precision: month
+  city: "Jinan"
+  country: "China"
+  coordinates: [36.65, 117.12]
+  stay_days: 3
+- date: "2021-02-01"
+  date_precision: month
+  city: "Xintai"
+  country: "China"
+  coordinates: [35.90, 117.75]
+  stay_days: 3
+- date: "2021-02-01"
+  date_precision: month
+  city: "Tai'an"
+  country: "China"
+  coordinates: [36.19, 117.12]
+  stay_days: 1
+- date: "2021-02-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 2
+- date: "2021-02-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 14
+- date: "2021-03-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 2
+- date: "2021-03-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 10
+- date: "2021-03-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 4
+- date: "2021-04-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 11
+- date: "2021-04-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 3
+- date: "2021-04-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 8
+- date: "2021-05-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 1
+- date: "2021-05-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 16
+- date: "2021-06-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 7
+- date: "2021-06-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 15
+- date: "2021-06-01"
+  date_precision: month
+  city: "Shanghai"
+  country: "China"
+  coordinates: [31.23, 121.47]
+  stay_days: 2
+- date: "2021-06-01"
+  date_precision: month
+  city: "Sijiqing"
+  country: "China"
+  coordinates: [30.25, 120.18]
+  stay_days: 2
+- date: "2021-07-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 11
+- date: "2021-07-01"
+  date_precision: month
+  city: "Beijing"
+  country: "China"
+  coordinates: [39.90, 116.41]
+  stay_days: 2
+- date: "2021-07-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 1
+- date: "2021-07-01"
+  date_precision: month
+  city: "Suzhou"
+  country: "China"
+  coordinates: [31.30, 120.59]
+  stay_days: 2
+- date: "2021-07-01"
+  date_precision: month
+  city: "Shanghai"
+  country: "China"
+  coordinates: [31.23, 121.47]
+  stay_days: 1
+- date: "2021-07-01"
+  date_precision: month
+  city: "Suzhou"
+  country: "China"
+  coordinates: [31.30, 120.59]
+  stay_days: 3
+- date: "2021-07-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 1
+- date: "2021-07-01"
+  date_precision: month
+  city: "Beijing"
+  country: "China"
+  coordinates: [39.90, 116.41]
+  stay_days: 2
+- date: "2021-07-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 2
+- date: "2021-07-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 2
+- date: "2021-08-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 2
+- date: "2021-08-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 7
+- date: "2021-08-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 6
+- date: "2021-09-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  stay_days: 3
+- date: "2021-09-01"
+  date_precision: month
+  city: "Xintai"
+  country: "China"
+  coordinates: [35.90, 117.75]
+  stay_days: 1
+- date: "2021-09-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  stay_days: 3
+- date: "2021-09-01"
+  date_precision: month
+  city: "Tai'an"
+  country: "China"
+  coordinates: [36.19, 117.12]
+  stay_days: 1
+- date: "2021-09-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  stay_days: 1
+- date: "2021-09-01"
+  date_precision: month
+  city: "Shanghai"
+  country: "China"
+  coordinates: [31.23, 121.47]
+  stay_days: 1
+- date: "2021-09-01"
+  date_precision: month
+  city: "Tuen Mun"
+  country: "Hong Kong"
+  coordinates: [22.39, 113.97]
+  stay_days: 1
 - date: "2021-09-01"
   date_precision: month
   city: "Munich area"
   country: "Germany"
   coordinates: [48.14, 11.58]
+  stay_days: 26
 - date: "2021-10-01"
   date_precision: month
   city: "Munich area"
   country: "Germany"
   coordinates: [48.14, 11.58]
+  stay_days: 2
+- date: "2021-10-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 23
 - date: "2021-11-01"
   date_precision: month
   city: "Munich area"
   country: "Germany"
   coordinates: [48.14, 11.58]
+  stay_days: 5
+- date: "2021-11-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 9
+- date: "2021-12-01"
+  date_precision: month
+  city: "Wuhan area"
+  country: "China"
+  coordinates: [30.59, 114.31]
+  stay_days: 1
 - date: "2021-12-01"
   date_precision: month
   city: "Munich area"
   country: "Germany"
   coordinates: [48.14, 11.58]
-- date: "2022-01-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2022-02-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2022-06-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2022-07-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2022-08-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2022-09-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2022-10-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2022-12-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2023-03-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2023-04-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2023-05-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2023-06-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2023-07-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2023-08-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2023-09-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2024-02-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2024-03-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2024-04-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2024-05-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2024-06-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2024-07-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2024-08-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2024-09-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2024-10-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2024-11-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2024-12-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2025-01-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2025-02-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2025-03-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2025-04-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2025-05-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2025-06-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2025-07-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2025-08-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2025-09-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2025-10-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2025-11-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2026-01-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2026-02-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2026-03-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2026-04-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2026-05-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2026-06-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2026-07-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2026-08-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2026-09-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2026-10-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
-- date: "2026-11-01"
-  date_precision: month
-  city: "Munich area"
-  country: "Germany"
-  coordinates: [48.14, 11.58]
+  stay_days: 8
 - date: "2021-12-01"
   date_precision: month
   city: "Helsinki"
   country: "Finland"
   coordinates: [60.17, 24.94]
+  stay_days: 10
+- date: "2022-01-01"
+  date_precision: month
+  city: "Helsinki"
+  country: "Finland"
+  coordinates: [60.17, 24.94]
+  stay_days: 2
+- date: "2022-01-01"
+  date_precision: month
+  city: "Helsinki"
+  country: "Finland"
+  coordinates: [60.17, 24.94]
+  stay_days: 1
+- date: "2022-01-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 3
+- date: "2022-01-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 1
+- date: "2022-01-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 1
+- date: "2022-02-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 2
+- date: "2022-02-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 5
+- date: "2022-02-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 2
+- date: "2022-02-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 2
 - date: "2022-03-01"
   date_precision: month
   city: "Vienna"
   country: "Austria"
   coordinates: [48.21, 16.37]
+  stay_days: 30
 - date: "2022-04-01"
   date_precision: month
   city: "Vienna"
   country: "Austria"
   coordinates: [48.21, 16.37]
-- date: "2022-05-01"
+  stay_days: 1
+- date: "2022-04-01"
   date_precision: month
   city: "Vienna"
   country: "Austria"
   coordinates: [48.21, 16.37]
-- date: "2022-06-01"
+  stay_days: 4
+- date: "2022-04-01"
   date_precision: month
   city: "Vienna"
   country: "Austria"
   coordinates: [48.21, 16.37]
-- date: "2026-10-01"
+  stay_days: 1
+- date: "2022-04-01"
   date_precision: month
   city: "Vienna"
   country: "Austria"
   coordinates: [48.21, 16.37]
+  stay_days: 1
 - date: "2022-04-01"
   date_precision: month
   city: "Olomouc"
   country: "Czechia"
   coordinates: [49.59, 17.25]
+  stay_days: 4
+- date: "2022-04-01"
+  date_precision: month
+  city: "Vienna"
+  country: "Austria"
+  coordinates: [48.21, 16.37]
+  stay_days: 2
+- date: "2022-05-01"
+  date_precision: month
+  city: "Vienna"
+  country: "Austria"
+  coordinates: [48.21, 16.37]
+  stay_days: 7
+- date: "2022-05-01"
+  date_precision: month
+  city: "Vienna"
+  country: "Austria"
+  coordinates: [48.21, 16.37]
+  stay_days: 5
+- date: "2022-05-01"
+  date_precision: month
+  city: "Vienna"
+  country: "Austria"
+  coordinates: [48.21, 16.37]
+  stay_days: 4
+- date: "2022-05-01"
+  date_precision: month
+  city: "Vienna"
+  country: "Austria"
+  coordinates: [48.21, 16.37]
+  stay_days: 27
+- date: "2022-06-01"
+  date_precision: month
+  city: "Vienna"
+  country: "Austria"
+  coordinates: [48.21, 16.37]
+  stay_days: 5
+- date: "2022-06-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 38
+- date: "2022-08-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 2
+- date: "2022-08-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 9
+- date: "2022-08-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 35
 - date: "2022-09-01"
   date_precision: month
   city: "Schladming"
   country: "Austria"
   coordinates: [47.39, 13.69]
+  stay_days: 7
 - date: "2022-10-01"
   date_precision: month
   city: "Schladming"
   country: "Austria"
   coordinates: [47.39, 13.69]
+  stay_days: 1
+- date: "2022-10-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 10
 - date: "2022-10-01"
   date_precision: month
   city: "Dresden"
   country: "Germany"
   coordinates: [51.05, 13.74]
+  stay_days: 6
+- date: "2022-10-01"
+  date_precision: month
+  city: "Dresden"
+  country: "Germany"
+  coordinates: [51.05, 13.74]
+  stay_days: 17
+- date: "2022-11-01"
+  date_precision: month
+  city: "Berlin"
+  country: "Germany"
+  coordinates: [52.52, 13.40]
+  stay_days: 1
 - date: "2022-11-01"
   date_precision: month
   city: "Dresden"
   country: "Germany"
   coordinates: [51.05, 13.74]
+  stay_days: 15
+- date: "2022-11-01"
+  date_precision: month
+  city: "Dresden"
+  country: "Germany"
+  coordinates: [51.05, 13.74]
+  stay_days: 7
+- date: "2022-12-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 2
 - date: "2022-12-01"
   date_precision: month
   city: "Dresden"
   country: "Germany"
   coordinates: [51.05, 13.74]
+  stay_days: 3
+- date: "2022-12-01"
+  date_precision: month
+  city: "Mala Strana"
+  country: "Czechia"
+  coordinates: [50.09, 14.40]
+  stay_days: 2
+- date: "2022-12-01"
+  date_precision: month
+  city: "Dresden"
+  country: "Germany"
+  coordinates: [51.05, 13.74]
+  stay_days: 2
+- date: "2022-12-01"
+  date_precision: month
+  city: "Berlin"
+  country: "Germany"
+  coordinates: [52.52, 13.40]
+  stay_days: 1
+- date: "2022-12-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 2
+- date: "2022-12-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 4
+- date: "2022-12-01"
+  date_precision: month
+  city: "Dresden"
+  country: "Germany"
+  coordinates: [51.05, 13.74]
+  stay_days: 6
 - date: "2023-01-01"
   date_precision: month
   city: "Dresden"
   country: "Germany"
   coordinates: [51.05, 13.74]
+  stay_days: 19
+- date: "2023-01-01"
+  date_precision: month
+  city: "Dresden"
+  country: "Germany"
+  coordinates: [51.05, 13.74]
+  stay_days: 5
 - date: "2023-02-01"
   date_precision: month
   city: "Dresden"
   country: "Germany"
   coordinates: [51.05, 13.74]
+  stay_days: 1
+- date: "2023-02-01"
+  date_precision: month
+  city: "Dresden"
+  country: "Germany"
+  coordinates: [51.05, 13.74]
+  stay_days: 2
+- date: "2023-02-01"
+  date_precision: month
+  city: "Dresden"
+  country: "Germany"
+  coordinates: [51.05, 13.74]
+  stay_days: 1
+- date: "2023-02-01"
+  date_precision: month
+  city: "Dresden"
+  country: "Germany"
+  coordinates: [51.05, 13.74]
+  stay_days: 13
+- date: "2023-03-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 8
+- date: "2023-03-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 12
+- date: "2023-03-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 29
+- date: "2023-04-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 52
+- date: "2023-06-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 14
+- date: "2023-07-01"
+  date_precision: month
+  city: "Tuebingen"
+  country: "Germany"
+  coordinates: [48.52, 9.05]
+  stay_days: 1
+- date: "2023-07-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 5
+- date: "2023-07-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 4
+- date: "2023-07-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 1
+- date: "2023-07-01"
+  date_precision: month
+  city: "Mehring"
+  country: "Germany"
+  coordinates: [48.18, 12.78]
+  stay_days: 1
+- date: "2023-07-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 2
+- date: "2023-07-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 16
 - date: "2023-08-01"
   date_precision: month
   city: "Cape Town"
   country: "South Africa"
   coordinates: [-33.92, 18.42]
+  stay_days: 8
+- date: "2023-08-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 3
+- date: "2023-08-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 5
+- date: "2023-08-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 5
+- date: "2023-09-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 2
+- date: "2023-09-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 3
+- date: "2023-09-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 4
+- date: "2023-09-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 2
+- date: "2023-10-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 3
+- date: "2023-10-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 2
+- date: "2023-10-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 5
+- date: "2023-11-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 4
+- date: "2023-11-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 1
+- date: "2023-11-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 2
+- date: "2023-12-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 1
+- date: "2023-12-01"
+  date_precision: month
+  city: "Dresden"
+  country: "Germany"
+  coordinates: [51.05, 13.74]
+  stay_days: 1
+- date: "2023-12-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 1
 - date: "2023-12-01"
   date_precision: month
   city: "Dusseldorf"
   country: "Germany"
   coordinates: [51.23, 6.77]
-- date: "2025-03-01"
-  date_precision: month
-  city: "Dusseldorf"
-  country: "Germany"
-  coordinates: [51.23, 6.77]
-- date: "2026-02-01"
-  date_precision: month
-  city: "Dusseldorf"
-  country: "Germany"
-  coordinates: [51.23, 6.77]
-- date: "2023-12-01"
-  date_precision: month
-  city: "Frankfurt am Main"
-  country: "Germany"
-  coordinates: [50.11, 8.68]
+  stay_days: 3
 - date: "2023-12-01"
   date_precision: month
   city: "Hamburg"
   country: "Germany"
   coordinates: [53.55, 9.99]
+  stay_days: 3
 - date: "2024-01-01"
   date_precision: month
-  city: "Hamburg"
+  city: "Munich area"
   country: "Germany"
-  coordinates: [53.55, 9.99]
+  coordinates: [48.14, 11.58]
+  stay_days: 1
+- date: "2024-01-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 1
+- date: "2024-02-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 1
+- date: "2024-02-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 1
+- date: "2024-02-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 2
+- date: "2024-02-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 4
+- date: "2024-02-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 5
+- date: "2024-02-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 3
+- date: "2024-03-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 1
 - date: "2024-04-01"
   date_precision: month
   city: "Ghaxaq"
   country: "Malta"
   coordinates: [35.85, 14.52]
-- date: "2024-04-01"
-  date_precision: month
-  city: "Neustift im Stubaital"
-  country: "Austria"
-  coordinates: [47.12, 11.32]
+  stay_days: 1
 - date: "2024-04-01"
   date_precision: month
   city: "Valletta"
   country: "Malta"
   coordinates: [35.90, 14.51]
+  stay_days: 2
+- date: "2024-04-01"
+  date_precision: month
+  city: "Ghaxaq"
+  country: "Malta"
+  coordinates: [35.85, 14.52]
+  stay_days: 1
+- date: "2024-04-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 7
+- date: "2024-04-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 1
+- date: "2024-04-01"
+  date_precision: month
+  city: "Neustift im Stubaital"
+  country: "Austria"
+  coordinates: [47.12, 11.32]
+  stay_days: 3
+- date: "2024-04-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 7
+- date: "2024-05-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 1
+- date: "2024-05-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 1
+- date: "2024-05-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 2
+- date: "2024-05-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 1
+- date: "2024-05-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 1
+- date: "2024-06-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 1
+- date: "2024-06-01"
+  date_precision: month
+  city: "Vienna"
+  country: "Austria"
+  coordinates: [48.21, 16.37]
+  stay_days: 1
+- date: "2024-06-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 9
+- date: "2024-06-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 10
+- date: "2024-06-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 6
 - date: "2024-07-01"
   date_precision: month
-  city: "Berlin"
+  city: "Munich area"
   country: "Germany"
-  coordinates: [52.52, 13.40]
-- date: "2025-05-01"
-  date_precision: month
-  city: "Berlin"
-  country: "Germany"
-  coordinates: [52.52, 13.40]
+  coordinates: [48.14, 11.58]
+  stay_days: 5
 - date: "2024-07-01"
   date_precision: month
   city: "Sankt Wolfgang im Salzkammergut"
   country: "Austria"
   coordinates: [47.74, 13.45]
-- date: "2024-09-01"
+  stay_days: 2
+- date: "2024-07-01"
   date_precision: month
-  city: "Burghausen"
+  city: "Munich area"
   country: "Germany"
-  coordinates: [48.17, 12.83]
-- date: "2024-09-01"
+  coordinates: [48.14, 11.58]
+  stay_days: 7
+- date: "2024-07-01"
   date_precision: month
-  city: "Mehring"
+  city: "Munich area"
   country: "Germany"
-  coordinates: [48.18, 12.78]
+  coordinates: [48.14, 11.58]
+  stay_days: 2
+- date: "2024-07-01"
+  date_precision: month
+  city: "Berlin"
+  country: "Germany"
+  coordinates: [52.52, 13.40]
+  stay_days: 3
+- date: "2024-07-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 7
+- date: "2024-08-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 6
+- date: "2024-08-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 1
+- date: "2024-08-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 12
 - date: "2024-09-01"
   date_precision: month
   city: "Stockholm"
   country: "Sweden"
   coordinates: [59.33, 18.07]
+  stay_days: 4
+- date: "2024-09-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 7
+- date: "2024-09-01"
+  date_precision: month
+  city: "Burghausen"
+  country: "Germany"
+  coordinates: [48.17, 12.83]
+  stay_days: 2
+- date: "2024-09-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 6
+- date: "2024-09-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 9
+- date: "2024-10-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 2
+- date: "2024-10-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 11
+- date: "2024-10-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 1
+- date: "2024-10-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 3
+- date: "2024-11-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 19
 - date: "2024-11-01"
   date_precision: month
   city: "Mala Strana"
   country: "Czechia"
   coordinates: [50.09, 14.40]
+  stay_days: 2
+- date: "2024-11-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 5
 - date: "2024-12-01"
   date_precision: month
-  city: "Kaizuka"
-  country: "Japan"
-  coordinates: [34.45, 135.35]
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 2
 - date: "2024-12-01"
   date_precision: month
-  city: "Kyoto"
-  country: "Japan"
-  coordinates: [35.02, 135.75]
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 9
 - date: "2024-12-01"
   date_precision: month
-  city: "Osaka-shi"
-  country: "Japan"
-  coordinates: [34.69, 135.50]
-- date: "2024-12-01"
-  date_precision: month
-  city: "Tokyo"
-  country: "Japan"
-  coordinates: [35.69, 139.69]
+  city: "Shanghai"
+  country: "China"
+  coordinates: [31.23, 121.47]
+  stay_days: 1
 - date: "2024-12-01"
   date_precision: month
   city: "Yokohama"
   country: "Japan"
   coordinates: [35.45, 139.64]
+  stay_days: 1
+- date: "2024-12-01"
+  date_precision: month
+  city: "Tokyo"
+  country: "Japan"
+  coordinates: [35.69, 139.69]
+  stay_days: 2
+- date: "2024-12-01"
+  date_precision: month
+  city: "Yokohama"
+  country: "Japan"
+  coordinates: [35.45, 139.64]
+  stay_days: 1
+- date: "2024-12-01"
+  date_precision: month
+  city: "Tokyo"
+  country: "Japan"
+  coordinates: [35.69, 139.69]
+  stay_days: 1
+- date: "2024-12-01"
+  date_precision: month
+  city: "Kyoto"
+  country: "Japan"
+  coordinates: [35.02, 135.75]
+  stay_days: 3
+- date: "2024-12-01"
+  date_precision: month
+  city: "Kaizuka"
+  country: "Japan"
+  coordinates: [34.45, 135.35]
+  stay_days: 2
+- date: "2024-12-01"
+  date_precision: month
+  city: "Jinan"
+  country: "China"
+  coordinates: [36.65, 117.12]
+  stay_days: 1
+- date: "2025-01-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  stay_days: 2
 - date: "2025-01-01"
   date_precision: month
   city: "Tai'an"
   country: "China"
   coordinates: [36.19, 117.12]
+  stay_days: 1
+- date: "2025-01-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  stay_days: 1
+- date: "2025-01-01"
+  date_precision: month
+  city: "Jinan"
+  country: "China"
+  coordinates: [36.65, 117.12]
+  stay_days: 2
+- date: "2025-01-01"
+  date_precision: month
+  city: "Shanghai"
+  country: "China"
+  coordinates: [31.23, 121.47]
+  stay_days: 2
+- date: "2025-01-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 7
+- date: "2025-01-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 8
 - date: "2025-02-01"
   date_precision: month
   city: "Wuerzburg"
   country: "Germany"
   coordinates: [49.79, 9.95]
-- date: "2025-06-01"
+  stay_days: 1
+- date: "2025-02-01"
   date_precision: month
-  city: "Baden-Baden"
+  city: "Munich area"
   country: "Germany"
-  coordinates: [48.76, 8.24]
+  coordinates: [48.14, 11.58]
+  stay_days: 6
+- date: "2025-02-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 4
+- date: "2025-02-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 2
+- date: "2025-02-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 3
+- date: "2025-03-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 1
+- date: "2025-03-01"
+  date_precision: month
+  city: "Dusseldorf"
+  country: "Germany"
+  coordinates: [51.23, 6.77]
+  stay_days: 1
+- date: "2025-03-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 19
+- date: "2025-04-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 5
+- date: "2025-04-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 28
+- date: "2025-05-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 3
+- date: "2025-05-01"
+  date_precision: month
+  city: "Berlin"
+  country: "Germany"
+  coordinates: [52.52, 13.40]
+  stay_days: 5
+- date: "2025-05-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 18
 - date: "2025-06-01"
   date_precision: month
   city: "Strasbourg"
   country: "France"
   coordinates: [48.58, 7.75]
-- date: "2025-07-01"
+  stay_days: 1
+- date: "2025-06-01"
   date_precision: month
-  city: "Glasgow"
-  country: "United Kingdom"
-  coordinates: [55.86, -4.25]
-- date: "2025-08-01"
-  date_precision: month
-  city: "Glasgow"
-  country: "United Kingdom"
-  coordinates: [55.86, -4.25]
-- date: "2025-07-01"
-  date_precision: month
-  city: "Tuebingen"
+  city: "Munich area"
   country: "Germany"
-  coordinates: [48.52, 9.05]
+  coordinates: [48.14, 11.58]
+  stay_days: 6
+- date: "2025-06-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 5
+- date: "2025-06-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 14
+- date: "2025-07-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 1
+- date: "2025-07-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 3
+- date: "2025-07-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 9
+- date: "2025-07-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 2
+- date: "2025-07-01"
+  date_precision: month
+  city: "Glasgow"
+  country: "United Kingdom"
+  coordinates: [55.86, -4.25]
+  stay_days: 2
 - date: "2025-08-01"
   date_precision: month
   city: "Dingwall"
   country: "United Kingdom"
   coordinates: [57.60, -4.43]
+  stay_days: 2
+- date: "2025-08-01"
+  date_precision: month
+  city: "Glasgow"
+  country: "United Kingdom"
+  coordinates: [55.86, -4.25]
+  stay_days: 5
+- date: "2025-08-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 6
+- date: "2025-08-01"
+  date_precision: month
+  city: "Vancouver"
+  country: "Canada"
+  coordinates: [49.28, -123.12]
+  stay_days: 8
 - date: "2025-08-01"
   date_precision: month
   city: "Sooke"
   country: "Canada"
   coordinates: [48.37, -123.73]
+  stay_days: 2
 - date: "2025-08-01"
   date_precision: month
   city: "Vancouver"
   country: "Canada"
   coordinates: [49.28, -123.12]
+  stay_days: 8
 - date: "2025-09-01"
   date_precision: month
-  city: "Vancouver"
-  country: "Canada"
-  coordinates: [49.28, -123.12]
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 9
 - date: "2025-09-01"
   date_precision: month
   city: "Paris"
   country: "France"
   coordinates: [48.86, 2.35]
+  stay_days: 5
+- date: "2025-09-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 9
+- date: "2025-10-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 4
+- date: "2025-10-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 6
+- date: "2025-10-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 2
+- date: "2025-10-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 1
+- date: "2025-11-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 4
+- date: "2025-11-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 1
+- date: "2025-11-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 1
+- date: "2025-11-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 2
+- date: "2025-12-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 2
+- date: "2025-12-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 6
+- date: "2025-12-01"
+  date_precision: month
+  city: "Beijing"
+  country: "China"
+  coordinates: [39.90, 116.41]
+  stay_days: 7
+- date: "2025-12-01"
+  date_precision: month
+  city: "Jinan"
+  country: "China"
+  coordinates: [36.65, 117.12]
+  stay_days: 1
+- date: "2025-12-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  stay_days: 1
 - date: "2025-12-01"
   date_precision: month
   city: "Daliang"
   country: "China"
   coordinates: [22.84, 113.25]
-- date: "2025-12-01"
-  date_precision: month
-  city: "Quanzhou"
-  country: "China"
-  coordinates: [24.91, 118.59]
+  stay_days: 4
 - date: "2025-12-01"
   date_precision: month
   city: "Shenzhen"
   country: "China"
   coordinates: [22.55, 114.07]
+  stay_days: 1
+- date: "2025-12-01"
+  date_precision: month
+  city: "Quanzhou"
+  country: "China"
+  coordinates: [24.91, 118.59]
+  stay_days: 2
+- date: "2025-12-01"
+  date_precision: month
+  city: "Jinan"
+  country: "China"
+  coordinates: [36.65, 117.12]
+  stay_days: 2
+- date: "2026-01-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  stay_days: 1
+- date: "2026-01-01"
+  date_precision: month
+  city: "Xintai"
+  country: "China"
+  coordinates: [35.90, 117.75]
+  stay_days: 1
+- date: "2026-01-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  stay_days: 1
+- date: "2026-01-01"
+  date_precision: month
+  city: "Tai'an"
+  country: "China"
+  coordinates: [36.19, 117.12]
+  stay_days: 1
+- date: "2026-01-01"
+  date_precision: month
+  city: "Beijing"
+  country: "China"
+  coordinates: [39.90, 116.41]
+  stay_days: 1
+- date: "2026-01-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 12
+- date: "2026-01-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 18
+- date: "2026-02-01"
+  date_precision: month
+  city: "Dusseldorf"
+  country: "Germany"
+  coordinates: [51.23, 6.77]
+  stay_days: 1
 - date: "2026-02-01"
   date_precision: month
   city: "Barcelona"
   country: "Spain"
   coordinates: [41.39, 2.17]
+  stay_days: 8
+- date: "2026-02-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 7
+- date: "2026-03-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 13
+- date: "2026-03-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 5
+- date: "2026-03-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 50
+- date: "2026-05-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 14
+- date: "2026-05-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 1
+- date: "2026-05-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 4
+- date: "2026-06-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 5
+- date: "2026-06-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 9
+- date: "2026-06-01"
+  date_precision: month
+  city: "Mehring"
+  country: "Germany"
+  coordinates: [48.18, 12.78]
+  stay_days: 1
+- date: "2026-06-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 4
+- date: "2026-06-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 5
 - date: "2026-07-01"
   date_precision: month
-  city: "Montreal"
-  country: "Canada"
-  coordinates: [45.50, -73.57]
-- date: "2026-07-01"
-  date_precision: month
-  city: "Ottawa"
-  country: "Canada"
-  coordinates: [45.41, -75.70]
-- date: "2026-07-01"
-  date_precision: month
-  city: "Quebec"
-  country: "Canada"
-  coordinates: [46.81, -71.21]
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 1
 - date: "2026-07-01"
   date_precision: month
   city: "Toronto"
   country: "Canada"
   coordinates: [43.65, -79.38]
+  stay_days: 9
+- date: "2026-07-01"
+  date_precision: month
+  city: "Ottawa"
+  country: "Canada"
+  coordinates: [45.41, -75.70]
+  stay_days: 1
+- date: "2026-07-01"
+  date_precision: month
+  city: "Montreal"
+  country: "Canada"
+  coordinates: [45.50, -73.57]
+  stay_days: 3
+- date: "2026-07-01"
+  date_precision: month
+  city: "Quebec"
+  country: "Canada"
+  coordinates: [46.81, -71.21]
+  stay_days: 1
+- date: "2026-07-01"
+  date_precision: month
+  city: "Toronto"
+  country: "Canada"
+  coordinates: [43.65, -79.38]
+  stay_days: 1
+- date: "2026-07-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 2
+- date: "2026-07-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 4
+- date: "2026-07-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 2
+- date: "2026-08-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 6
+- date: "2026-08-01"
+  date_precision: month
+  city: "Frankfurt am Main"
+  country: "Germany"
+  coordinates: [50.11, 8.68]
+  stay_days: 1
+- date: "2026-08-01"
+  date_precision: month
+  city: "Shanghai"
+  country: "China"
+  coordinates: [31.23, 121.47]
+  stay_days: 1
+- date: "2026-08-01"
+  date_precision: month
+  city: "Tuen Mun"
+  country: "Hong Kong"
+  coordinates: [22.39, 113.97]
+  stay_days: 1
+- date: "2026-08-01"
+  date_precision: month
+  city: "Daliang"
+  country: "China"
+  coordinates: [22.84, 113.25]
+  stay_days: 1
 - date: "2026-08-01"
   date_precision: month
   city: "Liuzhou"
   country: "China"
   coordinates: [24.31, 109.39]
+  stay_days: 2
 - date: "2026-08-01"
   date_precision: month
   city: "Yangshuo"
   country: "China"
   coordinates: [24.78, 110.49]
+  stay_days: 2
+- date: "2026-08-01"
+  date_precision: month
+  city: "Xintai"
+  country: "China"
+  coordinates: [35.90, 117.75]
+  stay_days: 2
+- date: "2026-08-01"
+  date_precision: month
+  city: "Jinan"
+  country: "China"
+  coordinates: [36.65, 117.12]
+  stay_days: 1
+- date: "2026-09-01"
+  date_precision: month
+  city: "Xintai"
+  country: "China"
+  coordinates: [35.90, 117.75]
+  stay_days: 1
+- date: "2026-09-01"
+  date_precision: month
+  city: "Dongdu"
+  country: "China"
+  coordinates: [35.85, 117.70]
+  stay_days: 1
 - date: "2026-09-01"
   date_precision: month
   city: "Ningnan"
   country: "China"
   coordinates: [31.99, 118.78]
+  stay_days: 5
+- date: "2026-09-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 3
+- date: "2026-09-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 29
 - date: "2026-10-01"
   date_precision: month
   city: "Budapest"
   country: "Hungary"
   coordinates: [47.50, 19.04]
+  stay_days: 2
+- date: "2026-10-01"
+  date_precision: month
+  city: "Vienna"
+  country: "Austria"
+  coordinates: [48.21, 16.37]
+  stay_days: 1
+- date: "2026-10-01"
+  date_precision: month
+  city: "Sankt Wolfgang im Salzkammergut"
+  country: "Austria"
+  coordinates: [47.74, 13.45]
+  stay_days: 1
+- date: "2026-10-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 29
+- date: "2026-11-01"
+  date_precision: month
+  city: "Munich area"
+  country: "Germany"
+  coordinates: [48.14, 11.58]
+  stay_days: 7

@@ -257,6 +257,46 @@ main {
     font-size: 0.78rem;
 }
 
+.travel-map__visits {
+    margin-top: 9px;
+    color: #53645c;
+    font-size: 0.75rem;
+}
+
+.travel-map__visits summary {
+    width: fit-content;
+    color: #8d5d42;
+    cursor: pointer;
+}
+
+.travel-map__visits-list {
+    display: grid;
+    max-height: 150px;
+    gap: 4px;
+    overflow-y: auto;
+    margin: 7px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.travel-map__visits-list button {
+    width: 100%;
+    padding: 5px 7px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.travel-map__visits-list button:hover,
+.travel-map__visits-list button.is-current {
+    border-color: #e1e3dd;
+    background: #f5f6f2;
+}
+
 .travel-map__description {
     margin-top: 9px !important;
     color: #53645c;
