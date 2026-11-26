@@ -55,6 +55,13 @@ input {
     color: #61736b;
 }
 
+.site-header .site-header__admin {
+    color: #61736b;
+    font-family: inherit;
+    font-size: 0.75rem;
+    font-weight: 400;
+}
+
 main {
     flex: 1;
     min-height: 0;

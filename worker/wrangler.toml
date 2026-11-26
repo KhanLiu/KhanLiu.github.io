@@ -1,0 +1,15 @@
+name = "khanliu-travel-admin"
+main = "src/index.js"
+compatibility_date = "2026-11-26"
+workers_dev = true
+
+[vars]
+SITE_ORIGIN = "https://khanliu.github.io"
+ADMIN_GITHUB_LOGIN = "KhanLiu"
+GITHUB_REPOSITORY = "KhanLiu/KhanLiu.github.io"
+GITHUB_BRANCH = "main"
+GITHUB_CLIENT_ID = "SET_AFTER_CREATING_THE_GITHUB_OAUTH_APP"
+
+[[kv_namespaces]]
+binding = "AUTH_STORE"
+id = "SET_AFTER_CREATING_THE_CLOUDFLARE_KV_NAMESPACE"

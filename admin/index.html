@@ -1,0 +1,66 @@
+---
+layout: null
+permalink: /admin/
+---
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://*.workers.dev; base-uri 'none'; form-action 'self'; frame-ancestors 'none'">
+    <meta name="travel-admin-api" content="">
+    <title>Travel data editor</title>
+    <link rel="stylesheet" href="{{ '/assets/css/travel-admin.css' | relative_url }}">
+</head>
+<body>
+    <main class="admin">
+        <header class="admin__header">
+            <a href="{{ '/' | relative_url }}">Life in Places</a>
+            <h1>Travel data</h1>
+            <p>Edit the month-level stays shown on the map. Durations are estimates; coordinates are approximate city centres.</p>
+        </header>
+
+        <section class="admin__auth" aria-labelledby="admin-auth-title">
+            <h2 id="admin-auth-title">Sign in</h2>
+            <p id="admin-status" role="status" aria-live="polite">Checking the admin connection…</p>
+            <button id="admin-login" type="button" disabled>Sign in with GitHub</button>
+            <button id="admin-logout" type="button" hidden>Sign out</button>
+        </section>
+
+        <section id="admin-editor" class="admin__editor" hidden aria-labelledby="admin-editor-title">
+            <div class="admin__toolbar">
+                <h2 id="admin-editor-title">Stay records <span id="admin-count"></span></h2>
+                <label class="admin__search">
+                    <span class="sr-only">Filter records</span>
+                    <input id="admin-filter" type="search" placeholder="Filter by city or country">
+                </label>
+            </div>
+            <p class="admin__privacy">Dates are saved as months only. Keep coordinates rounded to two decimal places. Saving updates the live site data in GitHub.</p>
+            <div class="admin__table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">Month</th>
+                            <th scope="col">City</th>
+                            <th scope="col">Country / area</th>
+                            <th scope="col">Days</th>
+                            <th scope="col">Latitude</th>
+                            <th scope="col">Longitude</th>
+                            <th scope="col"><span class="sr-only">Actions</span></th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-records"></tbody>
+                </table>
+            </div>
+            <div class="admin__actions">
+                <button id="admin-add" type="button">Add stay</button>
+                <span class="admin__actions-spacer"></span>
+                <button id="admin-reload" type="button">Reload</button>
+                <button id="admin-save" class="admin__save" type="button">Save changes</button>
+            </div>
+        </section>
+    </main>
+    <script src="{{ '/assets/js/travel-admin.js' | relative_url }}?v=1" defer></script>
+</body>
+</html>
