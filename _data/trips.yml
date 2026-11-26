@@ -4,6 +4,7 @@
 # approximate city centre. Stays require a night anchor; one day without accurate fixes may be bridged.
 # stay_days is an estimated inclusive span from first city day to last night; no exact dates
 # or raw GPS fixes are published. Timeline date and city-centre coordinates remain approximate.
+# lived_here marks a city; a true value on any record applies to every stay in that city.
 - date: "2017-07-01"
   date_precision: month
   city: "Chongqing"
@@ -16,6 +17,7 @@
   country: "China"
   coordinates: [30.59, 114.31]
   stay_days: 1
+  lived_here: true
 - date: "2017-10-01"
   date_precision: month
   city: "Wuhan area"
@@ -256,6 +258,7 @@
   country: "China"
   coordinates: [35.90, 117.75]
   stay_days: 1
+  lived_here: true
 - date: "2019-02-01"
   date_precision: month
   city: "Xintai"
@@ -1006,6 +1009,7 @@
   country: "Germany"
   coordinates: [48.14, 11.58]
   stay_days: 26
+  lived_here: true
 - date: "2021-10-01"
   date_precision: month
   city: "Munich area"
@@ -1108,6 +1112,7 @@
   country: "Austria"
   coordinates: [48.21, 16.37]
   stay_days: 30
+  lived_here: true
 - date: "2022-04-01"
   date_precision: month
   city: "Vienna"
@@ -1222,6 +1227,7 @@
   country: "Germany"
   coordinates: [51.05, 13.74]
   stay_days: 6
+  lived_here: true
 - date: "2022-10-01"
   date_precision: month
   city: "Dresden"

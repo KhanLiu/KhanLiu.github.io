@@ -19,6 +19,15 @@ test("parses the current public stay data and preserves month-level dates", () =
     assert.ok(trips.every((trip) => Number.isInteger(trip.stay_days) && trip.stay_days > 0));
     assert.ok(trips.every((trip) => trip.coordinates.every((value) =>
         Math.abs(value * 100 - Math.round(value * 100)) < 1e-7)));
+    const livedPlaces = new Set(trips.filter((trip) => trip.lived_here === true)
+        .map((trip) => trip.city + "|" + trip.country));
+    assert.deepEqual(Array.from(livedPlaces).sort(), [
+        "Dresden|Germany",
+        "Munich area|Germany",
+        "Vienna|Austria",
+        "Wuhan area|China",
+        "Xintai|China"
+    ]);
 });
 
 test("serializes and parses edited unicode travel records", () => {
@@ -29,7 +38,8 @@ test("serializes and parses edited unicode travel records", () => {
         country: "Japan",
         coordinates: [35.68, 139.69],
         stay_days: 4,
-        description: "A short stay"
+        description: "A short stay",
+        lived_here: true
     }];
     const yaml = serializeTripYaml(trips);
     assert.deepEqual(parseTripYaml(yaml), trips);
@@ -50,6 +60,10 @@ test("rejects exact dates and overly precise coordinates", () => {
         date: "2025-03-17",
         coordinates: [35.68, 139.69]
     })]), /first day of a month/);
+    assert.throws(() => validateTrips([Object.assign({}, base, {
+        coordinates: [35.68, 139.69],
+        lived_here: "true"
+    })]), /lived_here must be a boolean/);
 });
 
 test("requires the configured Pages origin before serving admin APIs", async () => {

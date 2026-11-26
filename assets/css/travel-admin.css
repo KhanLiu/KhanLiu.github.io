@@ -180,6 +180,20 @@ a:focus-visible {
     min-width: 76px;
 }
 
+.admin td.admin__checkbox-cell {
+    width: 92px;
+    text-align: center;
+}
+
+.admin td input[type="checkbox"] {
+    width: 18px;
+    min-width: 18px;
+    min-height: 18px;
+    padding: 0;
+    accent-color: #526e60;
+    vertical-align: middle;
+}
+
 .admin__remove {
     min-height: 32px;
     padding: 5px 8px;

@@ -38,6 +38,7 @@
             storyError: document.getElementById("travel-story-error"),
             storyDate: document.getElementById("travel-story-date"),
             storyTitle: document.getElementById("travel-story-title"),
+            livedHere: document.getElementById("travel-story-lived-here"),
             storyPlace: document.getElementById("travel-story-place"),
             description: document.getElementById("travel-story-description"),
             placeVisits: document.getElementById("travel-city-visits"),
@@ -92,6 +93,15 @@
         });
         visits.forEach(function (visit) {
             visit._placeKey = visit.city.toLocaleLowerCase() + "|" + visit.country.toLocaleLowerCase();
+        });
+        var livedPlaces = Object.create(null);
+        visits.forEach(function (visit) {
+            if (visit.lived_here === true) {
+                livedPlaces[visit._placeKey] = true;
+            }
+        });
+        visits.forEach(function (visit) {
+            visit._livedHere = Boolean(livedPlaces[visit._placeKey]);
         });
         var rejectedFlights = flights.length - flights.filter(isValidFlight).length;
         flights = flights.map(function (flight, index) {
@@ -211,8 +221,10 @@
                 type: "circle",
                 source: "travel-places",
                 paint: {
-                    "circle-radius": ["case", ["==", ["get", "index"], selectedIndex], 19, 13],
-                    "circle-color": ["case", ["==", ["get", "index"], selectedIndex], "#e99672", "#78cfc3"],
+                    "circle-radius": ["case", ["==", ["get", "placeKey"], selectedPlaceKey], 19,
+                        ["==", ["get", "livedHere"], true], 16, 13],
+                    "circle-color": ["case", ["==", ["get", "placeKey"], selectedPlaceKey], "#e99672",
+                        ["==", ["get", "livedHere"], true], "#b97c51", "#78cfc3"],
                     "circle-opacity": 0.24,
                     "circle-blur": 0.7
                 }
@@ -222,9 +234,12 @@
                 type: "circle",
                 source: "travel-places",
                 paint: {
-                    "circle-radius": ["case", ["==", ["get", "index"], selectedIndex], 7, 4.5],
-                    "circle-color": ["case", ["==", ["get", "index"], selectedIndex], "#f09b75", "#8ce1d2"],
-                    "circle-stroke-width": ["case", ["==", ["get", "index"], selectedIndex], 2.5, 1.5],
+                    "circle-radius": ["case", ["==", ["get", "placeKey"], selectedPlaceKey], 7,
+                        ["==", ["get", "livedHere"], true], 6, 4.5],
+                    "circle-color": ["case", ["==", ["get", "placeKey"], selectedPlaceKey], "#f09b75",
+                        ["==", ["get", "livedHere"], true], "#d2754e", "#8ce1d2"],
+                    "circle-stroke-width": ["case", ["==", ["get", "placeKey"], selectedPlaceKey], 2.5,
+                        ["==", ["get", "livedHere"], true], 2, 1.5],
                     "circle-stroke-color": "#f8fbfa"
                 }
             });
@@ -384,7 +399,8 @@
                     placeKey: visit._placeKey,
                     title: visit.title || visit.city,
                     city: visit.city,
-                    country: visit.country
+                    country: visit.country,
+                    livedHere: visit._livedHere
                 },
                 geometry: {
                     type: "Point",
@@ -679,6 +695,7 @@
         elements.count.textContent = (index + 1) + " / " + visits.length;
         elements.storyDate.textContent = formatStayDays(visit.stay_days);
         elements.storyTitle.textContent = visit.city;
+        elements.livedHere.hidden = !visit._livedHere;
         elements.storyPlace.textContent = visit.country;
         elements.description.textContent = visit.description || "";
         elements.description.hidden = !visit.description;
@@ -709,15 +726,20 @@
         map.setFilter("travel-place-selected-label", ["==", ["get", "placeKey"], selectedPlaceKey]);
         if (selectedIndex >= 0) {
             map.setPaintProperty("travel-place-halo", "circle-radius",
-                ["case", ["==", ["get", "placeKey"], selectedPlaceKey], 19, 13]);
+                ["case", ["==", ["get", "placeKey"], selectedPlaceKey], 19,
+                    ["==", ["get", "livedHere"], true], 16, 13]);
             map.setPaintProperty("travel-place-halo", "circle-color",
-                ["case", ["==", ["get", "placeKey"], selectedPlaceKey], "#e99672", "#78cfc3"]);
+                ["case", ["==", ["get", "placeKey"], selectedPlaceKey], "#e99672",
+                    ["==", ["get", "livedHere"], true], "#b97c51", "#78cfc3"]);
             map.setPaintProperty("travel-place-point", "circle-radius",
-                ["case", ["==", ["get", "placeKey"], selectedPlaceKey], 7, 4.5]);
+                ["case", ["==", ["get", "placeKey"], selectedPlaceKey], 7,
+                    ["==", ["get", "livedHere"], true], 6, 4.5]);
             map.setPaintProperty("travel-place-point", "circle-color",
-                ["case", ["==", ["get", "placeKey"], selectedPlaceKey], "#f09b75", "#8ce1d2"]);
+                ["case", ["==", ["get", "placeKey"], selectedPlaceKey], "#f09b75",
+                    ["==", ["get", "livedHere"], true], "#d2754e", "#8ce1d2"]);
             map.setPaintProperty("travel-place-point", "circle-stroke-width",
-                ["case", ["==", ["get", "placeKey"], selectedPlaceKey], 2.5, 1.5]);
+                ["case", ["==", ["get", "placeKey"], selectedPlaceKey], 2.5,
+                    ["==", ["get", "livedHere"], true], 2, 1.5]);
         }
     }
 
@@ -729,8 +751,8 @@
             }
         });
 
-        elements.placeVisits.hidden = indexes.length < 2;
-        if (indexes.length < 2) {
+        elements.placeVisits.hidden = visit._livedHere || indexes.length < 2;
+        if (visit._livedHere || indexes.length < 2) {
             elements.placeVisits.open = false;
             renderedPlaceVisitsKey = "";
             return;
@@ -879,6 +901,7 @@
             && visit.city.trim().length > 0
             && typeof visit.country === "string"
             && visit.country.trim().length > 0
+            && (visit.lived_here === undefined || typeof visit.lived_here === "boolean")
             && Array.isArray(visit.coordinates)
             && visit.coordinates.length === 2
             && visit.coordinates.every(function (coordinate) {

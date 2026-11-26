@@ -177,6 +177,24 @@ main {
     outline-offset: 1px;
 }
 
+.travel-map__legend {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 10px 0 0;
+    color: #64736c;
+    font-size: 0.72rem;
+}
+
+.travel-map__legend-mark {
+    width: 9px;
+    height: 9px;
+    border: 1px solid #fffdfb;
+    border-radius: 50%;
+    background: #d2754e;
+    box-shadow: 0 0 0 3px rgba(210, 117, 78, 0.22);
+}
+
 .travel-map #travel-city-view[hidden],
 .travel-map #travel-flight-view[hidden] {
     display: none;
@@ -262,6 +280,17 @@ main {
 .travel-map__place {
     color: #8d5d42;
     font-size: 0.78rem;
+}
+
+.travel-map__residence {
+    width: fit-content;
+    padding: 3px 7px;
+    border: 1px solid #e8cdbb;
+    border-radius: 999px;
+    background: #fbf1e9;
+    color: #8d5d42;
+    font-size: 0.68rem;
+    font-weight: 600;
 }
 
 .travel-map__visits {

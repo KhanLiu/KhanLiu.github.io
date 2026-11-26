@@ -100,9 +100,33 @@
         row.appendChild(cell);
     }
 
+    function addCheckbox(row, checked, label, update) {
+        var cell = document.createElement("td");
+        var input = document.createElement("input");
+        input.type = "checkbox";
+        input.checked = checked;
+        input.setAttribute("aria-label", label);
+        input.addEventListener("change", function () {
+            update(input.checked);
+        });
+        cell.className = "admin__checkbox-cell";
+        cell.appendChild(input);
+        row.appendChild(cell);
+    }
+
+    function placeKey(trip) {
+        return trip.city.trim().toLocaleLowerCase() + "|" + trip.country.trim().toLocaleLowerCase();
+    }
+
     function renderTrips() {
         var query = elements.filter.value.trim().toLocaleLowerCase();
         elements.records.textContent = "";
+        var livedPlaces = Object.create(null);
+        trips.forEach(function (trip) {
+            if (trip.lived_here === true) {
+                livedPlaces[placeKey(trip)] = true;
+            }
+        });
         var visibleTrips = trips.filter(function (trip) {
             return !query || (trip.city + " " + trip.country).toLocaleLowerCase().includes(query);
         });
@@ -151,6 +175,19 @@
                     trip.coordinates[1] = value === "" ? "" : Number(value);
                 }
             });
+            var key = placeKey(trip);
+            addCheckbox(row, Boolean(livedPlaces[key]), "Mark " + trip.city + " as a place you lived", function (livedHere) {
+                trips.forEach(function (candidate) {
+                    if (placeKey(candidate) === key) {
+                        if (livedHere) {
+                            candidate.lived_here = true;
+                        } else {
+                            delete candidate.lived_here;
+                        }
+                    }
+                });
+                renderTrips();
+            });
 
             var actionCell = document.createElement("td");
             var removeButton = document.createElement("button");
@@ -182,6 +219,9 @@
             }
             if (!Number.isInteger(trip.stay_days) || trip.stay_days < 1 || trip.stay_days > 3660) {
                 throw new Error("Record " + row + ": stay days must be a whole number from 1 to 3660.");
+            }
+            if (trip.lived_here !== undefined && typeof trip.lived_here !== "boolean") {
+                throw new Error("Record " + row + ": lived-here must be a boolean.");
             }
             if (!Array.isArray(trip.coordinates) || trip.coordinates.length !== 2
                     || !trip.coordinates.every(Number.isFinite)

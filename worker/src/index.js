@@ -5,6 +5,7 @@ const SESSION_TTL_SECONDS = 7200;
 const STATE_TTL_SECONDS = 600;
 const TRIP_KEYS = ["date", "date_precision", "city", "country", "coordinates", "stay_days"];
 const OPTIONAL_TRIP_KEYS = ["title", "description", "photo"];
+const OPTIONAL_BOOLEAN_TRIP_KEYS = ["lived_here"];
 const YAML_HEADER = [
     "# Night-anchored city stays inferred from GPS fixes with horizontal accuracy <= 100 m.",
     "# Night location uses local time 20:00-05:59; other days extend a stay only when >=70% of",
@@ -78,7 +79,7 @@ function parseYamlString(value, field) {
 function parseTripYaml(source) {
     const trips = [];
     let current = null;
-    const recognized = new Set(TRIP_KEYS.concat(OPTIONAL_TRIP_KEYS));
+    const recognized = new Set(TRIP_KEYS.concat(OPTIONAL_TRIP_KEYS, OPTIONAL_BOOLEAN_TRIP_KEYS));
 
     function finish() {
         if (current) {
@@ -118,6 +119,11 @@ function parseTripYaml(source) {
             current[key] = [Number(coordinates[1]), Number(coordinates[2])];
         } else if (key === "stay_days") {
             current[key] = Number(value);
+        } else if (OPTIONAL_BOOLEAN_TRIP_KEYS.includes(key)) {
+            if (value !== "true" && value !== "false") {
+                throw new Error("Invalid " + key + " in travel data.");
+            }
+            current[key] = value === "true";
         }
     });
     finish();
@@ -140,6 +146,9 @@ function normalizeTrip(trip) {
             result[key] = trip[key].trim();
         }
     });
+    if (trip.lived_here === true) {
+        result.lived_here = true;
+    }
     return result;
 }
 
@@ -152,7 +161,7 @@ function validateTrips(input) {
         if (!trip || typeof trip !== "object" || Array.isArray(trip)) {
             throw new Error("Record " + row + " must be an object.");
         }
-        const allowed = new Set(TRIP_KEYS.concat(OPTIONAL_TRIP_KEYS));
+        const allowed = new Set(TRIP_KEYS.concat(OPTIONAL_TRIP_KEYS, OPTIONAL_BOOLEAN_TRIP_KEYS));
         if (Object.keys(trip).some(function (key) { return !allowed.has(key); })) {
             throw new Error("Record " + row + " contains an unsupported field.");
         }
@@ -181,6 +190,9 @@ function validateTrips(input) {
         }
         if (!Number.isInteger(trip.stay_days) || trip.stay_days < 1 || trip.stay_days > 3660) {
             throw new Error("Record " + row + " stay_days must be a whole number from 1 to 3660.");
+        }
+        if (trip.lived_here !== undefined && typeof trip.lived_here !== "boolean") {
+            throw new Error("Record " + row + " lived_here must be a boolean.");
         }
         if (trip.title !== undefined && (typeof trip.title !== "string" || trip.title.length > 120)) {
             throw new Error("Record " + row + " has an invalid title.");
@@ -223,6 +235,9 @@ function serializeTripYaml(input) {
                 lines.push("  " + key + ": " + JSON.stringify(trip[key]));
             }
         });
+        if (trip.lived_here === true) {
+            lines.push("  lived_here: true");
+        }
     });
     return lines.join("\n") + "\n";
 }

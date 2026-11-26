@@ -11,14 +11,14 @@ permalink: /admin/
     <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://*.workers.dev; base-uri 'none'; form-action 'self'; frame-ancestors 'none'">
     <meta name="travel-admin-api" content="https://khanliu-travel-admin.cnkhanliu.workers.dev">
     <title>Travel data editor</title>
-    <link rel="stylesheet" href="{{ '/assets/css/travel-admin.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/travel-admin.css' | relative_url }}?v=2">
 </head>
 <body>
     <main class="admin">
         <header class="admin__header">
             <a href="{{ '/' | relative_url }}">Life in Places</a>
             <h1>Travel data</h1>
-            <p>Edit the month-level stays shown on the map. Durations are estimates; coordinates are approximate city centres.</p>
+            <p>Edit month-level stays and mark cities where you lived. Durations are estimates; coordinates are approximate city centres.</p>
         </header>
 
         <section class="admin__auth" aria-labelledby="admin-auth-title">
@@ -36,7 +36,7 @@ permalink: /admin/
                     <input id="admin-filter" type="search" placeholder="Filter by city or country">
                 </label>
             </div>
-            <p class="admin__privacy">Dates are saved as months only. Keep coordinates rounded to two decimal places. Saving updates the live site data in GitHub.</p>
+            <p class="admin__privacy">Dates are saved as months only. Keep coordinates rounded to two decimal places. Saving updates the live site data in GitHub. Marking a city as lived-in applies to all its stays and hides its multiple-stay list.</p>
             <div class="admin__table-wrap">
                 <table>
                     <thead>
@@ -47,6 +47,7 @@ permalink: /admin/
                             <th scope="col">Days</th>
                             <th scope="col">Latitude</th>
                             <th scope="col">Longitude</th>
+                            <th scope="col">Lived here</th>
                             <th scope="col"><span class="sr-only">Actions</span></th>
                         </tr>
                     </thead>
@@ -61,6 +62,6 @@ permalink: /admin/
             </div>
         </section>
     </main>
-    <script src="{{ '/assets/js/travel-admin.js' | relative_url }}?v=1" defer></script>
+    <script src="{{ '/assets/js/travel-admin.js' | relative_url }}?v=2" defer></script>
 </body>
 </html>
