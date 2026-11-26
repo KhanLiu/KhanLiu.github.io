@@ -63,7 +63,7 @@ test("requires the configured Pages origin before serving admin APIs", async () 
         GITHUB_CLIENT_ID: "client",
         GITHUB_CLIENT_SECRET: "secret",
         GITHUB_WRITE_TOKEN: "token",
-        AUTH_STORE: {}
+        TRAVEL_ADMIN_AUTHy: {}
     });
     assert.equal(response.status, 403);
     assert.equal((await response.json()).error, "origin_not_allowed");
@@ -84,7 +84,7 @@ test("consumes OAuth state once and issues a short session only to the configure
         GITHUB_CLIENT_ID: "client",
         GITHUB_CLIENT_SECRET: "secret",
         GITHUB_WRITE_TOKEN: "fine-grained-token",
-        AUTH_STORE: kv
+        TRAVEL_ADMIN_AUTHy: kv
     };
     const originalFetch = globalThis.fetch;
     let githubLogin = "KhanLiu";
@@ -142,7 +142,7 @@ test("limits repeated public OAuth initiation requests per Cloudflare client add
         GITHUB_CLIENT_ID: "client",
         GITHUB_CLIENT_SECRET: "secret",
         GITHUB_WRITE_TOKEN: "fine-grained-token",
-        AUTH_STORE: kv
+        TRAVEL_ADMIN_AUTHy: kv
     };
     let response;
     for (let attempt = 0; attempt < 11; attempt += 1) {
@@ -174,7 +174,7 @@ test("reads and writes travel data only after validating the signed-in session",
         GITHUB_CLIENT_ID: "client",
         GITHUB_CLIENT_SECRET: "secret",
         GITHUB_WRITE_TOKEN: "fine-grained-token",
-        AUTH_STORE: kv
+        TRAVEL_ADMIN_AUTHy: kv
     };
     const originalFetch = globalThis.fetch;
     const calls = [];

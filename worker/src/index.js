@@ -52,7 +52,7 @@ function randomToken() {
 function requireConfiguration(env) {
     const required = ["SITE_ORIGIN", "ADMIN_GITHUB_LOGIN", "GITHUB_REPOSITORY", "GITHUB_BRANCH",
         "GITHUB_CLIENT_ID", "GITHUB_CLIENT_SECRET", "GITHUB_WRITE_TOKEN"];
-    if (!env.AUTH_STORE || required.some(function (key) { return !env[key]; })) {
+    if (!env.TRAVEL_ADMIN_AUTHy || required.some(function (key) { return !env[key]; })) {
         throw new Error("Admin worker is missing required configuration.");
     }
 }
@@ -306,7 +306,7 @@ async function getAuthorizedSession(request, env) {
         return null;
     }
     const key = "session:" + match[1];
-    const value = await env.AUTH_STORE.get(key);
+    const value = await env.TRAVEL_ADMIN_AUTHy.get(key);
     if (!value) {
         return null;
     }
@@ -314,13 +314,13 @@ async function getAuthorizedSession(request, env) {
     try {
         session = JSON.parse(value);
     } catch (error) {
-        await env.AUTH_STORE.delete(key);
+        await env.TRAVEL_ADMIN_AUTHy.delete(key);
         return null;
     }
     if (!session || typeof session.login !== "string" || !Number.isFinite(session.expiresAt)
             || session.expiresAt <= Date.now()
             || session.login.toLowerCase() !== env.ADMIN_GITHUB_LOGIN.toLowerCase()) {
-        await env.AUTH_STORE.delete(key);
+        await env.TRAVEL_ADMIN_AUTHy.delete(key);
         return null;
     }
     return { token: match[1], key: key, login: session.login };
@@ -342,15 +342,15 @@ async function handleLogin(request, env, url) {
     const clientIp = request.headers.get("CF-Connecting-IP") || "unknown";
     const ipDigest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(clientIp));
     const rateLimitKey = "login-rate:" + encodeBase64Url(new Uint8Array(ipDigest));
-    const attempts = Number(await env.AUTH_STORE.get(rateLimitKey) || 0);
+    const attempts = Number(await env.TRAVEL_ADMIN_AUTHy.get(rateLimitKey) || 0);
     if (attempts >= MAX_LOGIN_ATTEMPTS) {
         return jsonResponse({ error: "Too many sign-in attempts. Try again in ten minutes." }, 429, {
             "Retry-After": String(STATE_TTL_SECONDS)
         });
     }
-    await env.AUTH_STORE.put(rateLimitKey, String(attempts + 1), { expirationTtl: STATE_TTL_SECONDS });
+    await env.TRAVEL_ADMIN_AUTHy.put(rateLimitKey, String(attempts + 1), { expirationTtl: STATE_TTL_SECONDS });
     const state = randomToken();
-    await env.AUTH_STORE.put("oauth-state:" + state, "1", { expirationTtl: STATE_TTL_SECONDS });
+    await env.TRAVEL_ADMIN_AUTHy.put("oauth-state:" + state, "1", { expirationTtl: STATE_TTL_SECONDS });
     const callback = new URL("/auth/callback", url.origin).toString();
     const authorize = new URL("https://github.com/login/oauth/authorize");
     authorize.searchParams.set("client_id", env.GITHUB_CLIENT_ID);
@@ -364,11 +364,13 @@ async function handleLogin(request, env, url) {
 async function handleCallback(request, env, url) {
     const state = url.searchParams.get("state") || "";
     const stateKey = "oauth-state:" + state;
-    const stateValue = /^[A-Za-z0-9_-]{40,64}$/.test(state) ? await env.AUTH_STORE.get(stateKey) : null;
+    const stateValue = /^[A-Za-z0-9_-]{40,64}$/.test(state)
+        ? await env.TRAVEL_ADMIN_AUTHy.get(stateKey)
+        : null;
     if (!stateValue) {
         return redirectResponse(env.SITE_ORIGIN + "/admin/#error=invalid_state");
     }
-    await env.AUTH_STORE.delete(stateKey);
+    await env.TRAVEL_ADMIN_AUTHy.delete(stateKey);
     const code = url.searchParams.get("code");
     if (!code || url.searchParams.has("error")) {
         return redirectResponse(env.SITE_ORIGIN + "/admin/#error=oauth_denied");
@@ -400,7 +402,7 @@ async function handleCallback(request, env, url) {
     }
 
     const sessionToken = randomToken();
-    await env.AUTH_STORE.put("session:" + sessionToken, JSON.stringify({
+    await env.TRAVEL_ADMIN_AUTHy.put("session:" + sessionToken, JSON.stringify({
         login: user.login,
         expiresAt: Date.now() + SESSION_TTL_SECONDS * 1000
     }), { expirationTtl: SESSION_TTL_SECONDS });
@@ -426,7 +428,7 @@ async function handleApi(request, env, url) {
         return jsonResponse({ login: session.login }, 200, corsHeaders(env.SITE_ORIGIN));
     }
     if (url.pathname === "/api/logout" && request.method === "POST") {
-        await env.AUTH_STORE.delete(session.key);
+        await env.TRAVEL_ADMIN_AUTHy.delete(session.key);
         return jsonResponse({ signedOut: true }, 200, corsHeaders(env.SITE_ORIGIN));
     }
     if (url.pathname === "/api/trips" && request.method === "GET") {

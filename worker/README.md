@@ -4,14 +4,14 @@ The public site is static GitHub Pages, so the admin editor uses a Cloudflare Wo
 
 ## One-time setup
 
-1. Sign in to Cloudflare and create a KV namespace:
+1. The KV namespace has been created. `wrangler.toml` is configured with binding `TRAVEL_ADMIN_AUTHy` and namespace ID `e3f4d3dc07094d0a80a34415d3e01b5b`; keep this binding name unchanged unless you also rename it in `src/index.js`. To replace the namespace, create one with:
 
    ```powershell
    npx wrangler@latest login
    npx wrangler@latest kv namespace create TRAVEL_ADMIN_AUTH
    ```
 
-   Put the returned namespace ID in `wrangler.toml` as `AUTH_STORE`.
+   Replace the configured namespace ID in `wrangler.toml` with the returned ID.
 
 2. In Cloudflare, choose or confirm your `workers.dev` subdomain. The Worker origin will be `https://khanliu-travel-admin.<your-workers-subdomain>.workers.dev`. Create a GitHub OAuth App with homepage `https://khanliu.github.io/admin/` and callback `<worker-origin>/auth/callback`. The callback must exactly match the Worker URL. Keep its client secret private.
 
