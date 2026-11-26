@@ -198,9 +198,9 @@
         var visit = visits[index];
 
         elements.range.value = index;
-        elements.date.textContent = formatDate(visit.date);
+        elements.date.textContent = formatDate(visit.date, visit.date_precision);
         elements.count.textContent = (index + 1) + " / " + visits.length;
-        elements.storyDate.textContent = formatDate(visit.date);
+        elements.storyDate.textContent = formatDate(visit.date, visit.date_precision);
         elements.storyTitle.textContent = visit.title || visit.city;
         elements.storyPlace.textContent = [visit.city, visit.country].filter(Boolean).join(", ");
         elements.description.textContent = visit.description || "";
@@ -312,6 +312,7 @@
     function isValidVisit(visit) {
         return visit
             && isValidDate(visit.date)
+            && (!visit.date_precision || ["day", "month", "year"].indexOf(visit.date_precision) !== -1)
             && typeof visit.city === "string"
             && visit.city.trim().length > 0
             && typeof visit.country === "string"
@@ -335,7 +336,10 @@
         return !Number.isNaN(parsedDate.getTime()) && parsedDate.toISOString().slice(0, 10) === date;
     }
 
-    function formatDate(date) {
+    function formatDate(date, precision) {
+        if (precision === "year") {
+            return date.slice(0, 4);
+        }
         return new Date(date + "T12:00:00").toLocaleDateString(undefined, {
             year: "numeric",
             month: "long",
