@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://unpkg.com" crossorigin>
     <link rel="preconnect" href="https://tiles.openfreemap.org" crossorigin>
     <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.css">
-    <link rel="stylesheet" href="{{ '/assets/css/travel-map.css' | relative_url }}?v=19">
+    <link rel="stylesheet" href="{{ '/assets/css/travel-map.css' | relative_url }}?v=20">
 </head>
 <body>
     <header class="site-header site-header--life-map">
@@ -31,6 +31,6 @@
     <script id="travel-data" type="application/json">{{ site.data.trips | jsonify | replace: '</', '<\/' }}</script>
     <script id="flight-data" type="application/json">{{ site.data.flights | jsonify | replace: '</', '<\/' }}</script>
     <script src="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.js" defer></script>
-    <script src="{{ '/assets/js/travel-map.js' | relative_url }}?v=25" defer></script>
+    <script src="{{ '/assets/js/travel-map.js' | relative_url }}?v=26" defer></script>
 </body>
 </html>

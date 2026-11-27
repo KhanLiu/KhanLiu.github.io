@@ -295,8 +295,8 @@ main {
 .travel-map__legend-mark--travel {
     width: 13px;
     height: 13px;
-    background: #0065bd;
-    box-shadow: 0 0 0 3px rgba(0, 101, 189, 0.18);
+    background: #72c4e8;
+    box-shadow: 0 0 0 3px rgba(114, 196, 232, 0.28);
 }
 
 .travel-map__legend-mark--airport {
@@ -326,24 +326,24 @@ main {
     box-shadow: 0 0 0 3px rgba(130, 150, 163, 0.16);
 }
 
-.travel-map__residences {
+.travel-map__summary {
     margin-top: 13px;
     padding-top: 12px;
     border-top: 1px solid #e8e9e4;
 }
 
-.travel-map__residences[hidden] {
+.travel-map__summary[hidden] {
     display: none;
 }
 
-.travel-map__residences h2 {
+.travel-map__summary h2 {
     margin: 0 0 7px;
     color: #293b36;
     font-size: 0.875rem;
     font-weight: 600;
 }
 
-.travel-map__residences table {
+.travel-map__summary table {
     width: 100%;
     border-collapse: collapse;
     color: #53645c;
@@ -352,31 +352,31 @@ main {
     text-align: left;
 }
 
-.travel-map__residences th {
+.travel-map__summary th {
     color: #53645c;
     font-size: 0.75rem;
     font-weight: 400;
 }
 
-.travel-map__residences th,
-.travel-map__residences td {
+.travel-map__summary th,
+.travel-map__summary td {
     padding: 4px 3px;
     border-bottom: 1px solid #edf0eb;
 }
 
-.travel-map__residences th:first-child,
-.travel-map__residences td:first-child {
+.travel-map__summary th:first-child,
+.travel-map__summary td:first-child {
     padding-left: 0;
 }
 
-.travel-map__residences td {
+.travel-map__summary td {
     color: #293b36;
     font-variant-numeric: tabular-nums;
     font-weight: 600;
 }
 
-.travel-map__residences td:last-child,
-.travel-map__residences th:last-child {
+.travel-map__summary td:last-child,
+.travel-map__summary th:last-child {
     padding-right: 0;
     text-align: right;
 }

@@ -14,8 +14,8 @@
     var viewMode = "cities";
     var statusMessages = [];
     var renderedPlaceVisitsKey = "";
-    var placeRadiusStops = [1, 4, 7, 6, 30, 9, 100, 12, 500, 16];
-    var placeHaloStops = [1, 12, 7, 15, 30, 19, 100, 23, 500, 28];
+    var placeRadiusStops = [1, 4, 7, 5, 30, 7, 100, 9, 500, 11];
+    var placeHaloStops = [1, 10, 7, 12, 30, 15, 100, 18, 500, 21];
     var maxTravelPlaceRadius = 4;
     var maxTravelHaloRadius = 12;
     var elements;
@@ -35,8 +35,8 @@
             empty: document.getElementById("travel-story-empty"),
             content: document.getElementById("travel-story-content"),
             storyError: document.getElementById("travel-story-error"),
-            residences: document.getElementById("travel-residences"),
-            residenceList: document.getElementById("travel-residence-list"),
+            summary: document.getElementById("travel-summary"),
+            summaryList: document.getElementById("travel-summary-list"),
             cityStory: document.getElementById("travel-city-story"),
             storyDate: document.getElementById("travel-story-date"),
             storyTitle: document.getElementById("travel-story-title"),
@@ -110,7 +110,7 @@
         visits.forEach(function (visit) {
             visit._livedHere = Boolean(livedPlaces[visit._placeKey]);
         });
-        renderResidences(visits);
+        renderSummary(visits);
         var rejectedFlights = flights.length;
         flights = flights.map(function (flight, index) {
             return Object.assign({ _index: index }, flight, {
@@ -208,7 +208,7 @@
                 source: "travel-places",
                 paint: {
                     "circle-radius": placeRadiusExpression(true),
-                    "circle-color": ["case", ["==", ["get", "livedHere"], true], "#e87722", "#0065bd"],
+                    "circle-color": ["case", ["==", ["get", "livedHere"], true], "#e87722", "#72c4e8"],
                     "circle-opacity": 0.24,
                     "circle-blur": 0.7
                 }
@@ -219,7 +219,7 @@
                 source: "travel-places",
                 paint: {
                     "circle-radius": placeRadiusExpression(false),
-                    "circle-color": ["case", ["==", ["get", "livedHere"], true], "#e87722", "#0065bd"],
+                    "circle-color": ["case", ["==", ["get", "livedHere"], true], "#e87722", "#72c4e8"],
                     "circle-stroke-width": ["case", ["==", ["get", "placeKey"], selectedPlaceKey], 2.5,
                         1.5],
                     "circle-stroke-color": "#f8fbfa"
@@ -826,21 +826,23 @@
         });
     }
 
-    function renderResidences(allVisits) {
-        var residences = Object.create(null);
+    function renderSummary(allVisits) {
+        var destinations = Object.create(null);
+        var livedDestinations = Object.create(null);
         var countries = Object.create(null);
         allVisits.forEach(function (visit) {
-            if (!visit._livedHere) return;
-            residences[visit._placeKey] = true;
-            countries[visit.country.trim().toLocaleLowerCase()] = true;
+            destinations[visit._placeKey] = true;
+            if (visit._livedHere) livedDestinations[visit._placeKey] = true;
+            countries[visit.country.trim().toLocaleLowerCase()] = visit.country.trim();
         });
 
-        var cityCount = Object.keys(residences).length;
-        elements.residences.hidden = cityCount === 0;
-        elements.residenceList.textContent = "";
+        var destinationCount = Object.keys(destinations).length;
+        elements.summary.hidden = destinationCount === 0;
+        elements.summaryList.textContent = "";
         [
-            ["Countries", Object.keys(countries).length],
-            ["Cities", cityCount]
+            ["Countries / regions", Object.keys(countries).length],
+            ["Cities visited", destinationCount],
+            ["Cities lived in", Object.keys(livedDestinations).length]
         ].forEach(function (stat) {
             var row = document.createElement("tr");
             var label = document.createElement("th");
@@ -850,7 +852,7 @@
             value.textContent = String(stat[1]);
             row.appendChild(label);
             row.appendChild(value);
-            elements.residenceList.appendChild(row);
+            elements.summaryList.appendChild(row);
         });
     }
 
