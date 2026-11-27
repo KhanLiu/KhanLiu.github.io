@@ -14,6 +14,10 @@
     var viewMode = "cities";
     var statusMessages = [];
     var renderedPlaceVisitsKey = "";
+    var placeRadiusStops = [1, 4, 7, 6, 30, 9, 100, 12, 500, 16];
+    var placeHaloStops = [1, 12, 7, 15, 30, 19, 100, 23, 500, 28];
+    var maxTravelPlaceRadius = 4;
+    var maxTravelHaloRadius = 12;
     var elements;
     var demoNotice;
 
@@ -417,6 +421,16 @@
             place.stayDays += visit.stay_days;
             place.stayCount += 1;
         });
+        maxTravelPlaceRadius = 4;
+        maxTravelHaloRadius = 12;
+        Object.keys(places).forEach(function (placeKey) {
+            var place = places[placeKey];
+            if (place.livedHere) return;
+            maxTravelPlaceRadius = Math.max(maxTravelPlaceRadius,
+                getPlaceRadius(place.stayDays, placeRadiusStops));
+            maxTravelHaloRadius = Math.max(maxTravelHaloRadius,
+                getPlaceRadius(place.stayDays, placeHaloStops));
+        });
         Object.keys(places).forEach(function (placeKey) {
             var place = places[placeKey];
             features.push({
@@ -525,21 +539,27 @@
 
     function placeRadiusExpression(halo) {
         var selected = ["==", ["get", "placeKey"], selectedPlaceKey];
-        var livedRadius = halo ? 28 : 16;
-        var selectedLivedRadius = halo ? 30 : 18;
-        var travelRadii = ["interpolate", ["linear"], ["get", "stayDays"],
-            1, halo ? 12 : 4,
-            7, halo ? 15 : 6,
-            30, halo ? 19 : 9,
-            100, halo ? 23 : 12,
-            500, halo ? 28 : 16];
+        var livedRadius = halo ? maxTravelHaloRadius : maxTravelPlaceRadius;
+        var travelRadii = ["interpolate", ["linear"], ["get", "stayDays"]]
+            .concat(halo ? placeHaloStops : placeRadiusStops);
         return ["case",
             ["==", ["get", "livedHere"], true],
-            ["case", selected, selectedLivedRadius, livedRadius],
+            livedRadius,
             selected,
             ["+", travelRadii, 2],
             travelRadii
         ];
+    }
+
+    function getPlaceRadius(stayDays, stops) {
+        for (var index = 0; index < stops.length - 2; index += 2) {
+            var nextDays = stops[index + 2];
+            if (stayDays <= nextDays) {
+                var fraction = (stayDays - stops[index]) / (nextDays - stops[index]);
+                return stops[index + 1] + fraction * (stops[index + 3] - stops[index + 1]);
+            }
+        }
+        return stops[stops.length - 1];
     }
 
     function createGreatCircleSegments(start, end, offsetDegrees) {
