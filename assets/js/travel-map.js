@@ -208,7 +208,7 @@
                 source: "travel-places",
                 paint: {
                     "circle-radius": placeRadiusExpression(true),
-                    "circle-color": ["case", ["==", ["get", "livedHere"], true], "#e87722", "#72c4e8"],
+                    "circle-color": ["case", ["==", ["get", "livedHere"], true], "#0065bd", "#72c4e8"],
                     "circle-opacity": 0.24,
                     "circle-blur": 0.7
                 }
@@ -219,7 +219,7 @@
                 source: "travel-places",
                 paint: {
                     "circle-radius": placeRadiusExpression(false),
-                    "circle-color": ["case", ["==", ["get", "livedHere"], true], "#e87722", "#72c4e8"],
+                    "circle-color": ["case", ["==", ["get", "livedHere"], true], "#0065bd", "#72c4e8"],
                     "circle-stroke-width": ["case", ["==", ["get", "placeKey"], selectedPlaceKey], 2.5,
                         1.5],
                     "circle-stroke-color": "#f8fbfa"
@@ -321,8 +321,8 @@
                 paint: {
                     "circle-radius": ["case", ["==", ["get", "selected"], true], 6, 4],
                     "circle-color": ["case",
-                        ["==", ["get", "livedHere"], true], "#e87722",
-                        ["==", ["get", "visitedBefore"], true], "#0065bd",
+                        ["==", ["get", "livedHere"], true], "#0065bd",
+                        ["==", ["get", "visitedBefore"], true], "#72c4e8",
                         "#8296a3"
                     ],
                     "circle-opacity": 0.95,
