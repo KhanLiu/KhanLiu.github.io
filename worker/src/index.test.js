@@ -18,8 +18,22 @@ const realFlightsYaml = await readFile(new URL("../../_data/flights.yml", import
 
 test("parses and serializes all provided flights and accepts future records", () => {
     const data = parseFlightYaml(realFlightsYaml);
-    assert.equal(data.flights.length, 60);
-    assert.equal(Object.keys(data.airports).length, 40);
+    assert.equal(data.flights.length, 66);
+    assert.equal(Object.keys(data.airports).length, 44);
+    assert.deepEqual(data.flights.slice(0, 6), [
+        { date: "2027-01-03", origin: "PEK", destination: "MUC", airline: "Air China", flight_number: "CA961" },
+        { date: "2027-01-02", origin: "HKG", destination: "PEK", airline: "Air China", flight_number: "CA116" },
+        {
+            date: "2026-12-29",
+            origin: "NGB",
+            destination: "SWA",
+            airline: "China Eastern Airlines",
+            flight_number: "MU6489"
+        },
+        { date: "2026-12-24", origin: "TSA", destination: "SHA", airline: "Air China", flight_number: "CA198" },
+        { date: "2026-12-09", origin: "PEK", destination: "TPE", airline: "Air China", flight_number: "CA185" },
+        { date: "2026-12-08", origin: "MUC", destination: "PEK", airline: "Air China", flight_number: "CA962" }
+    ]);
     assert.deepEqual(data.flights.find((flight) => flight.flight_number === "SC4799"), {
         date: "2017-07-24",
         origin: "TNA",
@@ -38,7 +52,7 @@ test("parses and serializes all provided flights and accepts future records", ()
             flight_number: "FA123"
         })
     });
-    assert.equal(validateFlightData(future).flights.length, 61);
+    assert.equal(validateFlightData(future).flights.length, 67);
 });
 
 test("rejects flight records with unknown airports or invalid dates", () => {
@@ -380,8 +394,8 @@ test("reads and writes flight records and airports only after validating the sig
         }), env);
         assert.equal(getResponse.status, 200);
         const data = await getResponse.json();
-        assert.equal(data.flights.length, 60);
-        assert.equal(Object.keys(data.airports).length, 40);
+        assert.equal(data.flights.length, 66);
+        assert.equal(Object.keys(data.airports).length, 44);
 
         const upcoming = {
             date: "2027-01-15",
@@ -399,7 +413,7 @@ test("reads and writes flight records and airports only after validating the sig
             })
         }), env);
         assert.equal(putResponse.status, 200);
-        assert.equal((await putResponse.json()).flights.length, 61);
+        assert.equal((await putResponse.json()).flights.length, 67);
         assert.equal(calls.filter((call) => call.init && call.init.method === "PUT").length, 1);
         assert.equal(calls.at(-1).url,
             "https://api.github.com/repos/KhanLiu/KhanLiu.github.io/contents/_data/flights.yml");

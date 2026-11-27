@@ -41,8 +41,42 @@ airports:
   CTU: {city: Chengdu, country: China, coordinates: [30.5785, 103.9471]}
   WUH: {city: Wuhan, country: China, coordinates: [30.7838, 114.2081]}
   HAK: {city: Haikou, country: China, coordinates: [19.9349, 110.4590]}
+  TPE: {city: Taipei, country: Taiwan, coordinates: [25.0797, 121.2342]}
+  TSA: {city: Taipei, country: Taiwan, coordinates: [25.0697, 121.5525]}
+  NGB: {city: Ningbo, country: China, coordinates: [29.8267, 121.4619]}
+  SWA: {city: Jieyang, country: China, coordinates: [23.5520, 116.5033]}
 
 flights:
+  - date: "2027-01-03"
+    airline: "Air China"
+    flight_number: "CA961"
+    origin: PEK
+    destination: MUC
+  - date: "2027-01-02"
+    airline: "Air China"
+    flight_number: "CA116"
+    origin: HKG
+    destination: PEK
+  - date: "2026-12-29"
+    airline: "China Eastern Airlines"
+    flight_number: "MU6489"
+    origin: NGB
+    destination: SWA
+  - date: "2026-12-24"
+    airline: "Air China"
+    flight_number: "CA198"
+    origin: TSA
+    destination: SHA
+  - date: "2026-12-09"
+    airline: "Air China"
+    flight_number: "CA185"
+    origin: PEK
+    destination: TPE
+  - date: "2026-12-08"
+    airline: "Air China"
+    flight_number: "CA962"
+    origin: MUC
+    destination: PEK
   - date: "2026-10-14"
     airline: "Wizz Air Malta"
     flight_number: "W42296"
