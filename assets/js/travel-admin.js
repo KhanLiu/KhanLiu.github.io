@@ -53,6 +53,7 @@
             };
             setStatus(messages[error] || "GitHub sign-in failed (" + error + ").", true);
         }
+        return Boolean(error);
     }
 
     async function apiRequest(path, options) {
@@ -311,7 +312,7 @@
         }
     });
 
-    takeSessionFromFragment();
+    var signInFailed = takeSessionFromFragment();
     if (!configured) {
         setStatus("Admin login is not configured yet. Deploy the Cloudflare Worker and set its URL in this page.");
         elements.login.disabled = true;
@@ -321,7 +322,7 @@
         setSignedIn(Boolean(token));
         if (token) {
             loadTrips();
-        } else {
+        } else if (!signInFailed) {
             setStatus("Sign in with the authorized GitHub account to edit travel data.");
         }
     }
