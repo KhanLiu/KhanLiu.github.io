@@ -149,7 +149,7 @@ main {
     z-index: 1;
     top: 24px;
     left: 28px;
-    width: min(320px, calc(100% - 56px));
+    width: min(440px, calc(100% - 56px));
     max-height: calc(100% - 48px);
     overflow-y: auto;
     padding: 22px;
@@ -204,6 +204,14 @@ main {
     text-align: right;
 }
 
+.travel-map__flight-stat-upcoming {
+    margin-left: 5px;
+    color: #89949b;
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
 .travel-map__visually-hidden {
     position: absolute;
     width: 1px;
@@ -249,12 +257,14 @@ main {
 
 .travel-map__legend {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
-    gap: 8px 14px;
+    gap: 8px;
+    overflow-x: auto;
     margin: 12px 0 0;
     color: #64736c;
     font-size: 0.75rem;
+    white-space: nowrap;
 }
 
 .travel-map__legend span {
@@ -294,6 +304,15 @@ main {
     border: 0;
     border-radius: 2px;
     background: #7c3aed;
+}
+
+.travel-map__legend-mark--upcoming {
+    width: 18px;
+    height: 0;
+    border: 0;
+    border-top: 2px dashed #89949b;
+    border-radius: 0;
+    background: transparent;
 }
 
 .travel-map__residences {
@@ -501,7 +520,9 @@ main {
 }
 
 .travel-map__airport-flights button {
+    display: block;
     width: 100%;
+    overflow-x: auto;
     padding: 6px 7px;
     border: 1px solid transparent;
     border-radius: 3px;
@@ -511,7 +532,12 @@ main {
     font-size: 0.75rem;
     line-height: 1.4;
     text-align: left;
+    white-space: nowrap;
     cursor: pointer;
+}
+
+.travel-map__airport-flights button.is-upcoming {
+    color: #89949b;
 }
 
 .travel-map__airport-flights button:hover,
@@ -553,6 +579,12 @@ main {
     color: #53645c;
     font-size: 0.875rem;
     white-space: pre-line;
+}
+
+#travel-flight-airports,
+#travel-flight-number {
+    overflow-x: auto;
+    white-space: nowrap;
 }
 
 .travel-map__photo-wrap {
@@ -647,7 +679,7 @@ main {
     .travel-map__panel {
         top: 14px;
         left: 14px;
-        width: min(300px, calc(100% - 28px));
+        width: min(440px, calc(100% - 28px));
         max-height: calc(100% - 28px);
         padding: 17px;
     }

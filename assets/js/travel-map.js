@@ -115,6 +115,10 @@
         }).filter(isValidFlight).sort(function (a, b) {
             return a.date.localeCompare(b.date) || a._index - b._index;
         });
+        var today = getLocalDateString();
+        flights.forEach(function (flight) {
+            flight._upcoming = flight.date >= today;
+        });
         rejectedFlights -= flights.length;
         renderFlightStats(flights);
         demoNotice.hidden = !visits.some(function (visit) {
@@ -219,7 +223,10 @@
                 id: "travel-flight-route",
                 type: "line",
                 source: "travel-flights",
-                filter: ["==", ["get", "kind"], "route"],
+                filter: ["all",
+                    ["==", ["get", "kind"], "route"],
+                    ["==", ["get", "upcoming"], false]
+                ],
                 layout: {
                     visibility: "none",
                     "line-join": "round",
@@ -232,10 +239,33 @@
                 }
             });
             map.addLayer({
+                id: "travel-flight-route-upcoming",
+                type: "line",
+                source: "travel-flights",
+                filter: ["all",
+                    ["==", ["get", "kind"], "route"],
+                    ["==", ["get", "upcoming"], true]
+                ],
+                layout: {
+                    visibility: "none",
+                    "line-join": "round",
+                    "line-cap": "round"
+                },
+                paint: {
+                    "line-color": "#89949b",
+                    "line-dasharray": [2, 1.5],
+                    "line-width": ["case", ["==", ["get", "selected"], true], 3.5, 1.75],
+                    "line-opacity": ["case", ["==", ["get", "selected"], true], 0.95, 0.8]
+                }
+            });
+            map.addLayer({
                 id: "travel-flight-direction",
                 type: "symbol",
                 source: "travel-flights",
-                filter: ["==", ["get", "kind"], "route"],
+                filter: ["all",
+                    ["==", ["get", "kind"], "route"],
+                    ["==", ["get", "upcoming"], false]
+                ],
                 layout: {
                     visibility: "none",
                     "symbol-placement": "line",
@@ -248,6 +278,30 @@
                 paint: {
                     "text-color": "#7c3aed",
                     "text-opacity": ["case", ["==", ["get", "selected"], true], 0.95, 0.25],
+                    "text-halo-color": "#fffdfb",
+                    "text-halo-width": 1
+                }
+            });
+            map.addLayer({
+                id: "travel-flight-direction-upcoming",
+                type: "symbol",
+                source: "travel-flights",
+                filter: ["all",
+                    ["==", ["get", "kind"], "route"],
+                    ["==", ["get", "upcoming"], true]
+                ],
+                layout: {
+                    visibility: "none",
+                    "symbol-placement": "line",
+                    "symbol-spacing": 260,
+                    "text-field": "▶",
+                    "text-size": 10,
+                    "text-rotation-alignment": "map",
+                    "text-keep-upright": false
+                },
+                paint: {
+                    "text-color": "#89949b",
+                    "text-opacity": ["case", ["==", ["get", "selected"], true], 0.95, 0.8],
                     "text-halo-color": "#fffdfb",
                     "text-halo-width": 1
                 }
@@ -301,7 +355,8 @@
                     }
                 });
             });
-            ["travel-flight-route", "travel-flight-airport", "travel-flight-airport-code"].forEach(function (layerId) {
+            ["travel-flight-route", "travel-flight-route-upcoming",
+                "travel-flight-airport", "travel-flight-airport-code"].forEach(function (layerId) {
                 map.on("mouseenter", layerId, function () {
                     map.getCanvas().style.cursor = "pointer";
                 });
@@ -312,7 +367,8 @@
             map.on("click", function (event) {
                 if (viewMode !== "flights") return;
                 var features = map.queryRenderedFeatures(event.point, {
-                    layers: ["travel-flight-airport-code", "travel-flight-airport", "travel-flight-route"]
+                    layers: ["travel-flight-airport-code", "travel-flight-airport",
+                        "travel-flight-route-upcoming", "travel-flight-route"]
                 });
                 var airportFeature = features.find(function (feature) {
                     return feature.properties.kind === "airport";
@@ -412,7 +468,12 @@
                     || flight.destination.airport === selectedAirportCode));
             features.push({
                 type: "Feature",
-                properties: { kind: "route", index: index, selected: Boolean(routeSelected) },
+                properties: {
+                    kind: "route",
+                    index: index,
+                    selected: Boolean(routeSelected),
+                    upcoming: flight._upcoming
+                },
                 geometry: {
                     type: "MultiLineString",
                     coordinates: createGreatCircleSegments(origin, destination)
@@ -608,6 +669,41 @@
     }
 
     function renderFlightStats(flightList) {
+        var completedFlightList = flightList.filter(function (flight) {
+            return !flight._upcoming;
+        });
+        var completedCounts = collectFlightCounts(completedFlightList);
+        var totalCounts = collectFlightCounts(flightList);
+        [
+            ["Countries / regions", completedCounts.countries,
+                totalCounts.countries - completedCounts.countries],
+            ["Airports", completedCounts.airports,
+                totalCounts.airports - completedCounts.airports],
+            ["Flights", completedFlightList.length, flightList.length - completedFlightList.length],
+            ["Airlines", completedCounts.airlines, totalCounts.airlines - completedCounts.airlines]
+        ].forEach(function (stat) {
+            var row = document.createElement("tr");
+            var label = document.createElement("th");
+            label.scope = "row";
+            label.textContent = stat[0];
+            var value = document.createElement("td");
+            value.textContent = String(stat[1]);
+            if (stat[2] > 0) {
+                var upcomingCount = document.createElement("span");
+                upcomingCount.className = "travel-map__flight-stat-upcoming";
+                upcomingCount.textContent = "+" + stat[2];
+                upcomingCount.title = stat[2] + " upcoming";
+                value.appendChild(upcomingCount);
+                value.setAttribute("aria-label", stat[1] + " completed, "
+                    + stat[2] + " upcoming");
+            }
+            row.appendChild(label);
+            row.appendChild(value);
+            elements.flightStatsList.appendChild(row);
+        });
+    }
+
+    function collectFlightCounts(flightList) {
         var countries = Object.create(null);
         var airportCodes = Object.create(null);
         var airlines = Object.create(null);
@@ -620,22 +716,20 @@
                 airlines[flight.airline.trim().toLocaleLowerCase()] = true;
             }
         });
-        [
-            ["Countries / regions", Object.keys(countries).length],
-            ["Airports", Object.keys(airportCodes).length],
-            ["Flights", flightList.length],
-            ["Airlines", Object.keys(airlines).length]
-        ].forEach(function (stat) {
-            var row = document.createElement("tr");
-            var label = document.createElement("th");
-            label.scope = "row";
-            label.textContent = stat[0];
-            var value = document.createElement("td");
-            value.textContent = String(stat[1]);
-            row.appendChild(label);
-            row.appendChild(value);
-            elements.flightStatsList.appendChild(row);
-        });
+        return {
+            countries: Object.keys(countries).length,
+            airports: Object.keys(airportCodes).length,
+            airlines: Object.keys(airlines).length
+        };
+    }
+
+    function getLocalDateString() {
+        var date = new Date();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        return date.getFullYear() + "-"
+            + (month < 10 ? "0" : "") + month + "-"
+            + (day < 10 ? "0" : "") + day;
     }
 
     function setMapViewVisibility() {
@@ -647,8 +741,9 @@
             .forEach(function (layerId) {
             map.setLayoutProperty(layerId, "visibility", cityVisibility);
         });
-        ["travel-flight-route", "travel-flight-direction", "travel-flight-airport",
-            "travel-flight-airport-code"]
+        ["travel-flight-route", "travel-flight-route-upcoming",
+            "travel-flight-direction", "travel-flight-direction-upcoming",
+            "travel-flight-airport", "travel-flight-airport-code"]
             .forEach(function (layerId) {
                 map.setLayoutProperty(layerId, "visibility", flightVisibility);
             });
@@ -729,6 +824,7 @@
         var flightDetails = [];
         if (flight.airline) flightDetails.push(flight.airline);
         if (flight.flight_number) flightDetails.push("Flight " + flight.flight_number);
+        flightDetails.push(flight._upcoming ? "Upcoming" : "Completed");
         elements.flightNumber.textContent = flightDetails.join(" · ");
         elements.flightNumber.hidden = !flightDetails.length;
         elements.airportFlights.hidden = true;
@@ -788,7 +884,9 @@
             var button = document.createElement("button");
             button.type = "button";
             button.textContent = flight.origin.airport + " → " + flight.destination.airport
-                + (details ? " · " + details : "");
+                + (details ? " · " + details : "")
+                + " · " + (flight._upcoming ? "Upcoming" : "Completed");
+            if (flight._upcoming) button.classList.add("is-upcoming");
             button.addEventListener("click", function () {
                 selectFlight(index, true);
             });
