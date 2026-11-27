@@ -286,6 +286,8 @@ main {
 }
 
 .travel-map__legend-mark--lived {
+    width: 13px;
+    height: 13px;
     background: #e87722;
     box-shadow: 0 0 0 3px rgba(232, 119, 34, 0.2);
 }
@@ -341,11 +343,6 @@ main {
     font-weight: 600;
 }
 
-.travel-map__residences-scroll {
-    max-height: 132px;
-    overflow-y: auto;
-}
-
 .travel-map__residences table {
     width: 100%;
     border-collapse: collapse;
@@ -356,18 +353,15 @@ main {
 }
 
 .travel-map__residences th {
-    position: sticky;
-    top: 0;
-    background: #fffdfb;
-    color: #78857e;
+    color: #53645c;
     font-size: 0.75rem;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 .travel-map__residences th,
 .travel-map__residences td {
-    padding: 4px 5px;
-    border-bottom: 1px solid #eff0ec;
+    padding: 4px 3px;
+    border-bottom: 1px solid #edf0eb;
 }
 
 .travel-map__residences th:first-child,
@@ -375,27 +369,16 @@ main {
     padding-left: 0;
 }
 
+.travel-map__residences td {
+    color: #293b36;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+}
+
 .travel-map__residences td:last-child,
 .travel-map__residences th:last-child {
     padding-right: 0;
     text-align: right;
-}
-
-.travel-map__residence-place {
-    display: grid;
-    justify-items: start;
-    padding: 0;
-    border: 0;
-    background: none;
-    color: #293b36;
-    font: inherit;
-    text-align: left;
-    cursor: pointer;
-}
-
-.travel-map__residence-place span {
-    color: #78857e;
-    font-size: 0.75rem;
 }
 
 .travel-map #travel-city-view[hidden],

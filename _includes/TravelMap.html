@@ -18,18 +18,13 @@
                 <span><i class="travel-map__legend-mark travel-map__legend-mark--lived" aria-hidden="true"></i>Lived</span>
                 <span><i class="travel-map__legend-mark travel-map__legend-mark--travel" aria-hidden="true"></i>Travel · size = days</span>
             </div>
-            <section id="travel-residences" class="travel-map__residences" aria-label="Places lived in" hidden>
-                <h2>Places lived in</h2>
-                <div class="travel-map__residences-scroll">
-                    <table>
-                        <thead>
-                            <tr><th scope="col">Place</th><th scope="col">Years</th><th scope="col">Days</th></tr>
-                        </thead>
-                        <tbody id="travel-residence-list"></tbody>
-                    </table>
-                </div>
+            <section id="travel-residences" class="travel-map__residences" aria-label="Residence summary" hidden>
+                <h2>Residence summary</h2>
+                <table>
+                    <tbody id="travel-residence-list"></tbody>
+                </table>
             </section>
-            <div class="travel-map__story">
+            <div id="travel-city-story" class="travel-map__story">
                 <div id="travel-story-empty" class="travel-map__empty">
                     <p>Add places and dates to <code>_data/trips.yml</code>.</p>
                 </div>

@@ -33,6 +33,7 @@
             storyError: document.getElementById("travel-story-error"),
             residences: document.getElementById("travel-residences"),
             residenceList: document.getElementById("travel-residence-list"),
+            cityStory: document.getElementById("travel-city-story"),
             storyDate: document.getElementById("travel-story-date"),
             storyTitle: document.getElementById("travel-story-title"),
             livedHere: document.getElementById("travel-story-lived-here"),
@@ -151,7 +152,8 @@
             setViewMode("flights");
         });
         if (visits.length) {
-            selectVisit(initialVisitIndex(), false);
+            elements.empty.hidden = true;
+            elements.cityStory.hidden = true;
         }
     }
 
@@ -523,8 +525,8 @@
 
     function placeRadiusExpression(halo) {
         var selected = ["==", ["get", "placeKey"], selectedPlaceKey];
-        var livedRadius = halo ? 14 : 5.5;
-        var selectedLivedRadius = halo ? 18 : 7.5;
+        var livedRadius = halo ? 28 : 16;
+        var selectedLivedRadius = halo ? 30 : 18;
         var travelRadii = ["interpolate", ["linear"], ["get", "stayDays"],
             1, halo ? 12 : 4,
             7, halo ? 15 : 6,
@@ -806,53 +808,28 @@
 
     function renderResidences(allVisits) {
         var residences = Object.create(null);
+        var countries = Object.create(null);
         allVisits.forEach(function (visit) {
             if (!visit._livedHere) return;
-            var residence = residences[visit._placeKey];
-            if (!residence) {
-                residence = residences[visit._placeKey] = {
-                    city: visit.city,
-                    country: visit.country,
-                    firstDate: visit.date,
-                    lastDate: visit.date,
-                    totalDays: 0
-                };
-            }
-            if (visit.date < residence.firstDate) residence.firstDate = visit.date;
-            if (visit.date > residence.lastDate) residence.lastDate = visit.date;
-            residence.totalDays += visit.stay_days;
+            residences[visit._placeKey] = true;
+            countries[visit.country.trim().toLocaleLowerCase()] = true;
         });
 
-        var keys = Object.keys(residences).sort(function (a, b) {
-            return residences[a].firstDate.localeCompare(residences[b].firstDate);
-        });
-        elements.residences.hidden = keys.length === 0;
+        var cityCount = Object.keys(residences).length;
+        elements.residences.hidden = cityCount === 0;
         elements.residenceList.textContent = "";
-        keys.forEach(function (key) {
-            var residence = residences[key];
+        [
+            ["Countries", Object.keys(countries).length],
+            ["Cities", cityCount]
+        ].forEach(function (stat) {
             var row = document.createElement("tr");
-            var placeCell = document.createElement("td");
-            var placeButton = document.createElement("button");
-            var country = document.createElement("span");
-            var yearsCell = document.createElement("td");
-            var daysCell = document.createElement("td");
-            placeButton.type = "button";
-            placeButton.className = "travel-map__residence-place";
-            placeButton.textContent = residence.city;
-            placeButton.setAttribute("aria-label", "Show " + residence.city + ", " + residence.country);
-            placeButton.addEventListener("click", function () {
-                selectPlace(key, true, false);
-            });
-            country.textContent = residence.country;
-            placeButton.appendChild(country);
-            placeCell.appendChild(placeButton);
-            var firstYear = residence.firstDate.slice(0, 4);
-            var lastYear = residence.lastDate.slice(0, 4);
-            yearsCell.textContent = firstYear === lastYear ? firstYear : firstYear + "–" + lastYear;
-            daysCell.textContent = "~" + residence.totalDays;
-            row.appendChild(placeCell);
-            row.appendChild(yearsCell);
-            row.appendChild(daysCell);
+            var label = document.createElement("th");
+            label.scope = "row";
+            label.textContent = stat[0];
+            var value = document.createElement("td");
+            value.textContent = String(stat[1]);
+            row.appendChild(label);
+            row.appendChild(value);
             elements.residenceList.appendChild(row);
         });
     }
@@ -1000,6 +977,7 @@
         elements.description.textContent = visit.description || "";
         elements.description.hidden = !visit.description;
         elements.empty.hidden = true;
+        elements.cityStory.hidden = false;
         elements.content.hidden = false;
 
         renderPlaceVisits(visit, Boolean(expandVisits || preserveExpandedVisits));
@@ -1112,6 +1090,7 @@
 
     function showError(message) {
         elements.empty.hidden = true;
+        elements.cityStory.hidden = false;
         elements.content.hidden = true;
         elements.storyError.textContent = message;
         elements.storyError.hidden = false;
