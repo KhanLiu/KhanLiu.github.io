@@ -221,9 +221,9 @@
                     "line-cap": "round"
                 },
                 paint: {
-                    "line-color": ["case", ["==", ["get", "index"], selectedFlightIndex], "#d2754e", "#55998d"],
-                    "line-width": ["case", ["==", ["get", "index"], selectedFlightIndex], 3, 2],
-                    "line-opacity": 0.9
+                    "line-color": ["case", ["==", ["get", "selected"], true], "#d2754e", "#55998d"],
+                    "line-width": ["case", ["==", ["get", "selected"], true], 3.5, 1.5],
+                    "line-opacity": ["case", ["==", ["get", "selected"], true], 0.95, 0.22]
                 }
             });
             map.addLayer({
@@ -234,14 +234,15 @@
                 layout: {
                     visibility: "none",
                     "symbol-placement": "line",
-                    "symbol-spacing": 220,
+                    "symbol-spacing": 260,
                     "text-field": "▶",
                     "text-size": 10,
                     "text-rotation-alignment": "map",
                     "text-keep-upright": false
                 },
                 paint: {
-                    "text-color": "#d2754e",
+                    "text-color": ["case", ["==", ["get", "selected"], true], "#d2754e", "#7d9d96"],
+                    "text-opacity": ["case", ["==", ["get", "selected"], true], 0.95, 0.25],
                     "text-halo-color": "#fffdfb",
                     "text-halo-width": 1
                 }
@@ -253,9 +254,10 @@
                 filter: ["==", ["get", "kind"], "origin"],
                 layout: { visibility: "none" },
                 paint: {
-                    "circle-radius": 5,
+                    "circle-radius": ["case", ["==", ["get", "selected"], true], 6, 3.5],
                     "circle-color": "#55998d",
-                    "circle-stroke-width": 2,
+                    "circle-opacity": ["case", ["==", ["get", "selected"], true], 1, 0.5],
+                    "circle-stroke-width": ["case", ["==", ["get", "selected"], true], 2, 1],
                     "circle-stroke-color": "#fffdfb"
                 }
             });
@@ -266,10 +268,35 @@
                 filter: ["==", ["get", "kind"], "destination"],
                 layout: { visibility: "none" },
                 paint: {
-                    "circle-radius": 5,
+                    "circle-radius": ["case", ["==", ["get", "selected"], true], 6, 3.5],
                     "circle-color": "#d2754e",
-                    "circle-stroke-width": 2,
+                    "circle-opacity": ["case", ["==", ["get", "selected"], true], 1, 0.5],
+                    "circle-stroke-width": ["case", ["==", ["get", "selected"], true], 2, 1],
                     "circle-stroke-color": "#fffdfb"
+                }
+            });
+            map.addLayer({
+                id: "travel-flight-airport-code",
+                type: "symbol",
+                source: "travel-flights",
+                filter: ["all",
+                    ["in", ["get", "kind"], ["literal", ["origin", "destination"]]],
+                    ["==", ["get", "selected"], true]
+                ],
+                layout: {
+                    visibility: "none",
+                    "text-field": ["get", "airport"],
+                    "text-font": ["Noto Sans Bold"],
+                    "text-size": 12,
+                    "text-offset": [0, 1.15],
+                    "text-anchor": "top",
+                    "text-allow-overlap": true,
+                    "text-ignore-placement": true
+                },
+                paint: {
+                    "text-color": "#293b36",
+                    "text-halo-color": "#fffdfb",
+                    "text-halo-width": 1.5
                 }
             });
             ["travel-place-point"].forEach(function (layerId) {
@@ -359,7 +386,7 @@
             var destination = [flight.destination.coordinates[1], flight.destination.coordinates[0]];
             features.push({
                 type: "Feature",
-                properties: { kind: "route", index: index },
+                properties: { kind: "route", index: index, selected: index === selectedFlightIndex },
                 geometry: {
                     type: "MultiLineString",
                     coordinates: createGreatCircleSegments(origin, destination)
@@ -367,12 +394,22 @@
             });
             features.push({
                 type: "Feature",
-                properties: { kind: "origin", index: index },
+                properties: {
+                    kind: "origin",
+                    index: index,
+                    airport: flight.origin.airport,
+                    selected: index === selectedFlightIndex
+                },
                 geometry: { type: "Point", coordinates: origin }
             });
             features.push({
                 type: "Feature",
-                properties: { kind: "destination", index: index },
+                properties: {
+                    kind: "destination",
+                    index: index,
+                    airport: flight.destination.airport,
+                    selected: index === selectedFlightIndex
+                },
                 geometry: { type: "Point", coordinates: destination }
             });
         });
@@ -512,14 +549,24 @@
         if (!mapReady) return;
         var cityVisibility = viewMode === "cities" ? "visible" : "none";
         var flightVisibility = viewMode === "flights" ? "visible" : "none";
+        setGeographicLabelsVisibility(cityVisibility);
         ["travel-place-halo", "travel-place-point"]
             .forEach(function (layerId) {
             map.setLayoutProperty(layerId, "visibility", cityVisibility);
         });
-        ["travel-flight-route", "travel-flight-direction", "travel-flight-origin", "travel-flight-destination"]
+        ["travel-flight-route", "travel-flight-direction", "travel-flight-origin",
+            "travel-flight-destination", "travel-flight-airport-code"]
             .forEach(function (layerId) {
                 map.setLayoutProperty(layerId, "visibility", flightVisibility);
             });
+    }
+
+    function setGeographicLabelsVisibility(visibility) {
+        map.getStyle().layers.forEach(function (layer) {
+            if (layer["source-layer"] === "place" || layer["source-layer"] === "aerodrome_label") {
+                map.setLayoutProperty(layer.id, "visibility", visibility);
+            }
+        });
     }
 
     function selectFlight(index, moveGlobe) {
@@ -581,10 +628,6 @@
         if (source) {
             source.setData(createFlightFeatures());
         }
-        map.setPaintProperty("travel-flight-route", "line-color",
-            ["case", ["==", ["get", "index"], selectedFlightIndex], "#d2754e", "#55998d"]);
-        map.setPaintProperty("travel-flight-route", "line-width",
-            ["case", ["==", ["get", "index"], selectedFlightIndex], 3, 2]);
     }
 
     function selectPlace(placeKey, moveGlobe, expandVisits) {
