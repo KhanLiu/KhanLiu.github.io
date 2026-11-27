@@ -156,7 +156,7 @@
             container: elements.canvas,
             style: "https://tiles.openfreemap.org/styles/positron",
             center: initialMapCenter(),
-            zoom: 1.3,
+            zoom: 1.5,
             minZoom: 0.8,
             maxZoom: 12,
             projection: { type: "globe" },

@@ -173,7 +173,7 @@ main {
 .travel-map__flight-stats h2 {
     margin: 0 0 7px;
     color: #293b36;
-    font-size: 0.76rem;
+    font-size: 0.875rem;
     font-weight: 600;
 }
 
@@ -181,7 +181,7 @@ main {
     width: 100%;
     border-collapse: collapse;
     color: #53645c;
-    font-size: 0.67rem;
+    font-size: 0.75rem;
     line-height: 1.4;
     text-align: left;
 }
@@ -232,7 +232,7 @@ main {
     background: transparent;
     color: #64736c;
     font: inherit;
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     cursor: pointer;
 }
 
@@ -254,7 +254,7 @@ main {
     gap: 8px 14px;
     margin: 12px 0 0;
     color: #64736c;
-    font-size: 0.72rem;
+    font-size: 0.75rem;
 }
 
 .travel-map__legend span {
@@ -309,7 +309,7 @@ main {
 .travel-map__residences h2 {
     margin: 0 0 7px;
     color: #293b36;
-    font-size: 0.76rem;
+    font-size: 0.875rem;
     font-weight: 600;
 }
 
@@ -322,7 +322,7 @@ main {
     width: 100%;
     border-collapse: collapse;
     color: #53645c;
-    font-size: 0.67rem;
+    font-size: 0.75rem;
     line-height: 1.4;
     text-align: left;
 }
@@ -332,7 +332,7 @@ main {
     top: 0;
     background: #fffdfb;
     color: #78857e;
-    font-size: 0.62rem;
+    font-size: 0.75rem;
     font-weight: 500;
 }
 
@@ -367,7 +367,7 @@ main {
 
 .travel-map__residence-place span {
     color: #78857e;
-    font-size: 0.62rem;
+    font-size: 0.75rem;
 }
 
 .travel-map #travel-city-view[hidden],
@@ -378,7 +378,7 @@ main {
 .travel-map__demo-notice {
     margin: 12px 0 0;
     color: #8d5d42;
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     line-height: 1.45;
 }
 
@@ -394,7 +394,7 @@ main {
     padding-top: 10px;
     border-top: 1px solid #e8e9e4;
     color: #8d5d42;
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     line-height: 1.45;
 }
 
@@ -411,7 +411,7 @@ main {
 .travel-map__empty,
 .travel-map__story-content {
     color: #53645c;
-    font-size: 0.8rem;
+    font-size: 0.875rem;
     line-height: 1.55;
 }
 
@@ -449,12 +449,12 @@ main {
 
 .travel-map__story-date {
     color: #78857e;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
 }
 
 .travel-map__place {
     color: #52635b;
-    font-size: 0.78rem;
+    font-size: 0.875rem;
 }
 
 .travel-map__residence {
@@ -464,20 +464,20 @@ main {
     border-radius: 999px;
     background: #fbf1e9;
     color: #8d5d42;
-    font-size: 0.68rem;
+    font-size: 0.75rem;
     font-weight: 600;
 }
 
 .travel-map__visits {
     margin-top: 9px;
     color: #53645c;
-    font-size: 0.75rem;
+    font-size: 0.875rem;
 }
 
 .travel-map__city-stats {
     margin-top: 8px !important;
     color: #52635b;
-    font-size: 0.74rem;
+    font-size: 0.875rem;
 }
 
 .travel-map__visits summary {
@@ -508,7 +508,7 @@ main {
     background: transparent;
     color: #53645c;
     font: inherit;
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     line-height: 1.4;
     text-align: left;
     cursor: pointer;
@@ -551,7 +551,7 @@ main {
 .travel-map__description {
     margin-top: 9px !important;
     color: #53645c;
-    font-size: 0.78rem;
+    font-size: 0.875rem;
     white-space: pre-line;
 }
 
@@ -572,7 +572,7 @@ main {
 .travel-map__error {
     margin: 0;
     color: #8d5d42;
-    font-size: 0.78rem;
+    font-size: 0.875rem;
 }
 
 .travel-map :focus-visible,
