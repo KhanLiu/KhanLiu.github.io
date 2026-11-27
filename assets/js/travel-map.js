@@ -347,8 +347,8 @@
                 },
                 paint: {
                     "text-color": ["case",
-                        ["==", ["get", "livedHere"], true], "#a85d22",
-                        ["==", ["get", "visitedBefore"], true], "#00549e",
+                        ["==", ["get", "livedHere"], true], "#0065bd",
+                        ["==", ["get", "visitedBefore"], true], "#72c4e8",
                         "#6f8796"
                     ],
                     "text-halo-color": "#fffdfb",
