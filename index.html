@@ -14,12 +14,14 @@
     <link rel="preconnect" href="https://unpkg.com" crossorigin>
     <link rel="preconnect" href="https://tiles.openfreemap.org" crossorigin>
     <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.css">
-    <link rel="stylesheet" href="{{ '/assets/css/travel-map.css' | relative_url }}?v=9">
+    <link rel="stylesheet" href="{{ '/assets/css/travel-map.css' | relative_url }}?v=10">
 </head>
 <body>
-    <header class="site-header">
-        <a href="{{ '/' | relative_url }}" aria-label="Life in Places home">Life</a>
-        <span>Traveling</span>
+    <header class="site-header site-header--life-map">
+        <a class="site-header__name" href="{{ '/' | relative_url }}" aria-label="Zihan Liu home">Zihan Liu</a>
+        <span class="site-header__separator" aria-hidden="true">|</span>
+        <span class="site-header__title">Life Map</span>
+        <span class="site-header__separator" aria-hidden="true">|</span>
         <a class="site-header__admin" href="{{ '/admin/' | relative_url }}">Edit</a>
     </header>
     <main>
