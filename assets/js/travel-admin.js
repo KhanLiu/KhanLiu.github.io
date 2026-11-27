@@ -48,6 +48,9 @@
                 rate_limited: "Too many sign-in attempts. Wait ten minutes before trying again.",
                 invalid_state: "Sign-in expired or could not be verified. Start again and finish within ten minutes.",
                 oauth_denied: "GitHub sign-in was cancelled or not approved.",
+                oauth_credentials: "GitHub rejected the OAuth Client ID/Secret pair. Verify they belong to the same OAuth App.",
+                oauth_redirect_uri: "GitHub rejected the callback URL. It must match the OAuth App callback URL.",
+                oauth_code: "GitHub rejected the one-time authorization code. Start sign-in again and complete it once.",
                 oauth_exchange: "GitHub could not complete sign-in. Check the OAuth app secret and callback URL.",
                 not_authorized: "This GitHub account is not authorized to edit these travel records."
             };

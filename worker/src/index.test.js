@@ -120,9 +120,10 @@ test("consumes OAuth state once and issues a short session only to the configure
     };
     const originalFetch = globalThis.fetch;
     let githubLogin = "KhanLiu";
+    let tokenResult = { access_token: "oauth-user-token" };
     globalThis.fetch = async (input) => {
         if (String(input) === "https://github.com/login/oauth/access_token") {
-            return new Response(JSON.stringify({ access_token: "oauth-user-token" }), { status: 200 });
+            return new Response(JSON.stringify(tokenResult), { status: 200 });
         }
         if (String(input) === "https://api.github.com/user") {
             return new Response(JSON.stringify({ login: githubLogin }), { status: 200 });
@@ -154,6 +155,23 @@ test("consumes OAuth state once and issues a short session only to the configure
         ), env);
         assert.match(rejected.headers.get("Location"), /#error=not_authorized$/);
         assert.equal(Array.from(store.keys()).filter((key) => key.startsWith("session:")).length, 1);
+
+        const credentialsLogin = await handleRequest(new Request("https://admin.workers.dev/auth/login"), env);
+        const credentialsState = new URL(credentialsLogin.headers.get("Location")).searchParams.get("state");
+        tokenResult = { error: "incorrect_client_credentials" };
+        const invalidCredentials = await handleRequest(new Request(
+            "https://admin.workers.dev/auth/callback?code=credentials-code&state="
+                + encodeURIComponent(credentialsState)
+        ), env);
+        assert.match(invalidCredentials.headers.get("Location"), /#error=oauth_credentials$/);
+
+        const codeLogin = await handleRequest(new Request("https://admin.workers.dev/auth/login"), env);
+        const codeState = new URL(codeLogin.headers.get("Location")).searchParams.get("state");
+        tokenResult = { error: "bad_verification_code" };
+        const invalidCode = await handleRequest(new Request(
+            "https://admin.workers.dev/auth/callback?code=expired-code&state=" + encodeURIComponent(codeState)
+        ), env);
+        assert.match(invalidCode.headers.get("Location"), /#error=oauth_code$/);
     } finally {
         globalThis.fetch = originalFetch;
     }

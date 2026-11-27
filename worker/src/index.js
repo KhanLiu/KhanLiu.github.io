@@ -406,9 +406,17 @@ async function handleCallback(request, env, url) {
         })
     });
     const tokenResult = await tokenResponse.json();
-    if (!tokenResponse.ok || !tokenResult.access_token) {
-        console.error("GitHub OAuth code exchange failed with status", tokenResponse.status);
-        return redirectResponse(env.SITE_ORIGIN + "/admin/#error=oauth_exchange");
+    if (!tokenResponse.ok || !tokenResult || typeof tokenResult.access_token !== "string") {
+        let errorCode = "oauth_exchange";
+        if (tokenResult && tokenResult.error === "incorrect_client_credentials") {
+            errorCode = "oauth_credentials";
+        } else if (tokenResult && tokenResult.error === "redirect_uri_mismatch") {
+            errorCode = "oauth_redirect_uri";
+        } else if (tokenResult && tokenResult.error === "bad_verification_code") {
+            errorCode = "oauth_code";
+        }
+        console.error("GitHub OAuth code exchange failed with status", tokenResponse.status, errorCode);
+        return redirectResponse(env.SITE_ORIGIN + "/admin/#error=" + errorCode);
     }
 
     const userResponse = await fetch("https://api.github.com/user", {
