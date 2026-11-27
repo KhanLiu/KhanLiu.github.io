@@ -1,15 +1,340 @@
-# Add actual flight records here when ready; no sample flights are included.
-# Required fields:
-# - date: "YYYY-MM-DD"
-#   origin:
-#     airport: "MUC"
-#     city: "Munich"
-#     country: "Germany"
-#     coordinates: [48.35, 11.79] # [latitude, longitude]
-#   destination:
-#     airport: "LHR"
-#     city: "London"
-#     country: "United Kingdom"
-#     coordinates: [51.47, -0.45]
-#   flight_number: "AB123" # optional
-[]
+# Personal flight routes. Coordinates are approximate airport locations.
+# Ticket numbers are intentionally not stored.
+airports:
+  FMM: {city: Memmingen, country: Germany, coordinates: [47.9888, 10.2395]}
+  BUD: {city: Budapest, country: Hungary, coordinates: [47.4369, 19.2556]}
+  HEL: {city: Helsinki, country: Finland, coordinates: [60.3172, 24.9633]}
+  MUC: {city: Munich, country: Germany, coordinates: [48.3538, 11.7861]}
+  PVG: {city: Shanghai, country: China, coordinates: [31.1443, 121.8083]}
+  KMG: {city: Kunming, country: China, coordinates: [25.1019, 102.9292]}
+  TNA: {city: Jinan, country: China, coordinates: [36.8572, 117.2159]}
+  LJG: {city: Lijiang, country: China, coordinates: [26.6800, 100.2460]}
+  KWL: {city: Guilin, country: China, coordinates: [25.2181, 110.0392]}
+  HKG: {city: Hong Kong, country: Hong Kong, coordinates: [22.3080, 113.9185]}
+  FRA: {city: Frankfurt, country: Germany, coordinates: [50.0379, 8.5622]}
+  YYZ: {city: Toronto, country: Canada, coordinates: [43.6777, -79.6248]}
+  YQB: {city: Quebec City, country: Canada, coordinates: [46.7911, -71.3933]}
+  BCN: {city: Barcelona, country: Spain, coordinates: [41.2974, 2.0833]}
+  DUS: {city: Dusseldorf, country: Germany, coordinates: [51.2895, 6.7668]}
+  PEK: {city: Beijing, country: China, coordinates: [40.0799, 116.6031]}
+  FOC: {city: Fuzhou, country: China, coordinates: [25.9351, 119.6633]}
+  CAN: {city: Guangzhou, country: China, coordinates: [23.3924, 113.2988]}
+  YVR: {city: Vancouver, country: Canada, coordinates: [49.1967, -123.1815]}
+  YYC: {city: Calgary, country: Canada, coordinates: [51.1215, -114.0076]}
+  EDI: {city: Edinburgh, country: United Kingdom, coordinates: [55.9508, -3.3726]}
+  GLA: {city: Glasgow, country: United Kingdom, coordinates: [55.8719, -4.4331]}
+  VIE: {city: Vienna, country: Austria, coordinates: [48.1103, 16.5697]}
+  SHA: {city: Shanghai, country: China, coordinates: [31.1979, 121.3363]}
+  KIX: {city: Osaka, country: Japan, coordinates: [34.4347, 135.2440]}
+  TAO: {city: Qingdao, country: China, coordinates: [36.3619, 120.0883]}
+  HND: {city: Tokyo, country: Japan, coordinates: [35.5494, 139.7798]}
+  ARN: {city: Stockholm, country: Sweden, coordinates: [59.6519, 17.9186]}
+  MLA: {city: Malta, country: Malta, coordinates: [35.8575, 14.4775]}
+  BGY: {city: Bergamo, country: Italy, coordinates: [45.6739, 9.7042]}
+  VCE: {city: Venice, country: Italy, coordinates: [45.5053, 12.3519]}
+  CPT: {city: Cape Town, country: South Africa, coordinates: [-33.9715, 18.6021]}
+  ENH: {city: Enshi, country: China, coordinates: [30.3203, 109.4850]}
+  CKG: {city: Chongqing, country: China, coordinates: [29.7192, 106.6410]}
+  HGH: {city: Hangzhou, country: China, coordinates: [30.2295, 120.4344]}
+  SIN: {city: Singapore, country: Singapore, coordinates: [1.3644, 103.9915]}
+  TSN: {city: Tianjin, country: China, coordinates: [39.1244, 117.3462]}
+  CTU: {city: Chengdu, country: China, coordinates: [30.5785, 103.9471]}
+  WUH: {city: Wuhan, country: China, coordinates: [30.7838, 114.2081]}
+  HAK: {city: Haikou, country: China, coordinates: [19.9349, 110.4590]}
+
+flights:
+  - date: "2026-10-14"
+    airline: "Wizz Air Malta"
+    flight_number: "W42296"
+    origin: FMM
+    destination: BUD
+  - date: "2026-09-09"
+    airline: "Finnair"
+    flight_number: "AY1405"
+    origin: HEL
+    destination: MUC
+  - date: "2026-09-08"
+    airline: "Finnair"
+    flight_number: "AY88"
+    origin: PVG
+    destination: HEL
+  - date: "2026-09-02"
+    airline: "Kunming Airlines"
+    flight_number: "KY8203"
+    origin: KMG
+    destination: TNA
+  - date: "2026-08-25"
+    airline: "Lucky Air"
+    flight_number: "8L9822"
+    origin: TNA
+    destination: LJG
+  - date: "2026-08-20"
+    airline: "Guilin Airlines"
+    flight_number: "GT1141"
+    origin: KWL
+    destination: TNA
+  - date: "2026-08-11"
+    airline: "China Eastern Airlines"
+    flight_number: "MU7365"
+    origin: PVG
+    destination: HKG
+  - date: "2026-08-09"
+    airline: "China Eastern Airlines"
+    flight_number: "MU220"
+    origin: FRA
+    destination: PVG
+  - date: "2026-07-17"
+    airline: "Lufthansa"
+    flight_number: "LH495"
+    origin: YYZ
+    destination: MUC
+  - date: "2026-07-17"
+    airline: "Lufthansa"
+    flight_number: "LH6743"
+    origin: YQB
+    destination: YYZ
+  - date: "2026-07-03"
+    airline: "Lufthansa"
+    flight_number: "LH494"
+    origin: MUC
+    destination: YYZ
+  - date: "2026-02-23"
+    airline: "Lufthansa City Airlines"
+    flight_number: "VL1817"
+    origin: BCN
+    destination: MUC
+  - date: "2026-02-15"
+    airline: "Lufthansa City Airlines"
+    flight_number: "VL1816"
+    origin: MUC
+    destination: BCN
+  - date: "2026-02-15"
+    airline: "Lufthansa"
+    flight_number: "LH2025"
+    origin: DUS
+    destination: MUC
+  - date: "2026-01-10"
+    airline: "Lufthansa"
+    flight_number: "LH723"
+    origin: PEK
+    destination: MUC
+  - date: "2025-12-30"
+    airline: "Sichuan Airlines"
+    flight_number: "3U3556"
+    origin: FOC
+    destination: TNA
+  - date: "2025-12-21"
+    airline: "Shandong Airlines"
+    flight_number: "SC1175"
+    origin: TNA
+    destination: CAN
+  - date: "2025-12-11"
+    airline: "Lufthansa"
+    flight_number: "LH7318"
+    origin: MUC
+    destination: PEK
+  - date: "2025-09-07"
+    airline: "Lufthansa"
+    flight_number: "LH477"
+    origin: YVR
+    destination: MUC
+  - date: "2025-08-31"
+    airline: "Flair Airlines"
+    flight_number: "F8801"
+    origin: YYC
+    destination: YVR
+  - date: "2025-08-27"
+    airline: "Flair Airlines"
+    flight_number: "F8804"
+    origin: YVR
+    destination: YYC
+  - date: "2025-08-15"
+    airline: "Lufthansa"
+    flight_number: "LH476"
+    origin: MUC
+    destination: YVR
+  - date: "2025-08-09"
+    airline: "Lufthansa"
+    flight_number: "LH2525"
+    origin: EDI
+    destination: MUC
+  - date: "2025-07-30"
+    airline: "Lufthansa"
+    flight_number: "LH972"
+    origin: FRA
+    destination: GLA
+  - date: "2025-07-30"
+    airline: "Lufthansa"
+    flight_number: "LH99"
+    origin: MUC
+    destination: FRA
+  - date: "2025-01-13"
+    airline: "Austrian Airlines"
+    flight_number: "OS115"
+    origin: VIE
+    destination: MUC
+  - date: "2025-01-13"
+    airline: "Austrian Airlines"
+    flight_number: "OS76"
+    origin: PVG
+    destination: VIE
+  - date: "2025-01-11"
+    airline: "China Eastern Airlines"
+    flight_number: "MU5572"
+    origin: TNA
+    destination: SHA
+  - date: "2024-12-29"
+    airline: "Shandong Airlines"
+    flight_number: "SC4092"
+    origin: KIX
+    destination: TAO
+  - date: "2024-12-19"
+    airline: "China Eastern Airlines"
+    flight_number: "MU537"
+    origin: SHA
+    destination: HND
+  - date: "2024-12-17"
+    airline: "Lufthansa"
+    flight_number: "LH726"
+    origin: MUC
+    destination: PVG
+  - date: "2024-09-09"
+    airline: "Lufthansa"
+    flight_number: "LH2423"
+    origin: ARN
+    destination: MUC
+  - date: "2024-09-05"
+    airline: "Lufthansa"
+    flight_number: "LH2414"
+    origin: MUC
+    destination: ARN
+  - date: "2024-04-09"
+    airline: "Ryanair"
+    flight_number: "FR9535"
+    origin: MLA
+    destination: FMM
+  - date: "2024-04-04"
+    airline: "Ryanair"
+    flight_number: "FR9534"
+    origin: FMM
+    destination: MLA
+  - date: "2023-08-20"
+    airline: "Lufthansa"
+    flight_number: "LH94"
+    origin: FRA
+    destination: MUC
+  - date: "2023-08-19"
+    airline: "Lufthansa"
+    flight_number: "LH577"
+    origin: CPT
+    destination: FRA
+  - date: "2023-08-11"
+    airline: "Lufthansa"
+    flight_number: "LH576"
+    origin: FRA
+    destination: CPT
+  - date: "2023-08-11"
+    airline: "Lufthansa"
+    flight_number: "LH121"
+    origin: MUC
+    destination: FRA
+  - date: "2022-04-24"
+    airline: "Ryanair"
+    flight_number: "FR7361"
+    origin: BGY
+    destination: VIE
+  - date: "2022-04-17"
+    airline: "Ryanair"
+    flight_number: "FR1484"
+    origin: VIE
+    destination: VCE
+  - date: "2022-01-10"
+    airline: "Lufthansa"
+    flight_number: "LH2465"
+    origin: HEL
+    destination: MUC
+  - date: "2021-12-22"
+    airline: "Lufthansa"
+    flight_number: "LH2464"
+    origin: MUC
+    destination: HEL
+  - date: "2021-09-24"
+    airline: "Cathay Pacific"
+    flight_number: "CX289"
+    origin: HKG
+    destination: FRA
+  - date: "2021-09-23"
+    airline: "Cathay Pacific"
+    flight_number: "CX369"
+    origin: PVG
+    destination: HKG
+  - date: "2021-07-25"
+    airline: "Air China"
+    flight_number: "CA8201"
+    origin: WUH
+    destination: PEK
+  - date: "2020-11-09"
+    airline: "China Southern Airlines"
+    flight_number: "CZ3841"
+    origin: ENH
+    destination: WUH
+  - date: "2020-11-05"
+    airline: "XiamenAir"
+    flight_number: "MF8419"
+    origin: WUH
+    destination: CKG
+  - date: "2020-09-06"
+    airline: "Shandong Airlines"
+    flight_number: "SC4923"
+    origin: TNA
+    destination: WUH
+  - date: "2020-07-28"
+    airline: "Shandong Airlines"
+    flight_number: "SC4610"
+    origin: HAK
+    destination: TNA
+  - date: "2020-07-20"
+    airline: "Shandong Airlines"
+    flight_number: "SC2105"
+    origin: TNA
+    destination: HAK
+  - date: "2020-01-16"
+    airline: "China Southern Airlines"
+    flight_number: "CZ3783"
+    origin: WUH
+    destination: HGH
+  - date: "2019-08-14"
+    airline: "Cathay Pacific"
+    flight_number: "CX5852"
+    origin: HKG
+    destination: WUH
+  - date: "2019-08-13"
+    airline: "Cathay Pacific"
+    flight_number: "CX636"
+    origin: SIN
+    destination: HKG
+  - date: "2019-07-31"
+    airline: "Cathay Pacific"
+    flight_number: "CX659"
+    origin: HKG
+    destination: SIN
+  - date: "2019-07-30"
+    airline: "Cathay Pacific"
+    flight_number: "CX5855"
+    origin: WUH
+    destination: HKG
+  - date: "2018-08-22"
+    airline: "China Southern Airlines"
+    flight_number: "CZ3167"
+    origin: TSN
+    destination: WUH
+  - date: "2017-09-04"
+    airline: "Shandong Airlines"
+    flight_number: "SC4923"
+    origin: TNA
+    destination: WUH
+  - date: "2017-08-02"
+    airline: "Lucky Air"
+    flight_number: "8L9615"
+    origin: CTU
+    destination: TNA

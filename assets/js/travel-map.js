@@ -3,6 +3,7 @@
 
     var visits = [];
     var flights = [];
+    var airports = Object.create(null);
     var map = null;
     var mapReady = false;
     var selectedIndex = -1;
@@ -60,7 +61,15 @@
         }
 
         try {
-            flights = JSON.parse(document.getElementById("flight-data").textContent);
+            var flightData = JSON.parse(document.getElementById("flight-data").textContent);
+            if (Array.isArray(flightData)) {
+                flights = flightData;
+            } else if (flightData && typeof flightData === "object") {
+                airports = flightData.airports || Object.create(null);
+                flights = flightData.flights;
+            } else {
+                flights = flightData;
+            }
         } catch (error) {
             flights = [];
             addStatus("Flight data could not be read. Check the YAML syntax in _data/flights.yml.");
@@ -89,12 +98,16 @@
         visits.forEach(function (visit) {
             visit._livedHere = Boolean(livedPlaces[visit._placeKey]);
         });
-        var rejectedFlights = flights.length - flights.filter(isValidFlight).length;
+        var rejectedFlights = flights.length;
         flights = flights.map(function (flight, index) {
-            return Object.assign({ _index: index }, flight);
+            return Object.assign({ _index: index }, flight, {
+                origin: resolveFlightEndpoint(flight && flight.origin),
+                destination: resolveFlightEndpoint(flight && flight.destination)
+            });
         }).filter(isValidFlight).sort(function (a, b) {
             return a.date.localeCompare(b.date) || a._index - b._index;
         });
+        rejectedFlights -= flights.length;
         demoNotice.hidden = !visits.some(function (visit) {
             return visit.demo === true;
         });
@@ -520,8 +533,11 @@
         elements.flightTitle.textContent = origin.city + " → " + destination.city;
         elements.flightAirports.textContent = [origin.airport, destination.airport].filter(Boolean).join(" → ");
         elements.flightAirports.hidden = !elements.flightAirports.textContent;
-        elements.flightNumber.textContent = flight.flight_number ? "Flight " + flight.flight_number : "";
-        elements.flightNumber.hidden = !flight.flight_number;
+        var flightDetails = [];
+        if (flight.airline) flightDetails.push(flight.airline);
+        if (flight.flight_number) flightDetails.push("Flight " + flight.flight_number);
+        elements.flightNumber.textContent = flightDetails.join(" · ");
+        elements.flightNumber.hidden = !flightDetails.length;
         elements.flightEmpty.hidden = true;
         elements.flightContent.hidden = false;
         updateFlightSelection();
@@ -757,7 +773,14 @@
             && (!flight.date_precision || ["day", "month", "year"].indexOf(flight.date_precision) !== -1)
             && isValidFlightEndpoint(flight.origin)
             && isValidFlightEndpoint(flight.destination)
+            && (!flight.airline || typeof flight.airline === "string")
             && (!flight.flight_number || typeof flight.flight_number === "string");
+    }
+
+    function resolveFlightEndpoint(endpoint) {
+        if (typeof endpoint !== "string") return endpoint;
+        if (!Object.prototype.hasOwnProperty.call(airports, endpoint)) return null;
+        return Object.assign({ airport: endpoint }, airports[endpoint]);
     }
 
     function isValidFlightEndpoint(endpoint) {
