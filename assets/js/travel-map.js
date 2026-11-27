@@ -776,7 +776,7 @@
         selectedAirportCode = code;
         selectedFlightIndex = -1;
         elements.flightTitle.textContent = code;
-        elements.flightAirports.textContent = indexes.length + " flights on record · select one to highlight its route";
+        elements.flightAirports.textContent = indexes.length + " flights on record";
         elements.flightAirports.hidden = false;
         elements.flightNumber.textContent = "";
         elements.flightNumber.hidden = true;
