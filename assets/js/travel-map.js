@@ -9,6 +9,7 @@
     var selectedIndex = -1;
     var selectedPlaceKey = "";
     var selectedFlightIndex = -1;
+    var selectedAirportCode = "";
     var viewMode = "cities";
     var statusMessages = [];
     var renderedPlaceVisitsKey = "";
@@ -29,10 +30,13 @@
             empty: document.getElementById("travel-story-empty"),
             content: document.getElementById("travel-story-content"),
             storyError: document.getElementById("travel-story-error"),
+            residences: document.getElementById("travel-residences"),
+            residenceList: document.getElementById("travel-residence-list"),
             storyDate: document.getElementById("travel-story-date"),
             storyTitle: document.getElementById("travel-story-title"),
             livedHere: document.getElementById("travel-story-lived-here"),
             storyPlace: document.getElementById("travel-story-place"),
+            cityStats: document.getElementById("travel-story-stats"),
             description: document.getElementById("travel-story-description"),
             placeVisits: document.getElementById("travel-city-visits"),
             placeVisitsSummary: document.getElementById("travel-city-visits-summary"),
@@ -41,10 +45,10 @@
             photo: document.getElementById("travel-photo"),
             flightEmpty: document.getElementById("travel-flight-empty"),
             flightContent: document.getElementById("travel-flight-content"),
-            flightDate: document.getElementById("travel-flight-date"),
             flightTitle: document.getElementById("travel-flight-title"),
             flightAirports: document.getElementById("travel-flight-airports"),
-            flightNumber: document.getElementById("travel-flight-number")
+            flightNumber: document.getElementById("travel-flight-number"),
+            airportFlights: document.getElementById("travel-airport-flights")
         };
         demoNotice = document.getElementById("travel-demo-notice");
 
@@ -98,6 +102,7 @@
         visits.forEach(function (visit) {
             visit._livedHere = Boolean(livedPlaces[visit._placeKey]);
         });
+        renderResidences(visits);
         var rejectedFlights = flights.length;
         flights = flights.map(function (flight, index) {
             return Object.assign({ _index: index }, flight, {
@@ -188,10 +193,8 @@
                 type: "circle",
                 source: "travel-places",
                 paint: {
-                    "circle-radius": ["case", ["==", ["get", "placeKey"], selectedPlaceKey], 19,
-                        ["==", ["get", "livedHere"], true], 16, 13],
-                    "circle-color": ["case", ["==", ["get", "placeKey"], selectedPlaceKey], "#e99672",
-                        ["==", ["get", "livedHere"], true], "#b97c51", "#78cfc3"],
+                    "circle-radius": placeRadiusExpression(true),
+                    "circle-color": ["case", ["==", ["get", "livedHere"], true], "#e87722", "#0065bd"],
                     "circle-opacity": 0.24,
                     "circle-blur": 0.7
                 }
@@ -201,12 +204,10 @@
                 type: "circle",
                 source: "travel-places",
                 paint: {
-                    "circle-radius": ["case", ["==", ["get", "placeKey"], selectedPlaceKey], 7,
-                        ["==", ["get", "livedHere"], true], 6, 4.5],
-                    "circle-color": ["case", ["==", ["get", "placeKey"], selectedPlaceKey], "#f09b75",
-                        ["==", ["get", "livedHere"], true], "#d2754e", "#8ce1d2"],
+                    "circle-radius": placeRadiusExpression(false),
+                    "circle-color": ["case", ["==", ["get", "livedHere"], true], "#e87722", "#0065bd"],
                     "circle-stroke-width": ["case", ["==", ["get", "placeKey"], selectedPlaceKey], 2.5,
-                        ["==", ["get", "livedHere"], true], 2, 1.5],
+                        1.5],
                     "circle-stroke-color": "#f8fbfa"
                 }
             });
@@ -221,7 +222,7 @@
                     "line-cap": "round"
                 },
                 paint: {
-                    "line-color": ["case", ["==", ["get", "selected"], true], "#d2754e", "#55998d"],
+                    "line-color": ["case", ["==", ["get", "selected"], true], "#e87722", "#0065bd"],
                     "line-width": ["case", ["==", ["get", "selected"], true], 3.5, 1.5],
                     "line-opacity": ["case", ["==", ["get", "selected"], true], 0.95, 0.22]
                 }
@@ -241,36 +242,22 @@
                     "text-keep-upright": false
                 },
                 paint: {
-                    "text-color": ["case", ["==", ["get", "selected"], true], "#d2754e", "#7d9d96"],
+                    "text-color": ["case", ["==", ["get", "selected"], true], "#e87722", "#0065bd"],
                     "text-opacity": ["case", ["==", ["get", "selected"], true], 0.95, 0.25],
                     "text-halo-color": "#fffdfb",
                     "text-halo-width": 1
                 }
             });
             map.addLayer({
-                id: "travel-flight-origin",
+                id: "travel-flight-airport",
                 type: "circle",
                 source: "travel-flights",
-                filter: ["==", ["get", "kind"], "origin"],
+                filter: ["==", ["get", "kind"], "airport"],
                 layout: { visibility: "none" },
                 paint: {
-                    "circle-radius": ["case", ["==", ["get", "selected"], true], 6, 3.5],
-                    "circle-color": "#55998d",
-                    "circle-opacity": ["case", ["==", ["get", "selected"], true], 1, 0.5],
-                    "circle-stroke-width": ["case", ["==", ["get", "selected"], true], 2, 1],
-                    "circle-stroke-color": "#fffdfb"
-                }
-            });
-            map.addLayer({
-                id: "travel-flight-destination",
-                type: "circle",
-                source: "travel-flights",
-                filter: ["==", ["get", "kind"], "destination"],
-                layout: { visibility: "none" },
-                paint: {
-                    "circle-radius": ["case", ["==", ["get", "selected"], true], 6, 3.5],
-                    "circle-color": "#d2754e",
-                    "circle-opacity": ["case", ["==", ["get", "selected"], true], 1, 0.5],
+                    "circle-radius": ["case", ["==", ["get", "selected"], true], 6, 4],
+                    "circle-color": "#0065bd",
+                    "circle-opacity": 0.95,
                     "circle-stroke-width": ["case", ["==", ["get", "selected"], true], 2, 1],
                     "circle-stroke-color": "#fffdfb"
                 }
@@ -279,24 +266,21 @@
                 id: "travel-flight-airport-code",
                 type: "symbol",
                 source: "travel-flights",
-                filter: ["all",
-                    ["in", ["get", "kind"], ["literal", ["origin", "destination"]]],
-                    ["==", ["get", "selected"], true]
-                ],
+                filter: ["==", ["get", "kind"], "airport"],
                 layout: {
                     visibility: "none",
                     "text-field": ["get", "airport"],
                     "text-font": ["Noto Sans Bold"],
-                    "text-size": 12,
-                    "text-offset": [0, 1.15],
+                    "text-size": 9,
+                    "text-offset": [0, 1.2],
                     "text-anchor": "top",
-                    "text-allow-overlap": true,
-                    "text-ignore-placement": true
+                    "text-allow-overlap": false,
+                    "text-ignore-placement": false
                 },
                 paint: {
-                    "text-color": "#293b36",
+                    "text-color": "#00549e",
                     "text-halo-color": "#fffdfb",
-                    "text-halo-width": 1.5
+                    "text-halo-width": 1.25
                 }
             });
             ["travel-place-point"].forEach(function (layerId) {
@@ -313,45 +297,69 @@
                     }
                 });
             });
-            ["travel-flight-route", "travel-flight-origin", "travel-flight-destination"].forEach(function (layerId) {
+            ["travel-flight-route", "travel-flight-airport", "travel-flight-airport-code"].forEach(function (layerId) {
                 map.on("mouseenter", layerId, function () {
                     map.getCanvas().style.cursor = "pointer";
                 });
                 map.on("mouseleave", layerId, function () {
                     map.getCanvas().style.cursor = "";
                 });
-                map.on("click", layerId, function (event) {
-                    var feature = event.features && event.features[0];
-                    if (feature) {
-                        setViewMode("flights");
-                        selectFlight(Number(feature.properties.index), true);
-                    }
+            });
+            map.on("click", function (event) {
+                if (viewMode !== "flights") return;
+                var features = map.queryRenderedFeatures(event.point, {
+                    layers: ["travel-flight-airport-code", "travel-flight-airport", "travel-flight-route"]
                 });
+                var airportFeature = features.find(function (feature) {
+                    return feature.properties.kind === "airport";
+                });
+                if (airportFeature) {
+                    showAirportFlights(airportFeature.properties.airport, true);
+                    return;
+                }
+                var routeFeature = features.find(function (feature) {
+                    return feature.properties.kind === "route";
+                });
+                if (routeFeature) {
+                    selectFlight(Number(routeFeature.properties.index), true);
+                }
             });
             setMapViewVisibility();
             updateSelectedPoint();
             updateFlightSelection();
-            if (viewMode === "flights" && selectedFlightIndex >= 0) {
-                selectFlight(selectedFlightIndex, true);
-            }
         });
     }
 
     function createVisitFeatures() {
-        var seenPlaces = Object.create(null);
+        var places = Object.create(null);
         var features = [];
         visits.forEach(function (visit) {
-            if (seenPlaces[visit._placeKey]) return;
-            seenPlaces[visit._placeKey] = true;
+            var place = places[visit._placeKey];
+            if (!place) {
+                place = places[visit._placeKey] = {
+                    placeKey: visit._placeKey,
+                    livedHere: visit._livedHere,
+                    stayDays: 0,
+                    stayCount: 0,
+                    coordinates: visit.coordinates
+                };
+            }
+            place.stayDays += visit.stay_days;
+            place.stayCount += 1;
+        });
+        Object.keys(places).forEach(function (placeKey) {
+            var place = places[placeKey];
             features.push({
                 type: "Feature",
                 properties: {
-                    placeKey: visit._placeKey,
-                    livedHere: visit._livedHere
+                    placeKey: place.placeKey,
+                    livedHere: place.livedHere,
+                    stayDays: place.stayDays,
+                    stayCount: place.stayCount
                 },
                 geometry: {
                     type: "Point",
-                    coordinates: [visit.coordinates[1], visit.coordinates[0]]
+                    coordinates: [place.coordinates[1], place.coordinates[0]]
                 }
             });
         });
@@ -381,9 +389,20 @@
 
     function createFlightFeatures() {
         var features = [];
+        var airportsByCode = Object.create(null);
         flights.forEach(function (flight, index) {
             var origin = [flight.origin.coordinates[1], flight.origin.coordinates[0]];
             var destination = [flight.destination.coordinates[1], flight.destination.coordinates[0]];
+            [flight.origin, flight.destination].forEach(function (endpoint) {
+                if (!airportsByCode[endpoint.airport]) {
+                    airportsByCode[endpoint.airport] = {
+                        airport: endpoint.airport,
+                        endpoint: endpoint,
+                        flightCount: 0
+                    };
+                }
+                airportsByCode[endpoint.airport].flightCount += 1;
+            });
             features.push({
                 type: "Feature",
                 properties: { kind: "route", index: index, selected: index === selectedFlightIndex },
@@ -392,28 +411,46 @@
                     coordinates: createGreatCircleSegments(origin, destination)
                 }
             });
+        });
+        Object.keys(airportsByCode).forEach(function (code) {
+            var airport = airportsByCode[code];
+            var selected = selectedAirportCode === code || (selectedFlightIndex >= 0
+                && (flights[selectedFlightIndex].origin.airport === code
+                    || flights[selectedFlightIndex].destination.airport === code));
             features.push({
                 type: "Feature",
                 properties: {
-                    kind: "origin",
-                    index: index,
-                    airport: flight.origin.airport,
-                    selected: index === selectedFlightIndex
+                    kind: "airport",
+                    airport: airport.airport,
+                    flightCount: airport.flightCount,
+                    selected: selected
                 },
-                geometry: { type: "Point", coordinates: origin }
-            });
-            features.push({
-                type: "Feature",
-                properties: {
-                    kind: "destination",
-                    index: index,
-                    airport: flight.destination.airport,
-                    selected: index === selectedFlightIndex
-                },
-                geometry: { type: "Point", coordinates: destination }
+                geometry: {
+                    type: "Point",
+                    coordinates: [airport.endpoint.coordinates[1], airport.endpoint.coordinates[0]]
+                }
             });
         });
         return { type: "FeatureCollection", features: features };
+    }
+
+    function placeRadiusExpression(halo) {
+        var selected = ["==", ["get", "placeKey"], selectedPlaceKey];
+        var livedRadius = halo ? 14 : 5.5;
+        var selectedLivedRadius = halo ? 18 : 7.5;
+        var travelRadii = ["interpolate", ["linear"], ["get", "stayDays"],
+            1, halo ? 12 : 4,
+            7, halo ? 15 : 6,
+            30, halo ? 19 : 9,
+            100, halo ? 23 : 12,
+            500, halo ? 28 : 16];
+        return ["case",
+            ["==", ["get", "livedHere"], true],
+            ["case", selected, selectedLivedRadius, livedRadius],
+            selected,
+            ["+", travelRadii, 2],
+            travelRadii
+        ];
     }
 
     function createGreatCircleSegments(start, end) {
@@ -540,8 +577,8 @@
         elements.flightsButton.setAttribute("aria-pressed", String(!showCities));
         setMapViewVisibility();
 
-        if (!showCities && flights.length && selectedFlightIndex < 0) {
-            selectFlight(0, true);
+        if (!showCities && selectedFlightIndex < 0 && !selectedAirportCode) {
+            showFlightEmpty();
         }
     }
 
@@ -554,8 +591,8 @@
             .forEach(function (layerId) {
             map.setLayoutProperty(layerId, "visibility", cityVisibility);
         });
-        ["travel-flight-route", "travel-flight-direction", "travel-flight-origin",
-            "travel-flight-destination", "travel-flight-airport-code"]
+        ["travel-flight-route", "travel-flight-direction", "travel-flight-airport",
+            "travel-flight-airport-code"]
             .forEach(function (layerId) {
                 map.setLayoutProperty(layerId, "visibility", flightVisibility);
             });
@@ -569,22 +606,76 @@
         });
     }
 
+    function renderResidences(allVisits) {
+        var residences = Object.create(null);
+        allVisits.forEach(function (visit) {
+            if (!visit._livedHere) return;
+            var residence = residences[visit._placeKey];
+            if (!residence) {
+                residence = residences[visit._placeKey] = {
+                    city: visit.city,
+                    country: visit.country,
+                    firstDate: visit.date,
+                    lastDate: visit.date,
+                    totalDays: 0
+                };
+            }
+            if (visit.date < residence.firstDate) residence.firstDate = visit.date;
+            if (visit.date > residence.lastDate) residence.lastDate = visit.date;
+            residence.totalDays += visit.stay_days;
+        });
+
+        var keys = Object.keys(residences).sort(function (a, b) {
+            return residences[a].firstDate.localeCompare(residences[b].firstDate);
+        });
+        elements.residences.hidden = keys.length === 0;
+        elements.residenceList.textContent = "";
+        keys.forEach(function (key) {
+            var residence = residences[key];
+            var row = document.createElement("tr");
+            var placeCell = document.createElement("td");
+            var placeButton = document.createElement("button");
+            var country = document.createElement("span");
+            var yearsCell = document.createElement("td");
+            var daysCell = document.createElement("td");
+            placeButton.type = "button";
+            placeButton.className = "travel-map__residence-place";
+            placeButton.textContent = residence.city;
+            placeButton.setAttribute("aria-label", "Show " + residence.city + ", " + residence.country);
+            placeButton.addEventListener("click", function () {
+                selectPlace(key, true, false);
+            });
+            country.textContent = residence.country;
+            placeButton.appendChild(country);
+            placeCell.appendChild(placeButton);
+            var firstYear = residence.firstDate.slice(0, 4);
+            var lastYear = residence.lastDate.slice(0, 4);
+            yearsCell.textContent = firstYear === lastYear ? firstYear : firstYear + "–" + lastYear;
+            daysCell.textContent = "~" + residence.totalDays;
+            row.appendChild(placeCell);
+            row.appendChild(yearsCell);
+            row.appendChild(daysCell);
+            elements.residenceList.appendChild(row);
+        });
+    }
+
     function selectFlight(index, moveGlobe) {
         if (index < 0 || index >= flights.length) return;
         selectedFlightIndex = index;
+        selectedAirportCode = "";
         var flight = flights[index];
-        var origin = formatFlightEndpoint(flight.origin);
-        var destination = formatFlightEndpoint(flight.destination);
+        var origin = flight.origin.airport;
+        var destination = flight.destination.airport;
 
-        elements.flightDate.textContent = formatDate(flight.date, flight.date_precision);
-        elements.flightTitle.textContent = origin.city + " → " + destination.city;
-        elements.flightAirports.textContent = [origin.airport, destination.airport].filter(Boolean).join(" → ");
-        elements.flightAirports.hidden = !elements.flightAirports.textContent;
+        elements.flightTitle.textContent = origin + " → " + destination;
+        elements.flightAirports.textContent = "";
+        elements.flightAirports.hidden = true;
         var flightDetails = [];
         if (flight.airline) flightDetails.push(flight.airline);
         if (flight.flight_number) flightDetails.push("Flight " + flight.flight_number);
         elements.flightNumber.textContent = flightDetails.join(" · ");
         elements.flightNumber.hidden = !flightDetails.length;
+        elements.airportFlights.hidden = true;
         elements.flightEmpty.hidden = true;
         elements.flightContent.hidden = false;
         updateFlightSelection();
@@ -614,12 +705,62 @@
         }
     }
 
-    function formatFlightEndpoint(endpoint) {
-        var location = [endpoint.city, endpoint.country].filter(Boolean).join(", ");
-        return {
-            city: location || endpoint.airport,
-            airport: endpoint.airport
-        };
+    function showAirportFlights(code, moveGlobe) {
+        var indexes = [];
+        flights.forEach(function (flight, index) {
+            if (flight.origin.airport === code || flight.destination.airport === code) {
+                indexes.push(index);
+            }
+        });
+        indexes.sort(function (a, b) {
+            return flights[b].date.localeCompare(flights[a].date) || b - a;
+        });
+        if (!indexes.length) return;
+
+        selectedAirportCode = code;
+        selectedFlightIndex = -1;
+        elements.flightTitle.textContent = code;
+        elements.flightAirports.textContent = indexes.length + " historical flights · select one to highlight its route";
+        elements.flightAirports.hidden = false;
+        elements.flightNumber.textContent = "";
+        elements.flightNumber.hidden = true;
+        elements.airportFlights.textContent = "";
+        indexes.forEach(function (index) {
+            var flight = flights[index];
+            var details = [flight.airline, flight.flight_number && "Flight " + flight.flight_number]
+                .filter(Boolean).join(" · ");
+            var button = document.createElement("button");
+            button.type = "button";
+            button.textContent = flight.origin.airport + " → " + flight.destination.airport
+                + (details ? " · " + details : "");
+            button.addEventListener("click", function () {
+                selectFlight(index, true);
+            });
+            var item = document.createElement("li");
+            item.appendChild(button);
+            elements.airportFlights.appendChild(item);
+        });
+        elements.airportFlights.hidden = false;
+        elements.flightEmpty.hidden = true;
+        elements.flightContent.hidden = false;
+        updateFlightSelection();
+
+        if (moveGlobe && map && mapReady) {
+            var airport = flights[indexes[0]].origin.airport === code
+                ? flights[indexes[0]].origin
+                : flights[indexes[0]].destination;
+            map.easeTo({
+                center: [airport.coordinates[1], airport.coordinates[0]],
+                zoom: Math.max(map.getZoom(), 3),
+                duration: 900,
+                essential: true
+            });
+        }
+    }
+
+    function showFlightEmpty() {
+        elements.flightEmpty.hidden = false;
+        elements.flightContent.hidden = true;
     }
 
     function updateFlightSelection() {
@@ -654,6 +795,7 @@
         elements.storyTitle.textContent = visit.city;
         elements.livedHere.hidden = !visit._livedHere;
         elements.storyPlace.textContent = visit.country;
+        elements.cityStats.hidden = visit._livedHere;
         elements.description.textContent = visit.description || "";
         elements.description.hidden = !visit.description;
         elements.empty.hidden = true;
@@ -679,23 +821,10 @@
         if (source) {
             source.setData(createVisitFeatures());
         }
-        if (selectedIndex >= 0) {
-            map.setPaintProperty("travel-place-halo", "circle-radius",
-                ["case", ["==", ["get", "placeKey"], selectedPlaceKey], 19,
-                    ["==", ["get", "livedHere"], true], 16, 13]);
-            map.setPaintProperty("travel-place-halo", "circle-color",
-                ["case", ["==", ["get", "placeKey"], selectedPlaceKey], "#e99672",
-                    ["==", ["get", "livedHere"], true], "#b97c51", "#78cfc3"]);
-            map.setPaintProperty("travel-place-point", "circle-radius",
-                ["case", ["==", ["get", "placeKey"], selectedPlaceKey], 7,
-                    ["==", ["get", "livedHere"], true], 6, 4.5]);
-            map.setPaintProperty("travel-place-point", "circle-color",
-                ["case", ["==", ["get", "placeKey"], selectedPlaceKey], "#f09b75",
-                    ["==", ["get", "livedHere"], true], "#d2754e", "#8ce1d2"]);
-            map.setPaintProperty("travel-place-point", "circle-stroke-width",
-                ["case", ["==", ["get", "placeKey"], selectedPlaceKey], 2.5,
-                    ["==", ["get", "livedHere"], true], 2, 1.5]);
-        }
+        map.setPaintProperty("travel-place-halo", "circle-radius", placeRadiusExpression(true));
+        map.setPaintProperty("travel-place-point", "circle-radius", placeRadiusExpression(false));
+        map.setPaintProperty("travel-place-point", "circle-stroke-width",
+            ["case", ["==", ["get", "placeKey"], selectedPlaceKey], 2.5, 1.5]);
     }
 
     function renderPlaceVisits(visit, expanded) {
@@ -706,6 +835,11 @@
             }
         });
 
+        var totalDays = indexes.reduce(function (sum, index) {
+            return sum + visits[index].stay_days;
+        }, 0);
+        elements.cityStats.textContent = indexes.length + (indexes.length === 1 ? " visit" : " visits")
+            + " · ~" + totalDays + (totalDays === 1 ? " day" : " days") + " total";
         elements.placeVisits.hidden = visit._livedHere || indexes.length < 2;
         if (visit._livedHere || indexes.length < 2) {
             elements.placeVisits.open = false;
@@ -713,7 +847,8 @@
             return;
         }
 
-        elements.placeVisitsSummary.textContent = indexes.length + " stays";
+        elements.placeVisitsSummary.textContent = indexes.length + " visits · ~" + totalDays
+            + (totalDays === 1 ? " day" : " days");
         elements.placeVisits.open = expanded;
 
         if (renderedPlaceVisitsKey !== visit._placeKey) {

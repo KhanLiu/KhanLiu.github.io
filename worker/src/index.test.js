@@ -14,18 +14,19 @@ const realTripsYaml = await readFile(new URL("../../_data/trips.yml", import.met
 
 test("parses the current public stay data and preserves month-level dates", () => {
     const trips = parseTripYaml(realTripsYaml);
-    assert.equal(trips.length, 413);
+    assert.equal(trips.length, 576);
     assert.ok(trips.every((trip) => trip.date_precision === "month"));
     assert.ok(trips.every((trip) => Number.isInteger(trip.stay_days) && trip.stay_days > 0));
+    assert.ok(trips.every((trip) => !/\sarea$/i.test(trip.city)));
     assert.ok(trips.every((trip) => trip.coordinates.every((value) =>
         Math.abs(value * 100 - Math.round(value * 100)) < 1e-7)));
     const livedPlaces = new Set(trips.filter((trip) => trip.lived_here === true)
         .map((trip) => trip.city + "|" + trip.country));
     assert.deepEqual(Array.from(livedPlaces).sort(), [
         "Dresden|Germany",
-        "Munich area|Germany",
+        "Munich|Germany",
         "Vienna|Austria",
-        "Wuhan area|China",
+        "Wuhan|China",
         "Xintai|China"
     ]);
 });
@@ -34,7 +35,7 @@ test("serializes and parses edited unicode travel records", () => {
     const trips = [{
         date: "2025-03-01",
         date_precision: "month",
-        city: "東京",
+        city: "æ±äº¬",
         country: "Japan",
         coordinates: [35.68, 139.69],
         stay_days: 4,
@@ -253,7 +254,7 @@ test("reads and writes travel data only after validating the signed-in session",
         assert.equal(getResponse.status, 200);
         assert.equal(getResponse.headers.get("Access-Control-Allow-Origin"), env.SITE_ORIGIN);
         const body = await getResponse.json();
-        assert.equal(body.trips.length, 413);
+        assert.equal(body.trips.length, 576);
         assert.equal(body.login, "KhanLiu");
 
         const edited = body.trips.slice(0, 1);

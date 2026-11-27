@@ -7,12 +7,12 @@ const TRIP_KEYS = ["date", "date_precision", "city", "country", "coordinates", "
 const OPTIONAL_TRIP_KEYS = ["title", "description", "photo"];
 const OPTIONAL_BOOLEAN_TRIP_KEYS = ["lived_here"];
 const YAML_HEADER = [
-    "# Night-anchored city stays inferred from GPS fixes with horizontal accuracy <= 100 m.",
-    "# Night location uses local time 20:00-05:59; other days extend a stay only when >=70% of",
-    "# at least two matched fixes agree on the same city. City match is within 50 km of an",
-    "# approximate city centre. Stays require a night anchor; one day without accurate fixes may be bridged.",
-    "# stay_days is an estimated inclusive span from first city day to last night; no exact dates",
-    "# or raw GPS fixes are published. Timeline date and city-centre coordinates remain approximate."
+    "# Overnight stays inferred locally from fixes with <=100 m accuracy and <=2 m/s speed.",
+    "# The night window is 20:00-05:59 in the location's local timezone.",
+    "# Each local night is assigned to its most common gazetteer place; a single night counts once.",
+    "# Stays with at most one unobserved night between fixes are combined, including across months.",
+    "# Public dates are month-level and coordinates are approximate city centres rounded to two decimals;",
+    "# raw fixes are not published."
 ].join("\n");
 
 function jsonResponse(body, status, headers) {

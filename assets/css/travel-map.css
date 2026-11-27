@@ -150,6 +150,8 @@ main {
     top: 24px;
     left: 28px;
     width: min(320px, calc(100% - 56px));
+    max-height: calc(100% - 48px);
+    overflow-y: auto;
     padding: 22px;
     border: 1px solid rgba(226, 228, 221, 0.92);
     border-radius: 5px;
@@ -158,19 +160,20 @@ main {
     backdrop-filter: blur(12px);
 }
 
-.travel-map__panel h1 {
-    margin: 0;
-    color: #293b36;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.7rem;
-    font-weight: 500;
-    letter-spacing: -0.035em;
+.travel-map__visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
 }
 
 .travel-map__view-toggle {
     display: flex;
     gap: 6px;
-    margin-top: 14px;
+    margin-top: 0;
     padding: 3px;
     border: 1px solid #e1e3dd;
     border-radius: 5px;
@@ -202,20 +205,112 @@ main {
 
 .travel-map__legend {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 8px;
-    margin: 10px 0 0;
+    gap: 8px 14px;
+    margin: 12px 0 0;
     color: #64736c;
     font-size: 0.72rem;
 }
 
+.travel-map__legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+}
+
 .travel-map__legend-mark {
+    display: inline-block;
     width: 9px;
     height: 9px;
     border: 1px solid #fffdfb;
     border-radius: 50%;
-    background: #d2754e;
-    box-shadow: 0 0 0 3px rgba(210, 117, 78, 0.22);
+}
+
+.travel-map__legend-mark--lived {
+    background: #e87722;
+    box-shadow: 0 0 0 3px rgba(232, 119, 34, 0.2);
+}
+
+.travel-map__legend-mark--travel {
+    width: 13px;
+    height: 13px;
+    background: #0065bd;
+    box-shadow: 0 0 0 3px rgba(0, 101, 189, 0.18);
+}
+
+.travel-map__residences {
+    margin-top: 13px;
+    padding-top: 12px;
+    border-top: 1px solid #e8e9e4;
+}
+
+.travel-map__residences[hidden] {
+    display: none;
+}
+
+.travel-map__residences h2 {
+    margin: 0 0 7px;
+    color: #293b36;
+    font-size: 0.76rem;
+    font-weight: 600;
+}
+
+.travel-map__residences-scroll {
+    max-height: 132px;
+    overflow-y: auto;
+}
+
+.travel-map__residences table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #53645c;
+    font-size: 0.67rem;
+    line-height: 1.4;
+    text-align: left;
+}
+
+.travel-map__residences th {
+    position: sticky;
+    top: 0;
+    background: #fffdfb;
+    color: #78857e;
+    font-size: 0.62rem;
+    font-weight: 500;
+}
+
+.travel-map__residences th,
+.travel-map__residences td {
+    padding: 4px 5px;
+    border-bottom: 1px solid #eff0ec;
+}
+
+.travel-map__residences th:first-child,
+.travel-map__residences td:first-child {
+    padding-left: 0;
+}
+
+.travel-map__residences td:last-child,
+.travel-map__residences th:last-child {
+    padding-right: 0;
+    text-align: right;
+}
+
+.travel-map__residence-place {
+    display: grid;
+    justify-items: start;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #293b36;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.travel-map__residence-place span {
+    color: #78857e;
+    font-size: 0.62rem;
 }
 
 .travel-map #travel-city-view[hidden],
@@ -251,7 +346,7 @@ main {
 }
 
 .travel-map__story {
-    margin-top: 17px;
+    margin-top: 14px;
     padding-top: 14px;
     border-top: 1px solid #e8e9e4;
 }
@@ -301,7 +396,7 @@ main {
 }
 
 .travel-map__place {
-    color: #8d5d42;
+    color: #52635b;
     font-size: 0.78rem;
 }
 
@@ -322,10 +417,50 @@ main {
     font-size: 0.75rem;
 }
 
+.travel-map__city-stats {
+    margin-top: 8px !important;
+    color: #52635b;
+    font-size: 0.74rem;
+}
+
 .travel-map__visits summary {
     width: fit-content;
     color: #8d5d42;
     cursor: pointer;
+}
+
+.travel-map__airport-flights {
+    display: grid;
+    max-height: 245px;
+    gap: 4px;
+    overflow-y: auto;
+    margin: 9px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.travel-map__airport-flights[hidden] {
+    display: none;
+}
+
+.travel-map__airport-flights button {
+    width: 100%;
+    padding: 6px 7px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    background: transparent;
+    color: #53645c;
+    font: inherit;
+    font-size: 0.72rem;
+    line-height: 1.4;
+    text-align: left;
+    cursor: pointer;
+}
+
+.travel-map__airport-flights button:hover,
+.travel-map__airport-flights button.is-current {
+    border-color: #e1e3dd;
+    background: #f5f6f2;
 }
 
 .travel-map__visits-list {
@@ -456,6 +591,7 @@ main {
         top: 14px;
         left: 14px;
         width: min(300px, calc(100% - 28px));
+        max-height: calc(100% - 28px);
         padding: 17px;
     }
 }

@@ -2,7 +2,7 @@
     <div id="travel-map-canvas" class="travel-map__canvas" role="application"
         aria-label="Interactive 3D globe of places. Drag to rotate and select a marker to see its story."></div>
     <aside class="travel-map__panel" aria-live="polite" aria-atomic="true">
-        <h1>Life</h1>
+        <h1 class="travel-map__visually-hidden">Travel map</h1>
         <div class="travel-map__view-toggle" role="group" aria-label="Map view">
             <button id="travel-view-cities" class="travel-map__view-button is-active" type="button"
                 aria-pressed="true">Cities</button>
@@ -14,7 +14,21 @@
         </p>
         <p id="travel-map-status" class="travel-map__map-status" role="status" hidden></p>
         <div id="travel-city-view">
-            <p class="travel-map__legend"><span class="travel-map__legend-mark" aria-hidden="true"></span>Lived here</p>
+            <div class="travel-map__legend" aria-label="Map legend">
+                <span><i class="travel-map__legend-mark travel-map__legend-mark--lived" aria-hidden="true"></i>Lived</span>
+                <span><i class="travel-map__legend-mark travel-map__legend-mark--travel" aria-hidden="true"></i>Travel · size = days</span>
+            </div>
+            <section id="travel-residences" class="travel-map__residences" aria-label="Places lived in" hidden>
+                <h2>Places lived in</h2>
+                <div class="travel-map__residences-scroll">
+                    <table>
+                        <thead>
+                            <tr><th scope="col">Place</th><th scope="col">Years</th><th scope="col">Days</th></tr>
+                        </thead>
+                        <tbody id="travel-residence-list"></tbody>
+                    </table>
+                </div>
+            </section>
             <div class="travel-map__story">
                 <div id="travel-story-empty" class="travel-map__empty">
                     <p>Add places and dates to <code>_data/trips.yml</code>.</p>
@@ -27,6 +41,7 @@
                     <h3 id="travel-story-title"></h3>
                     <p id="travel-story-lived-here" class="travel-map__residence" hidden>Lived here</p>
                     <p id="travel-story-place" class="travel-map__place"></p>
+                    <p id="travel-story-stats" class="travel-map__city-stats" hidden></p>
                     <details id="travel-city-visits" class="travel-map__visits" hidden>
                         <summary id="travel-city-visits-summary"></summary>
                         <ol id="travel-city-visits-list" class="travel-map__visits-list"></ol>
@@ -39,13 +54,14 @@
         <div id="travel-flight-view" hidden>
             <div class="travel-map__story">
                 <div id="travel-flight-empty" class="travel-map__empty">
-                    <p>Flight routes will appear here when flight records are added to <code>_data/flights.yml</code>.</p>
+                    <p>Select a route or an airport code to explore its flight history.</p>
                 </div>
                 <div id="travel-flight-content" class="travel-map__story-content" hidden>
-                    <p id="travel-flight-date" class="travel-map__story-date"></p>
                     <h3 id="travel-flight-title"></h3>
                     <p id="travel-flight-airports" class="travel-map__place"></p>
                     <p id="travel-flight-number" class="travel-map__description"></p>
+                    <ol id="travel-airport-flights" class="travel-map__airport-flights"
+                        aria-label="Flight history" hidden></ol>
                 </div>
             </div>
         </div>
