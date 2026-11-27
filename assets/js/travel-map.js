@@ -252,7 +252,7 @@
                     "line-cap": "round"
                 },
                 paint: {
-                    "line-color": "#89949b",
+                    "line-color": "#9b7be5",
                     "line-dasharray": [2, 1.5],
                     "line-width": ["case", ["==", ["get", "selected"], true], 3.5, 1.75],
                     "line-opacity": ["case", ["==", ["get", "selected"], true], 0.95, 0.8]
@@ -300,7 +300,7 @@
                     "text-keep-upright": false
                 },
                 paint: {
-                    "text-color": "#89949b",
+                    "text-color": "#9b7be5",
                     "text-opacity": ["case", ["==", ["get", "selected"], true], 0.95, 0.8],
                     "text-halo-color": "#fffdfb",
                     "text-halo-width": 1
@@ -314,7 +314,11 @@
                 layout: { visibility: "none" },
                 paint: {
                     "circle-radius": ["case", ["==", ["get", "selected"], true], 6, 4],
-                    "circle-color": ["case", ["==", ["get", "livedHere"], true], "#e87722", "#0065bd"],
+                    "circle-color": ["case",
+                        ["==", ["get", "livedHere"], true], "#e87722",
+                        ["==", ["get", "visitedBefore"], true], "#0065bd",
+                        "#8296a3"
+                    ],
                     "circle-opacity": 0.95,
                     "circle-stroke-width": ["case", ["==", ["get", "selected"], true], 2, 1],
                     "circle-stroke-color": "#fffdfb"
@@ -336,7 +340,11 @@
                     "text-ignore-placement": false
                 },
                 paint: {
-                    "text-color": "#00549e",
+                    "text-color": ["case",
+                        ["==", ["get", "livedHere"], true], "#a85d22",
+                        ["==", ["get", "visitedBefore"], true], "#00549e",
+                        "#6f8796"
+                    ],
                     "text-halo-color": "#fffdfb",
                     "text-halo-width": 1.25
                 }
@@ -450,18 +458,27 @@
     function createFlightFeatures() {
         var features = [];
         var airportsByCode = Object.create(null);
+        var routeDirections = Object.create(null);
+        flights.forEach(function (flight) {
+            routeDirections[flight.origin.airport + ">" + flight.destination.airport] = true;
+        });
         flights.forEach(function (flight, index) {
             var origin = [flight.origin.coordinates[1], flight.origin.coordinates[0]];
             var destination = [flight.destination.coordinates[1], flight.destination.coordinates[0]];
+            var hasReturnRoute = Boolean(routeDirections[
+                flight.destination.airport + ">" + flight.origin.airport
+            ]);
             [flight.origin, flight.destination].forEach(function (endpoint) {
                 if (!airportsByCode[endpoint.airport]) {
                     airportsByCode[endpoint.airport] = {
                         airport: endpoint.airport,
                         endpoint: endpoint,
-                        flightCount: 0
+                        flightCount: 0,
+                        visitedBefore: false
                     };
                 }
                 airportsByCode[endpoint.airport].flightCount += 1;
+                if (!flight._upcoming) airportsByCode[endpoint.airport].visitedBefore = true;
             });
             var routeSelected = index === selectedFlightIndex || (selectedAirportCode
                 && (flight.origin.airport === selectedAirportCode
@@ -476,7 +493,7 @@
                 },
                 geometry: {
                     type: "MultiLineString",
-                    coordinates: createGreatCircleSegments(origin, destination)
+                    coordinates: createGreatCircleSegments(origin, destination, hasReturnRoute ? 2.2 : 0)
                 }
             });
         });
@@ -492,6 +509,7 @@
                     airport: airport.airport,
                     flightCount: airport.flightCount,
                     livedHere: Boolean(livedAirportCodes[code]),
+                    visitedBefore: airport.visitedBefore,
                     selected: selected
                 },
                 geometry: {
@@ -522,9 +540,28 @@
         ];
     }
 
-    function createGreatCircleSegments(start, end) {
+    function createGreatCircleSegments(start, end, offsetDegrees) {
         var startVector = coordinateToVector(start);
         var endVector = coordinateToVector(end);
+        var normalVector = [
+            startVector[1] * endVector[2] - startVector[2] * endVector[1],
+            startVector[2] * endVector[0] - startVector[0] * endVector[2],
+            startVector[0] * endVector[1] - startVector[1] * endVector[0]
+        ];
+        var normalLength = Math.sqrt(normalVector[0] * normalVector[0]
+            + normalVector[1] * normalVector[1] + normalVector[2] * normalVector[2]);
+        if (normalLength < 0.000001) {
+            var reference = Math.abs(startVector[0]) < 0.9 ? [1, 0, 0] : [0, 1, 0];
+            normalVector = normalizeVector([
+                startVector[1] * reference[2] - startVector[2] * reference[1],
+                startVector[2] * reference[0] - startVector[0] * reference[2],
+                startVector[0] * reference[1] - startVector[1] * reference[0]
+            ]);
+        } else {
+            normalVector = normalVector.map(function (component) {
+                return component / normalLength;
+            });
+        }
         var dot = Math.max(-1, Math.min(1,
             startVector[0] * endVector[0] + startVector[1] * endVector[1] + startVector[2] * endVector[2]));
         var angle = Math.acos(dot);
@@ -588,6 +625,16 @@
                     startVector[1] * scaleA + endVector[1] * scaleB,
                     startVector[2] * scaleA + endVector[2] * scaleB
                 ];
+            }
+            if (offsetDegrees && fraction > 0 && fraction < 1) {
+                var offset = offsetDegrees * Math.PI / 180 * Math.sin(Math.PI * fraction);
+                var offsetCosine = Math.cos(offset);
+                var offsetSine = Math.sin(offset);
+                vector = normalizeVector([
+                    vector[0] * offsetCosine + normalVector[0] * offsetSine,
+                    vector[1] * offsetCosine + normalVector[1] * offsetSine,
+                    vector[2] * offsetCosine + normalVector[2] * offsetSine
+                ]);
             }
             var coordinate = vectorToCoordinate(vector);
 
