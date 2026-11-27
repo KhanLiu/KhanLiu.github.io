@@ -365,9 +365,7 @@ async function handleLogin(request, env, url) {
     const rateLimitKey = "login-rate:" + encodeBase64Url(new Uint8Array(ipDigest));
     const attempts = Number(await env.TRAVEL_ADMIN_AUTHy.get(rateLimitKey) || 0);
     if (attempts >= MAX_LOGIN_ATTEMPTS) {
-        return jsonResponse({ error: "Too many sign-in attempts. Try again in ten minutes." }, 429, {
-            "Retry-After": String(STATE_TTL_SECONDS)
-        });
+        return redirectResponse(env.SITE_ORIGIN + "/admin/#error=rate_limited");
     }
     await env.TRAVEL_ADMIN_AUTHy.put(rateLimitKey, String(attempts + 1), { expirationTtl: STATE_TTL_SECONDS });
     const state = randomToken();

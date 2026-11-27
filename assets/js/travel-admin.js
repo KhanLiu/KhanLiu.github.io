@@ -45,6 +45,7 @@
         if (error) {
             window.history.replaceState(null, "", window.location.pathname);
             var messages = {
+                rate_limited: "Too many sign-in attempts. Wait ten minutes before trying again.",
                 invalid_state: "Sign-in expired or could not be verified. Start again and finish within ten minutes.",
                 oauth_denied: "GitHub sign-in was cancelled or not approved.",
                 oauth_exchange: "GitHub could not complete sign-in. Check the OAuth app secret and callback URL.",
@@ -258,6 +259,8 @@
     }
 
     elements.login.addEventListener("click", function () {
+        elements.login.disabled = true;
+        setStatus("Redirecting to GitHub…");
         window.location.assign(apiUrl + "/auth/login");
     });
     elements.logout.addEventListener("click", async function () {

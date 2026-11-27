@@ -182,8 +182,8 @@ test("limits repeated public OAuth initiation requests per Cloudflare client add
             headers: { "CF-Connecting-IP": "192.0.2.10" }
         }), env);
     }
-    assert.equal(response.status, 429);
-    assert.equal(response.headers.get("Retry-After"), "600");
+    assert.equal(response.status, 302);
+    assert.equal(response.headers.get("Location"), "https://khanliu.github.io/admin/#error=rate_limited");
     assert.equal(Array.from(store.keys()).filter((key) => key.startsWith("oauth-state:")).length, 10);
 });
 
