@@ -87,13 +87,24 @@ test("parses the current public stay data and preserves month-level dates", () =
     const livedPlaces = new Set(trips.filter((trip) => trip.lived_here === true)
         .map((trip) => trip.city + "|" + trip.country));
     assert.deepEqual(Array.from(livedPlaces).sort(), [
-        "Dresden|Germany",
         "Jinan|China",
         "Munich|Germany",
         "Vienna|Austria",
-        "Wuhan|China",
-        "Xintai|China"
+        "Wuhan|China"
     ]);
+});
+
+test("accepts and preserves visits with no overnight stay", () => {
+    const visit = {
+        date: "2025-03-01",
+        date_precision: "month",
+        city: "Tokyo",
+        country: "Japan",
+        coordinates: [35.68, 139.69],
+        stay_days: 0
+    };
+    const yaml = serializeTripYaml([visit]);
+    assert.deepEqual(parseTripYaml(yaml), [visit]);
 });
 
 test("serializes and parses edited unicode travel records", () => {

@@ -1,4 +1,5 @@
 # Overnight stays inferred locally from fixes with <=100 m accuracy and <=2 m/s speed.
+# Records with stay_days: 0 represent visits without an overnight stay.
 # The night window is 20:00-05:59 in the location's local timezone.
 # Each local night is assigned to its most common gazetteer place; a single night counts once.
 # Stays with at most one unobserved night between fixes are combined, including across months.
@@ -185,7 +186,6 @@
   country: "China"
   coordinates: [35.90, 117.75]
   stay_days: 4
-  lived_here: true
 - date: "2018-09-01"
   date_precision: month
   city: "Wuhan"
@@ -1664,7 +1664,6 @@
   country: "Germany"
   coordinates: [51.05, 13.74]
   stay_days: 6
-  lived_here: true
 - date: "2022-10-01"
   date_precision: month
   city: "Dresden"

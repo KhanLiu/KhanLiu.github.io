@@ -288,11 +288,18 @@ main {
 .travel-map__legend-mark--lived {
     width: 13px;
     height: 13px;
+    background: #e87722;
+    box-shadow: 0 0 0 3px rgba(232, 119, 34, 0.2);
+}
+
+.travel-map__legend-mark--overnight {
+    width: 13px;
+    height: 13px;
     background: #0065bd;
     box-shadow: 0 0 0 3px rgba(0, 101, 189, 0.18);
 }
 
-.travel-map__legend-mark--travel {
+.travel-map__legend-mark--visited {
     width: 13px;
     height: 13px;
     background: #72c4e8;
@@ -300,8 +307,8 @@ main {
 }
 
 .travel-map__legend-mark--airport {
-    background: #72c4e8;
-    box-shadow: 0 0 0 3px rgba(114, 196, 232, 0.28);
+    background: #0065bd;
+    box-shadow: 0 0 0 3px rgba(0, 101, 189, 0.18);
 }
 
 .travel-map__legend-mark--route {

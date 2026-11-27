@@ -9,7 +9,8 @@ const TRIP_KEYS = ["date", "date_precision", "city", "country", "coordinates", "
 const OPTIONAL_TRIP_KEYS = ["title", "description", "photo"];
 const OPTIONAL_BOOLEAN_TRIP_KEYS = ["lived_here"];
 const YAML_HEADER = [
-    "# Overnight stays inferred locally from fixes with <=100 m accuracy and <=2 m/s speed.",
+    "# Travel records use stay_days for overnight nights; 0 means the place was visited without staying overnight.",
+    "# Overnight stays may be inferred locally from fixes with <=100 m accuracy and <=2 m/s speed.",
     "# The night window is 20:00-05:59 in the location's local timezone.",
     "# Each local night is assigned to its most common gazetteer place; a single night counts once.",
     "# Stays with at most one unobserved night between fixes are combined, including across months.",
@@ -388,8 +389,8 @@ function validateTrips(input) {
                 })) {
             throw new Error("Record " + row + " coordinates must be valid and rounded to two decimal places.");
         }
-        if (!Number.isInteger(trip.stay_days) || trip.stay_days < 1 || trip.stay_days > 3660) {
-            throw new Error("Record " + row + " stay_days must be a whole number from 1 to 3660.");
+        if (!Number.isInteger(trip.stay_days) || trip.stay_days < 0 || trip.stay_days > 3660) {
+            throw new Error("Record " + row + " stay_days must be a whole number from 0 to 3660.");
         }
         if (trip.lived_here !== undefined && typeof trip.lived_here !== "boolean") {
             throw new Error("Record " + row + " lived_here must be a boolean.");

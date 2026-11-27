@@ -197,8 +197,8 @@
                 update: function (value) { trip.country = value; }
             });
             addInput(row, "number", String(trip.stay_days), {
-                label: "Estimated stay days",
-                min: "1",
+                label: "Overnight nights (0 = visited only)",
+                min: "0",
                 max: "3660",
                 step: "1",
                 update: function (value) {
@@ -242,7 +242,7 @@
             removeButton.type = "button";
             removeButton.className = "admin__remove";
             removeButton.textContent = "Remove";
-            removeButton.setAttribute("aria-label", "Remove " + trip.city + " stay");
+            removeButton.setAttribute("aria-label", "Remove " + trip.city + " visit");
             removeButton.addEventListener("click", function () {
                 trips.splice(trips.indexOf(trip), 1);
                 renderTrips();
@@ -372,8 +372,8 @@
             if (!trip.city.trim() || !trip.country.trim()) {
                 throw new Error("Record " + row + ": city and country are required.");
             }
-            if (!Number.isInteger(trip.stay_days) || trip.stay_days < 1 || trip.stay_days > 3660) {
-                throw new Error("Record " + row + ": stay days must be a whole number from 1 to 3660.");
+            if (!Number.isInteger(trip.stay_days) || trip.stay_days < 0 || trip.stay_days > 3660) {
+                throw new Error("Record " + row + ": overnight nights must be a whole number from 0 to 3660.");
             }
             if (trip.lived_here !== undefined && typeof trip.lived_here !== "boolean") {
                 throw new Error("Record " + row + ": lived-here must be a boolean.");

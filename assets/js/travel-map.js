@@ -208,7 +208,11 @@
                 source: "travel-places",
                 paint: {
                     "circle-radius": placeRadiusExpression(true),
-                    "circle-color": ["case", ["==", ["get", "livedHere"], true], "#0065bd", "#72c4e8"],
+                    "circle-color": ["case",
+                        ["==", ["get", "livedHere"], true], "#e87722",
+                        ["==", ["get", "overnight"], true], "#0065bd",
+                        "#72c4e8"
+                    ],
                     "circle-opacity": 0.24,
                     "circle-blur": 0.7
                 }
@@ -219,7 +223,11 @@
                 source: "travel-places",
                 paint: {
                     "circle-radius": placeRadiusExpression(false),
-                    "circle-color": ["case", ["==", ["get", "livedHere"], true], "#0065bd", "#72c4e8"],
+                    "circle-color": ["case",
+                        ["==", ["get", "livedHere"], true], "#e87722",
+                        ["==", ["get", "overnight"], true], "#0065bd",
+                        "#72c4e8"
+                    ],
                     "circle-stroke-width": ["case", ["==", ["get", "placeKey"], selectedPlaceKey], 2.5,
                         1.5],
                     "circle-stroke-color": "#f8fbfa"
@@ -321,8 +329,8 @@
                 paint: {
                     "circle-radius": ["case", ["==", ["get", "selected"], true], 6, 4],
                     "circle-color": ["case",
-                        ["==", ["get", "livedHere"], true], "#0065bd",
-                        ["==", ["get", "visitedBefore"], true], "#72c4e8",
+                        ["==", ["get", "livedHere"], true], "#e87722",
+                        ["==", ["get", "visitedBefore"], true], "#0065bd",
                         "#8296a3"
                     ],
                     "circle-opacity": 0.95,
@@ -347,8 +355,8 @@
                 },
                 paint: {
                     "text-color": ["case",
-                        ["==", ["get", "livedHere"], true], "#0065bd",
-                        ["==", ["get", "visitedBefore"], true], "#72c4e8",
+                        ["==", ["get", "livedHere"], true], "#a85d22",
+                        ["==", ["get", "visitedBefore"], true], "#00549e",
                         "#6f8796"
                     ],
                     "text-halo-color": "#fffdfb",
@@ -413,11 +421,13 @@
                 place = places[visit._placeKey] = {
                     placeKey: visit._placeKey,
                     livedHere: visit._livedHere,
+                    overnight: false,
                     stayDays: 0,
                     stayCount: 0,
                     coordinates: visit.coordinates
                 };
             }
+            place.overnight = place.overnight || visit.stay_days > 0;
             place.stayDays += visit.stay_days;
             place.stayCount += 1;
         });
@@ -425,7 +435,7 @@
         maxTravelHaloRadius = 12;
         Object.keys(places).forEach(function (placeKey) {
             var place = places[placeKey];
-            if (place.livedHere) return;
+            if (place.livedHere || !place.overnight) return;
             maxTravelPlaceRadius = Math.max(maxTravelPlaceRadius,
                 getPlaceRadius(place.stayDays, placeRadiusStops));
             maxTravelHaloRadius = Math.max(maxTravelHaloRadius,
@@ -438,6 +448,7 @@
                 properties: {
                     placeKey: place.placeKey,
                     livedHere: place.livedHere,
+                    overnight: place.overnight,
                     stayDays: place.stayDays,
                     stayCount: place.stayCount
                 },
@@ -542,12 +553,15 @@
         var livedRadius = halo ? maxTravelHaloRadius : maxTravelPlaceRadius;
         var travelRadii = ["interpolate", ["linear"], ["get", "stayDays"]]
             .concat(halo ? placeHaloStops : placeRadiusStops);
+        var overnightRadius = ["case", selected, ["+", travelRadii, 2], travelRadii];
+        var visitedRadius = halo ? 8 : 4;
+        var selectedVisitedRadius = halo ? 10 : 6;
         return ["case",
             ["==", ["get", "livedHere"], true],
             livedRadius,
-            selected,
-            ["+", travelRadii, 2],
-            travelRadii
+            ["==", ["get", "overnight"], true],
+            overnightRadius,
+            ["case", selected, selectedVisitedRadius, visitedRadius]
         ];
     }
 
@@ -828,21 +842,44 @@
 
     function renderSummary(allVisits) {
         var destinations = Object.create(null);
-        var livedDestinations = Object.create(null);
+        var placeTypes = Object.create(null);
         var countries = Object.create(null);
         allVisits.forEach(function (visit) {
-            destinations[visit._placeKey] = true;
-            if (visit._livedHere) livedDestinations[visit._placeKey] = true;
+            var destination = placeTypes[visit._placeKey];
+            if (!destination) {
+                destination = placeTypes[visit._placeKey] = {
+                    lived: false,
+                    overnight: false
+                };
+            }
+            destination.lived = destination.lived || visit._livedHere;
+            destination.overnight = destination.overnight || visit.stay_days > 0;
             countries[visit.country.trim().toLocaleLowerCase()] = visit.country.trim();
         });
 
+        var livedCount = 0;
+        var overnightOnlyCount = 0;
+        var visitedOnlyCount = 0;
+        Object.keys(placeTypes).forEach(function (placeKey) {
+            var destination = placeTypes[placeKey];
+            destinations[placeKey] = true;
+            if (destination.lived) {
+                livedCount += 1;
+            } else if (destination.overnight) {
+                overnightOnlyCount += 1;
+            } else {
+                visitedOnlyCount += 1;
+            }
+        });
         var destinationCount = Object.keys(destinations).length;
         elements.summary.hidden = destinationCount === 0;
         elements.summaryList.textContent = "";
         [
             ["Countries / regions", Object.keys(countries).length],
             ["Cities visited", destinationCount],
-            ["Cities lived in", Object.keys(livedDestinations).length]
+            ["Cities lived in", livedCount],
+            ["Overnight, not lived", overnightOnlyCount],
+            ["Visited, no overnight", visitedOnlyCount]
         ].forEach(function (stat) {
             var row = document.createElement("tr");
             var label = document.createElement("th");
@@ -991,7 +1028,7 @@
         var preserveExpandedVisits = selectedPlaceKey === visit._placeKey && elements.placeVisits.open;
         selectedPlaceKey = visit._placeKey;
 
-        elements.storyDate.textContent = formatStayDays(visit.stay_days);
+        elements.storyDate.textContent = formatStayNights(visit.stay_days);
         elements.storyTitle.textContent = visit.city;
         elements.livedHere.hidden = !visit._livedHere;
         elements.storyPlace.textContent = visit.country;
@@ -1036,11 +1073,13 @@
             }
         });
 
-        var totalDays = indexes.reduce(function (sum, index) {
+        var totalNights = indexes.reduce(function (sum, index) {
             return sum + visits[index].stay_days;
         }, 0);
         elements.cityStats.textContent = indexes.length + (indexes.length === 1 ? " visit" : " visits")
-            + " · ~" + totalDays + (totalDays === 1 ? " day" : " days") + " total";
+            + (totalNights > 0
+                ? " · ~" + totalNights + (totalNights === 1 ? " night" : " nights") + " total"
+                : " · no overnight stays");
         elements.placeVisits.hidden = visit._livedHere || indexes.length < 2;
         if (visit._livedHere || indexes.length < 2) {
             elements.placeVisits.open = false;
@@ -1048,8 +1087,10 @@
             return;
         }
 
-        elements.placeVisitsSummary.textContent = indexes.length + " visits · ~" + totalDays
-            + (totalDays === 1 ? " day" : " days");
+        elements.placeVisitsSummary.textContent = indexes.length + " visits"
+            + (totalNights > 0
+                ? " · ~" + totalNights + (totalNights === 1 ? " night" : " nights")
+                : " · no overnight stays");
         elements.placeVisits.open = expanded;
 
         if (renderedPlaceVisitsKey !== visit._placeKey) {
@@ -1072,7 +1113,7 @@
             var index = indexes[position];
             var candidate = visits[index];
             button.textContent = formatDate(candidate.date, candidate.date_precision)
-                + " · " + formatStayDays(candidate.stay_days);
+                + " · " + formatStayNights(candidate.stay_days);
             button.classList.toggle("is-current", index === selectedIndex);
             if (index === selectedIndex) {
                 button.setAttribute("aria-current", "true");
@@ -1082,8 +1123,10 @@
         });
     }
 
-    function formatStayDays(days) {
-        return "~" + days + (days === 1 ? " day" : " days");
+    function formatStayNights(nights) {
+        return nights > 0
+            ? "~" + nights + (nights === 1 ? " night" : " nights")
+            : "Visited, no overnight stay";
     }
 
     function renderPhoto(visit) {
@@ -1144,7 +1187,7 @@
             && visit.coordinates[1] >= -180
             && visit.coordinates[1] <= 180
             && Number.isInteger(visit.stay_days)
-            && visit.stay_days > 0;
+            && visit.stay_days >= 0;
     }
 
     function isValidFlight(flight) {
