@@ -338,3 +338,8 @@ flights:
     flight_number: "8L9615"
     origin: CTU
     destination: TNA
+  - date: "2017-07-24"
+    airline: "Shandong Airlines"
+    flight_number: "SC4799"
+    origin: TNA
+    destination: CKG

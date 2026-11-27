@@ -131,6 +131,38 @@ a:focus-visible {
     margin: 9px 0 15px;
 }
 
+.admin__data-section {
+    margin-bottom: 18px;
+    padding: 12px 0;
+    border-top: 1px solid #e6e9e4;
+    border-bottom: 1px solid #e6e9e4;
+}
+
+.admin__data-section > summary,
+.admin__airport-section > summary {
+    color: #344f43;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.admin__data-section > summary span,
+.admin__airport-section > summary span {
+    color: #77847e;
+    font-size: 0.8rem;
+    font-weight: 400;
+}
+
+.admin__airport-section {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid #e6e9e4;
+}
+
+.admin__airport-section .admin__privacy {
+    margin: 8px 0 12px;
+}
+
 .admin__table-wrap {
     max-height: min(65vh, 700px);
     overflow: auto;
@@ -161,7 +193,8 @@ a:focus-visible {
     border-bottom: 1px solid #edf0eb;
 }
 
-.admin td input {
+.admin td input,
+.admin td select {
     width: 100%;
     min-width: 70px;
     min-height: 34px;
@@ -172,12 +205,28 @@ a:focus-visible {
     color: inherit;
 }
 
+.admin td select {
+    min-width: 190px;
+}
+
 .admin td input[type="month"] {
     min-width: 130px;
 }
 
+.admin td input[type="date"] {
+    min-width: 145px;
+}
+
 .admin td input[type="number"] {
     min-width: 76px;
+}
+
+.admin__flight-table-wrap table {
+    min-width: 1200px;
+}
+
+.admin__airport-table-wrap table {
+    min-width: 1050px;
 }
 
 .admin td.admin__checkbox-cell {

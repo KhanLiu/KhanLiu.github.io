@@ -1,4 +1,6 @@
 const MAX_TRIPS = 2000;
+const MAX_FLIGHTS = 2000;
+const MAX_AIRPORTS = 500;
 const MAX_REQUEST_BYTES = 500000;
 const MAX_LOGIN_ATTEMPTS = 10;
 const SESSION_TTL_SECONDS = 7200;
@@ -128,6 +130,204 @@ function parseTripYaml(source) {
     });
     finish();
     return validateTrips(trips);
+}
+
+function parseFlightYamlString(value, field) {
+    const trimmed = value.trim();
+    if (!trimmed.startsWith("\"")) {
+        return trimmed;
+    }
+    try {
+        const parsed = JSON.parse(trimmed);
+        if (typeof parsed !== "string") {
+            throw new Error("Expected a string.");
+        }
+        return parsed;
+    } catch (error) {
+        throw new Error("Invalid " + field + " in flight data.");
+    }
+}
+
+function parseFlightYaml(source) {
+    const airports = Object.create(null);
+    const flights = [];
+    const airportPattern = /^\s{2}([A-Z0-9]{3}):\s*\{city:\s*("(?:\\.|[^"\\])*"|[^,{}]+),\s*country:\s*("(?:\\.|[^"\\])*"|[^,{}]+),\s*coordinates:\s*\[\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)\s*\]\s*\}\s*$/;
+    const flightKeys = new Set(["date", "airline", "flight_number", "origin", "destination"]);
+    let section = "";
+    let currentFlight = null;
+
+    function finishFlight() {
+        if (currentFlight) {
+            flights.push(currentFlight);
+            currentFlight = null;
+        }
+    }
+
+    source.split(/\r?\n/).forEach(function (line, index) {
+        const trimmed = line.trim();
+        if (!trimmed || trimmed.startsWith("#")) {
+            return;
+        }
+        if (trimmed === "airports:") {
+            finishFlight();
+            section = "airports";
+            return;
+        }
+        if (trimmed === "flights:") {
+            finishFlight();
+            section = "flights";
+            return;
+        }
+        if (section === "airports") {
+            const match = airportPattern.exec(line);
+            if (!match || Object.prototype.hasOwnProperty.call(airports, match[1])) {
+                throw new Error("Unsupported airport data at line " + (index + 1) + ".");
+            }
+            airports[match[1]] = {
+                city: parseFlightYamlString(match[2], "city"),
+                country: parseFlightYamlString(match[3], "country"),
+                coordinates: [Number(match[4]), Number(match[5])]
+            };
+            return;
+        }
+        if (section !== "flights") {
+            throw new Error("Unexpected content in flight data at line " + (index + 1) + ".");
+        }
+        let fieldLine = line.trim();
+        if (fieldLine.startsWith("- ")) {
+            finishFlight();
+            currentFlight = {};
+            fieldLine = fieldLine.slice(2);
+        } else if (!currentFlight) {
+            throw new Error("Unexpected flight data at line " + (index + 1) + ".");
+        }
+        const match = /^([a-z_]+):\s*(.*?)\s*$/.exec(fieldLine);
+        if (!match || !flightKeys.has(match[1]) || Object.prototype.hasOwnProperty.call(currentFlight, match[1])) {
+            throw new Error("Unsupported flight data at line " + (index + 1) + ".");
+        }
+        currentFlight[match[1]] = parseFlightYamlString(match[2], match[1]);
+    });
+    finishFlight();
+    return validateFlightData({ airports: airports, flights: flights });
+}
+
+function validateFlightData(input) {
+    if (!input || typeof input !== "object" || Array.isArray(input)
+            || Object.keys(input).some(function (key) { return key !== "airports" && key !== "flights"; })) {
+        throw new Error("Flight data must contain an airport directory and flight list.");
+    }
+    const sourceAirports = input.airports;
+    if (!sourceAirports || typeof sourceAirports !== "object" || Array.isArray(sourceAirports)
+            || Object.keys(sourceAirports).length > MAX_AIRPORTS) {
+        throw new Error("Flight data must contain no more than " + MAX_AIRPORTS + " airports.");
+    }
+    const airports = Object.create(null);
+    Object.keys(sourceAirports).forEach(function (code) {
+        const airport = sourceAirports[code];
+        if (!/^[A-Z0-9]{3}$/.test(code) || !airport || typeof airport !== "object"
+                || Array.isArray(airport)
+                || Object.keys(airport).some(function (key) {
+                    return !["city", "country", "coordinates"].includes(key);
+                })) {
+            throw new Error("Airport " + code + " must use a three-character IATA code and supported fields.");
+        }
+        if (typeof airport.city !== "string" || !airport.city.trim() || airport.city.length > 120
+                || typeof airport.country !== "string" || !airport.country.trim() || airport.country.length > 120
+                || !Array.isArray(airport.coordinates) || airport.coordinates.length !== 2
+                || !airport.coordinates.every(Number.isFinite)
+                || airport.coordinates[0] < -90 || airport.coordinates[0] > 90
+                || airport.coordinates[1] < -180 || airport.coordinates[1] > 180) {
+            throw new Error("Airport " + code + " needs a city, country / region, and valid coordinates.");
+        }
+        airports[code] = {
+            city: airport.city.trim(),
+            country: airport.country.trim(),
+            coordinates: airport.coordinates.slice()
+        };
+    });
+
+    if (!Array.isArray(input.flights) || input.flights.length < 1 || input.flights.length > MAX_FLIGHTS) {
+        throw new Error("Flight data must contain between 1 and " + MAX_FLIGHTS + " flights.");
+    }
+    const flights = input.flights.map(function (flight, index) {
+        const row = index + 1;
+        if (!flight || typeof flight !== "object" || Array.isArray(flight)
+                || Object.keys(flight).some(function (key) {
+                    return !["date", "airline", "flight_number", "origin", "destination"].includes(key);
+                })) {
+            throw new Error("Flight " + row + " contains unsupported data.");
+        }
+        if (typeof flight.date !== "string" || !isValidFlightDate(flight.date)) {
+            throw new Error("Flight " + row + " must have a valid date in YYYY-MM-DD format.");
+        }
+        if (typeof flight.origin !== "string" || !Object.prototype.hasOwnProperty.call(airports, flight.origin)
+                || typeof flight.destination !== "string"
+                || !Object.prototype.hasOwnProperty.call(airports, flight.destination)
+                || flight.origin === flight.destination) {
+            throw new Error("Flight " + row + " must use two different airports from the airport directory.");
+        }
+        if (flight.airline !== undefined
+                && (typeof flight.airline !== "string" || flight.airline.length > 120)) {
+            throw new Error("Flight " + row + " has an invalid airline.");
+        }
+        if (flight.flight_number !== undefined
+                && (typeof flight.flight_number !== "string" || flight.flight_number.length > 40)) {
+            throw new Error("Flight " + row + " has an invalid flight number.");
+        }
+        const normalized = {
+            date: flight.date,
+            origin: flight.origin,
+            destination: flight.destination
+        };
+        if (flight.airline && flight.airline.trim()) {
+            normalized.airline = flight.airline.trim();
+        }
+        if (flight.flight_number && flight.flight_number.trim()) {
+            normalized.flight_number = flight.flight_number.trim();
+        }
+        return normalized;
+    });
+    return { airports: airports, flights: flights };
+}
+
+function isValidFlightDate(date) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+        return false;
+    }
+    const parsedDate = new Date(date + "T00:00:00.000Z");
+    return Number.isFinite(parsedDate.getTime()) && parsedDate.toISOString().slice(0, 10) === date;
+}
+
+function serializeFlightYaml(input) {
+    const data = validateFlightData(input);
+    const lines = [
+        "# Personal flight routes. Coordinates are approximate airport locations.",
+        "# Ticket numbers are intentionally not stored.",
+        "airports:"
+    ];
+    Object.keys(data.airports).sort().forEach(function (code) {
+        const airport = data.airports[code];
+        lines.push("  " + code + ": {city: " + JSON.stringify(airport.city)
+            + ", country: " + JSON.stringify(airport.country)
+            + ", coordinates: [" + airport.coordinates.join(", ") + "]}");
+    });
+    lines.push("", "flights:");
+    data.flights.slice().sort(function (a, b) {
+        return b.date.localeCompare(a.date);
+    }).forEach(function (flight) {
+        lines.push(
+            "  - date: " + JSON.stringify(flight.date),
+            "    origin: " + flight.origin,
+            "    destination: " + flight.destination
+        );
+        if (flight.airline) {
+            lines.push("    airline: " + JSON.stringify(flight.airline));
+        }
+        if (flight.flight_number) {
+            lines.push("    flight_number: " + JSON.stringify(flight.flight_number));
+        }
+    });
+    return lines.join("\n") + "\n";
 }
 
 function normalizeTrip(trip) {
@@ -266,9 +466,9 @@ function githubHeaders(token) {
     };
 }
 
-function fileUrl(env) {
+function fileUrl(env, path) {
     return "https://api.github.com/repos/" + env.GITHUB_REPOSITORY
-        + "/contents/_data/trips.yml?ref=" + encodeURIComponent(env.GITHUB_BRANCH);
+        + "/contents/" + (path || "_data/trips.yml") + "?ref=" + encodeURIComponent(env.GITHUB_BRANCH);
 }
 
 async function getTripsFromGithub(env) {
@@ -284,26 +484,39 @@ async function getTripsFromGithub(env) {
     return parseTripYaml(decodeBase64Utf8(file.content));
 }
 
-async function saveTripsToGithub(env, trips) {
-    const url = fileUrl(env).replace(/\?ref=.*$/, "");
+async function getFlightsFromGithub(env) {
+    const response = await fetch(fileUrl(env, "_data/flights.yml"), {
+        headers: githubHeaders(env.GITHUB_WRITE_TOKEN)
+    });
+    if (!response.ok) {
+        console.error("Flight data read failed with GitHub status", response.status);
+        throw new Error("GitHub could not read the flight data file (HTTP " + response.status + ").");
+    }
+    const file = await response.json();
+    if (file.encoding !== "base64" || typeof file.content !== "string") {
+        throw new Error("GitHub returned an unsupported flight data file.");
+    }
+    return parseFlightYaml(decodeBase64Utf8(file.content));
+}
+
+async function saveDataToGithub(env, path, content, message) {
+    const url = fileUrl(env, path).replace(/\?ref=.*$/, "");
     const currentResponse = await fetch(url + "?ref=" + encodeURIComponent(env.GITHUB_BRANCH), {
         headers: githubHeaders(env.GITHUB_WRITE_TOKEN)
     });
     if (!currentResponse.ok) {
         console.error("Travel data version read failed with GitHub status", currentResponse.status);
-        throw new Error("GitHub could not read the current file before saving (HTTP "
+        throw new Error("GitHub could not read the current data file before saving (HTTP "
             + currentResponse.status + ").");
     }
     const currentFile = await currentResponse.json();
-    const content = serializeTripYaml(trips);
-    const savedTrips = parseTripYaml(content);
     const updateResponse = await fetch(url, {
         method: "PUT",
         headers: Object.assign(githubHeaders(env.GITHUB_WRITE_TOKEN), {
             "Content-Type": "application/json"
         }),
         body: JSON.stringify({
-            message: "Update travel stays from admin editor",
+            message: message,
             content: encodeBase64Utf8(content),
             sha: currentFile.sha,
             branch: env.GITHUB_BRANCH
@@ -315,9 +528,22 @@ async function saveTripsToGithub(env, trips) {
     }
     if (!updateResponse.ok) {
         console.error("Travel data write failed with GitHub status", updateResponse.status);
-        throw new Error("GitHub could not save the travel data file (HTTP " + updateResponse.status + ").");
+        throw new Error("GitHub could not save the data file (HTTP " + updateResponse.status + ").");
     }
+}
+
+async function saveTripsToGithub(env, trips) {
+    const content = serializeTripYaml(trips);
+    const savedTrips = parseTripYaml(content);
+    await saveDataToGithub(env, "_data/trips.yml", content, "Update travel stays from admin editor");
     return savedTrips;
+}
+
+async function saveFlightsToGithub(env, data) {
+    const content = serializeFlightYaml(data);
+    const savedFlights = parseFlightYaml(content);
+    await saveDataToGithub(env, "_data/flights.yml", content, "Update flight data from admin editor");
+    return savedFlights;
 }
 
 async function getAuthorizedSession(request, env) {
@@ -482,6 +708,35 @@ async function handleApi(request, env, url) {
         const savedTrips = await saveTripsToGithub(env, trips);
         return jsonResponse({ login: session.login, trips: savedTrips }, 200, corsHeaders(env.SITE_ORIGIN));
     }
+    if (url.pathname === "/api/flights" && request.method === "GET") {
+        const data = await getFlightsFromGithub(env);
+        return jsonResponse({ login: session.login, airports: data.airports, flights: data.flights },
+            200, corsHeaders(env.SITE_ORIGIN));
+    }
+    if (url.pathname === "/api/flights" && request.method === "PUT") {
+        const bodyText = await request.text();
+        if (new TextEncoder().encode(bodyText).length > MAX_REQUEST_BYTES) {
+            return jsonResponse({ error: "The submitted data is too large." }, 413, corsHeaders(env.SITE_ORIGIN));
+        }
+        let body;
+        try {
+            body = JSON.parse(bodyText);
+        } catch (error) {
+            return jsonResponse({ error: "The submitted data is not valid JSON." }, 400, corsHeaders(env.SITE_ORIGIN));
+        }
+        let data;
+        try {
+            data = validateFlightData(body);
+        } catch (error) {
+            return jsonResponse({ error: error.message }, 400, corsHeaders(env.SITE_ORIGIN));
+        }
+        const savedData = await saveFlightsToGithub(env, data);
+        return jsonResponse({
+            login: session.login,
+            airports: savedData.airports,
+            flights: savedData.flights
+        }, 200, corsHeaders(env.SITE_ORIGIN));
+    }
     return jsonResponse({ error: "Not found." }, 404, corsHeaders(env.SITE_ORIGIN));
 }
 
@@ -515,8 +770,11 @@ export {
     encodeBase64Utf8,
     handleRequest,
     parseTripYaml,
+    parseFlightYaml,
     serializeTripYaml,
-    validateTrips
+    serializeFlightYaml,
+    validateTrips,
+    validateFlightData
 };
 
 export default {

@@ -14,9 +14,18 @@
         filter: document.getElementById("admin-filter"),
         add: document.getElementById("admin-add"),
         reload: document.getElementById("admin-reload"),
-        save: document.getElementById("admin-save")
+        save: document.getElementById("admin-save"),
+        flights: document.getElementById("admin-flights"),
+        flightCount: document.getElementById("admin-flight-count"),
+        flightAdd: document.getElementById("admin-flight-add"),
+        flightSave: document.getElementById("admin-flight-save"),
+        airports: document.getElementById("admin-airports"),
+        airportCount: document.getElementById("admin-airport-count"),
+        airportAdd: document.getElementById("admin-airport-add")
     };
     var trips = [];
+    var flights = [];
+    var airports = [];
 
     function setStatus(message, isError) {
         elements.status.textContent = message;
@@ -85,6 +94,9 @@
         elements.add.disabled = busy;
         elements.reload.disabled = busy;
         elements.save.disabled = busy;
+        elements.flightAdd.disabled = busy;
+        elements.flightSave.disabled = busy;
+        elements.airportAdd.disabled = busy;
         elements.login.disabled = busy || !configured;
         elements.logout.disabled = busy;
     }
@@ -107,7 +119,32 @@
         input.addEventListener("input", function () {
             options.update(input.value);
         });
+        if (options.change) {
+            input.addEventListener("change", options.change);
+        }
         cell.appendChild(input);
+        row.appendChild(cell);
+    }
+
+    function addAirportSelect(row, value, label, update) {
+        var cell = document.createElement("td");
+        var select = document.createElement("select");
+        select.setAttribute("aria-label", label);
+        var placeholder = document.createElement("option");
+        placeholder.value = "";
+        placeholder.textContent = "Select airport";
+        select.appendChild(placeholder);
+        airports.forEach(function (airport) {
+            var option = document.createElement("option");
+            option.value = airport.code;
+            option.textContent = airport.code + " — " + airport.city + " (" + airport.country + ")";
+            select.appendChild(option);
+        });
+        select.value = value || "";
+        select.addEventListener("change", function () {
+            update(select.value);
+        });
+        cell.appendChild(select);
         row.appendChild(cell);
     }
 
@@ -216,6 +253,113 @@
         });
     }
 
+    function renderFlights() {
+        elements.flights.textContent = "";
+        elements.flightCount.textContent = "(" + flights.length + ")";
+        flights.forEach(function (flight) {
+            var row = document.createElement("tr");
+            addInput(row, "date", flight.date, {
+                label: "Flight date",
+                update: function (value) { flight.date = value; }
+            });
+            addInput(row, "text", flight.airline || "", {
+                label: "Airline",
+                update: function (value) { flight.airline = value; }
+            });
+            addInput(row, "text", flight.flight_number || "", {
+                label: "Flight number",
+                update: function (value) { flight.flight_number = value; }
+            });
+            addAirportSelect(row, flight.origin, "Origin airport", function (value) {
+                flight.origin = value;
+                renderAirports();
+            });
+            addAirportSelect(row, flight.destination, "Destination airport", function (value) {
+                flight.destination = value;
+                renderAirports();
+            });
+            var actionCell = document.createElement("td");
+            var removeButton = document.createElement("button");
+            removeButton.type = "button";
+            removeButton.className = "admin__remove";
+            removeButton.textContent = "Remove";
+            removeButton.setAttribute("aria-label", "Remove flight " + (flight.flight_number || ""));
+            removeButton.addEventListener("click", function () {
+                flights.splice(flights.indexOf(flight), 1);
+                renderFlights();
+                renderAirports();
+            });
+            actionCell.appendChild(removeButton);
+            row.appendChild(actionCell);
+            elements.flights.appendChild(row);
+        });
+    }
+
+    function renderAirports() {
+        elements.airports.textContent = "";
+        elements.airportCount.textContent = "(" + airports.length + ")";
+        airports.slice().sort(function (a, b) {
+            return a.code.localeCompare(b.code);
+        }).forEach(function (airport) {
+            var row = document.createElement("tr");
+            addInput(row, "text", airport.code, {
+                label: "IATA airport code",
+                update: function (value) { airport.code = value.toUpperCase(); },
+                change: function () {
+                    airport.code = airport.code.trim().toUpperCase();
+                    renderAirports();
+                    renderFlights();
+                }
+            });
+            addInput(row, "text", airport.city, {
+                label: "Airport city",
+                update: function (value) { airport.city = value; }
+            });
+            addInput(row, "text", airport.country, {
+                label: "Airport country or region",
+                update: function (value) { airport.country = value; }
+            });
+            addInput(row, "number", String(airport.coordinates[0]), {
+                label: "Airport latitude",
+                min: "-90",
+                max: "90",
+                step: "0.0001",
+                update: function (value) {
+                    airport.coordinates[0] = value === "" ? "" : Number(value);
+                }
+            });
+            addInput(row, "number", String(airport.coordinates[1]), {
+                label: "Airport longitude",
+                min: "-180",
+                max: "180",
+                step: "0.0001",
+                update: function (value) {
+                    airport.coordinates[1] = value === "" ? "" : Number(value);
+                }
+            });
+            var actionCell = document.createElement("td");
+            var removeButton = document.createElement("button");
+            var inUse = flights.some(function (flight) {
+                return flight.origin === airport.code || flight.destination === airport.code;
+            });
+            removeButton.type = "button";
+            removeButton.className = "admin__remove";
+            removeButton.textContent = "Remove";
+            removeButton.disabled = inUse;
+            removeButton.title = inUse ? "Remove or update flights using this airport first." : "";
+            removeButton.setAttribute("aria-label", "Remove airport " + airport.code);
+            removeButton.addEventListener("click", function () {
+                if (inUse) return;
+                airports.splice(airports.indexOf(airport), 1);
+                renderAirports();
+                renderFlights();
+            });
+            actionCell.appendChild(removeButton);
+            row.appendChild(actionCell);
+            elements.airports.appendChild(row);
+        });
+    }
+
     function validateBeforeSave() {
         if (!trips.length) {
             throw new Error("Keep at least one stay record.");
@@ -243,15 +387,91 @@
         });
     }
 
+    function getAirportDirectory() {
+        var directory = Object.create(null);
+        if (airports.length < 2 || airports.length > 500) {
+            throw new Error("Keep between 2 and 500 airport records.");
+        }
+        airports.forEach(function (airport, index) {
+            var row = index + 1;
+            var code = airport.code.trim().toUpperCase();
+            if (!/^[A-Z0-9]{3}$/.test(code) || Object.prototype.hasOwnProperty.call(directory, code)) {
+                throw new Error("Airport " + row + ": use a unique three-character IATA code.");
+            }
+            if (!airport.city.trim() || !airport.country.trim()
+                    || airport.city.length > 120 || airport.country.length > 120) {
+                throw new Error("Airport " + row + ": city and country or region are required.");
+            }
+            if (!Array.isArray(airport.coordinates) || airport.coordinates.length !== 2
+                    || !airport.coordinates.every(Number.isFinite)
+                    || airport.coordinates[0] < -90 || airport.coordinates[0] > 90
+                    || airport.coordinates[1] < -180 || airport.coordinates[1] > 180) {
+                throw new Error("Airport " + row + ": enter valid latitude and longitude.");
+            }
+            airport.code = code;
+            directory[code] = {
+                city: airport.city.trim(),
+                country: airport.country.trim(),
+                coordinates: airport.coordinates.slice()
+            };
+        });
+        return directory;
+    }
+
+    function validateFlightsBeforeSave() {
+        var directory = getAirportDirectory();
+        if (!flights.length || flights.length > 2000) {
+            throw new Error("Keep between 1 and 2000 flight records.");
+        }
+        flights.forEach(function (flight, index) {
+            var row = index + 1;
+            var flightDate = typeof flight.date === "string"
+                ? new Date(flight.date + "T00:00:00.000Z")
+                : null;
+            if (!flightDate || !/^\d{4}-\d{2}-\d{2}$/.test(flight.date)
+                    || !Number.isFinite(flightDate.getTime())
+                    || flightDate.toISOString().slice(0, 10) !== flight.date) {
+                throw new Error("Flight " + row + ": choose a valid date.");
+            }
+            if (!Object.prototype.hasOwnProperty.call(directory, flight.origin)
+                    || !Object.prototype.hasOwnProperty.call(directory, flight.destination)
+                    || flight.origin === flight.destination) {
+                throw new Error("Flight " + row + ": select two different airports from the directory.");
+            }
+            if (flight.airline && flight.airline.length > 120) {
+                throw new Error("Flight " + row + ": airline names must be 120 characters or fewer.");
+            }
+            if (flight.flight_number && flight.flight_number.length > 40) {
+                throw new Error("Flight " + row + ": flight numbers must be 40 characters or fewer.");
+            }
+        });
+        return directory;
+    }
+
     async function loadTrips() {
         setBusy(true);
-        setStatus("Loading stays from GitHub…");
+        setStatus("Loading stays and flights from GitHub…");
         try {
-            var result = await apiRequest("/api/trips", { method: "GET" });
-            trips = result.trips;
+            var results = await Promise.all([
+                apiRequest("/api/trips", { method: "GET" }),
+                apiRequest("/api/flights", { method: "GET" })
+            ]);
+            trips = results[0].trips;
+            flights = results[1].flights;
+            airports = Object.keys(results[1].airports).map(function (code) {
+                var airport = results[1].airports[code];
+                return {
+                    code: code,
+                    city: airport.city,
+                    country: airport.country,
+                    coordinates: airport.coordinates.slice()
+                };
+            });
             setSignedIn(true);
             renderTrips();
-            setStatus("Signed in as " + result.login + ".");
+            renderFlights();
+            renderAirports();
+            setStatus("Signed in as " + results[0].login + ".");
         } catch (error) {
             setStatus(error.message, true);
             if (!getToken()) {
@@ -277,12 +497,23 @@
         } finally {
             sessionStorage.removeItem(tokenKey);
             trips = [];
+            flights = [];
+            airports = [];
             setSignedIn(false);
             setBusy(false);
         }
     });
     elements.reload.addEventListener("click", loadTrips);
     elements.filter.addEventListener("input", renderTrips);
+    elements.flightAdd.addEventListener("click", function () {
+        flights.unshift({ date: "", airline: "", flight_number: "", origin: "", destination: "" });
+        renderFlights();
+    });
+    elements.airportAdd.addEventListener("click", function () {
+        airports.push({ code: "", city: "", country: "", coordinates: ["", ""] });
+        renderAirports();
+        renderFlights();
+    });
     elements.add.addEventListener("click", function () {
         var month = new Date();
         trips.push({
@@ -308,6 +539,36 @@
             trips = result.trips;
             renderTrips();
             setStatus("Saved " + trips.length + " stays. GitHub Pages will redeploy automatically.");
+        } catch (error) {
+            setStatus(error.message, true);
+        } finally {
+            setBusy(false);
+        }
+    });
+    elements.flightSave.addEventListener("click", async function () {
+        try {
+            var airportDirectory = validateFlightsBeforeSave();
+            setBusy(true);
+            setStatus("Saving flight data to GitHub…");
+            var result = await apiRequest("/api/flights", {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ airports: airportDirectory, flights: flights })
+            });
+            flights = result.flights;
+            airports = Object.keys(result.airports).map(function (code) {
+                var airport = result.airports[code];
+                return {
+                    code: code,
+                    city: airport.city,
+                    country: airport.country,
+                    coordinates: airport.coordinates.slice()
+                };
+            });
+            renderFlights();
+            renderAirports();
+            setStatus("Saved " + flights.length + " flights and " + airports.length
+                + " airports. GitHub Pages will redeploy automatically.");
         } catch (error) {
             setStatus(error.message, true);
         } finally {

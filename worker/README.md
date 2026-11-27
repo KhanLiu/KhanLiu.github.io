@@ -27,7 +27,9 @@ The public site is static GitHub Pages, so the admin editor uses a Cloudflare Wo
 
    Wrangler prompts for each secret value. Use the Cloudflare dashboard's Worker settings instead if preferred.
 
-5. `admin/index.html` is already configured with the Worker origin. The public map and admin editor both update automatically when the Worker writes `_data/trips.yml` to `main`.
+5. `admin/index.html` is already configured with the Worker origin. The public map and admin editor update automatically when the Worker writes `_data/trips.yml` or `_data/flights.yml` to `main`.
+
+The admin editor supports month-level stays, flight records, and the airport directory. Flight dates may be in the future; only airport, city, country / region, approximate coordinates, airline, flight number, and travel date are stored. Ticket numbers are not supported. New flights can use airports already in the directory, or the directory can be updated first.
 
 The Worker OAuth callback is `https://khanliu-travel-admin.cnkhanliu.workers.dev/auth/callback`. Only the configured GitHub login is accepted. OAuth requests only `read:user`; repository writes use the separate repository-scoped token. Browser sessions are random, expire after two hours, and are held in the configured KV namespace. API calls require the exact Pages origin and a bearer session token.
 

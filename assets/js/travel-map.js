@@ -588,7 +588,23 @@
 
         if (!showCities && selectedFlightIndex < 0 && !selectedAirportCode) {
             showFlightEmpty();
+            if (map && mapReady) {
+                map.easeTo({
+                    center: defaultFlightMapCenter(),
+                    zoom: 1.45,
+                    duration: 900,
+                    essential: true
+                });
+            }
         }
+    }
+
+    function defaultFlightMapCenter() {
+        var munich = airports.MUC;
+        if (munich && Array.isArray(munich.coordinates)) {
+            return [munich.coordinates[1], munich.coordinates[0]];
+        }
+        return initialMapCenter();
     }
 
     function renderFlightStats(flightList) {

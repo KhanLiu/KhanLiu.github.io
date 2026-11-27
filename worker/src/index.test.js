@@ -5,12 +5,62 @@ import {
     decodeBase64Utf8,
     encodeBase64Utf8,
     handleRequest,
+    parseFlightYaml,
     parseTripYaml,
+    serializeFlightYaml,
     serializeTripYaml,
+    validateFlightData,
     validateTrips
 } from "./index.js";
 
 const realTripsYaml = await readFile(new URL("../../_data/trips.yml", import.meta.url), "utf8");
+const realFlightsYaml = await readFile(new URL("../../_data/flights.yml", import.meta.url), "utf8");
+
+test("parses and serializes all provided flights and accepts future records", () => {
+    const data = parseFlightYaml(realFlightsYaml);
+    assert.equal(data.flights.length, 60);
+    assert.equal(Object.keys(data.airports).length, 40);
+    assert.deepEqual(data.flights.find((flight) => flight.flight_number === "SC4799"), {
+        date: "2017-07-24",
+        origin: "TNA",
+        destination: "CKG",
+        airline: "Shandong Airlines",
+        flight_number: "SC4799"
+    });
+    assert.deepEqual(parseFlightYaml(serializeFlightYaml(data)), data);
+
+    const future = Object.assign({}, data, {
+        flights: data.flights.concat({
+            date: "2027-01-15",
+            origin: "MUC",
+            destination: "BUD",
+            airline: "Future Air",
+            flight_number: "FA123"
+        })
+    });
+    assert.equal(validateFlightData(future).flights.length, 61);
+});
+
+test("rejects flight records with unknown airports or invalid dates", () => {
+    const data = parseFlightYaml(realFlightsYaml);
+    const unknownAirport = Object.assign({}, data, {
+        flights: data.flights.concat({
+            date: "2027-01-15",
+            origin: "MUC",
+            destination: "XYZ"
+        })
+    });
+    assert.throws(() => validateFlightData(unknownAirport), /two different airports from the airport directory/);
+
+    const invalidDate = Object.assign({}, data, {
+        flights: data.flights.concat({
+            date: "2027-02-30",
+            origin: "MUC",
+            destination: "BUD"
+        })
+    });
+    assert.throws(() => validateFlightData(invalidDate), /valid date in YYYY-MM-DD format/);
+});
 
 test("parses the current public stay data and preserves month-level dates", () => {
     const trips = parseTripYaml(realTripsYaml);
@@ -275,6 +325,96 @@ test("reads and writes travel data only after validating the signed-in session",
             method: "PUT",
             headers: headers,
             body: JSON.stringify({ trips: [{ date: "2025-03-12" }] })
+        }), env);
+        assert.equal(invalidResponse.status, 400);
+        assert.equal(calls.filter((call) => call.init && call.init.method === "PUT").length, 1);
+    } finally {
+        globalThis.fetch = originalFetch;
+    }
+});
+
+test("reads and writes flight records and airports only after validating the signed-in session", async () => {
+    const sessionToken = "B".repeat(43);
+    const store = new Map([["session:" + sessionToken, JSON.stringify({
+        login: "KhanLiu",
+        expiresAt: Date.now() + 60000
+    })]]);
+    const kv = {
+        async get(key) { return store.get(key) || null; },
+        async put(key, value) { store.set(key, value); },
+        async delete(key) { store.delete(key); }
+    };
+    const env = {
+        SITE_ORIGIN: "https://khanliu.github.io",
+        ADMIN_GITHUB_LOGIN: "KhanLiu",
+        GITHUB_REPOSITORY: "KhanLiu/KhanLiu.github.io",
+        GITHUB_BRANCH: "main",
+        GITHUB_CLIENT_ID: "client",
+        GITHUB_CLIENT_SECRET: "secret",
+        GITHUB_WRITE_TOKEN: "fine-grained-token",
+        TRAVEL_ADMIN_AUTHy: kv
+    };
+    const originalFetch = globalThis.fetch;
+    const calls = [];
+    globalThis.fetch = async (input, init) => {
+        calls.push({ url: String(input), init });
+        if (init && init.method === "PUT") {
+            return new Response(JSON.stringify({ commit: { sha: "new-sha" } }), { status: 201 });
+        }
+        return new Response(JSON.stringify({
+            sha: "old-sha",
+            encoding: "base64",
+            content: Buffer.from(realFlightsYaml, "utf8").toString("base64")
+        }), { status: 200 });
+    };
+
+    try {
+        const headers = {
+            Origin: env.SITE_ORIGIN,
+            Authorization: "Bearer " + sessionToken,
+            "Content-Type": "application/json"
+        };
+        const getResponse = await handleRequest(new Request("https://admin.workers.dev/api/flights", {
+            headers: headers
+        }), env);
+        assert.equal(getResponse.status, 200);
+        const data = await getResponse.json();
+        assert.equal(data.flights.length, 60);
+        assert.equal(Object.keys(data.airports).length, 40);
+
+        const upcoming = {
+            date: "2027-01-15",
+            origin: "MUC",
+            destination: "BUD",
+            airline: "Future Air",
+            flight_number: "FA123"
+        };
+        const putResponse = await handleRequest(new Request("https://admin.workers.dev/api/flights", {
+            method: "PUT",
+            headers: headers,
+            body: JSON.stringify({
+                airports: data.airports,
+                flights: data.flights.concat(upcoming)
+            })
+        }), env);
+        assert.equal(putResponse.status, 200);
+        assert.equal((await putResponse.json()).flights.length, 61);
+        assert.equal(calls.filter((call) => call.init && call.init.method === "PUT").length, 1);
+        assert.equal(calls.at(-1).url,
+            "https://api.github.com/repos/KhanLiu/KhanLiu.github.io/contents/_data/flights.yml");
+        const savedRequest = JSON.parse(calls.at(-1).init.body);
+        const savedYaml = Buffer.from(savedRequest.content, "base64").toString("utf8");
+        assert.equal(savedRequest.sha, "old-sha");
+        assert.match(savedYaml, /flight_number: "FA123"/);
+        assert.doesNotMatch(savedYaml, /ticket(?:\s+number)?\s*:\s*\d+/i);
+
+        const invalidResponse = await handleRequest(new Request("https://admin.workers.dev/api/flights", {
+            method: "PUT",
+            headers: headers,
+            body: JSON.stringify({
+                airports: data.airports,
+                flights: data.flights.concat(Object.assign({}, upcoming, { destination: "XYZ" }))
+            })
         }), env);
         assert.equal(invalidResponse.status, 400);
         assert.equal(calls.filter((call) => call.init && call.init.method === "PUT").length, 1);

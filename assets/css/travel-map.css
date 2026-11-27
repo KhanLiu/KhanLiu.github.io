@@ -163,7 +163,7 @@ main {
 .travel-map__flight-stats {
     position: absolute;
     z-index: 1;
-    top: 96px;
+    top: 132px;
     right: 28px;
     width: min(230px, calc(100% - 56px));
     padding: 16px 18px;
