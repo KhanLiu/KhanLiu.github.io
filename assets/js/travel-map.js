@@ -4,6 +4,7 @@
     var visits = [];
     var flights = [];
     var airports = Object.create(null);
+    var livedAirportCodes = { WUH: true, TNA: true, MUC: true, VIE: true };
     var map = null;
     var mapReady = false;
     var selectedIndex = -1;
@@ -48,7 +49,9 @@
             flightTitle: document.getElementById("travel-flight-title"),
             flightAirports: document.getElementById("travel-flight-airports"),
             flightNumber: document.getElementById("travel-flight-number"),
-            airportFlights: document.getElementById("travel-airport-flights")
+            airportFlights: document.getElementById("travel-airport-flights"),
+            flightStats: document.getElementById("travel-flight-stats"),
+            flightStatsList: document.getElementById("travel-flight-stats-list")
         };
         demoNotice = document.getElementById("travel-demo-notice");
 
@@ -113,6 +116,7 @@
             return a.date.localeCompare(b.date) || a._index - b._index;
         });
         rejectedFlights -= flights.length;
+        renderFlightStats(flights);
         demoNotice.hidden = !visits.some(function (visit) {
             return visit.demo === true;
         });
@@ -222,7 +226,7 @@
                     "line-cap": "round"
                 },
                 paint: {
-                    "line-color": ["case", ["==", ["get", "selected"], true], "#e87722", "#0065bd"],
+                    "line-color": "#7c3aed",
                     "line-width": ["case", ["==", ["get", "selected"], true], 3.5, 1.5],
                     "line-opacity": ["case", ["==", ["get", "selected"], true], 0.95, 0.22]
                 }
@@ -242,7 +246,7 @@
                     "text-keep-upright": false
                 },
                 paint: {
-                    "text-color": ["case", ["==", ["get", "selected"], true], "#e87722", "#0065bd"],
+                    "text-color": "#7c3aed",
                     "text-opacity": ["case", ["==", ["get", "selected"], true], 0.95, 0.25],
                     "text-halo-color": "#fffdfb",
                     "text-halo-width": 1
@@ -256,7 +260,7 @@
                 layout: { visibility: "none" },
                 paint: {
                     "circle-radius": ["case", ["==", ["get", "selected"], true], 6, 4],
-                    "circle-color": "#0065bd",
+                    "circle-color": ["case", ["==", ["get", "livedHere"], true], "#e87722", "#0065bd"],
                     "circle-opacity": 0.95,
                     "circle-stroke-width": ["case", ["==", ["get", "selected"], true], 2, 1],
                     "circle-stroke-color": "#fffdfb"
@@ -403,9 +407,12 @@
                 }
                 airportsByCode[endpoint.airport].flightCount += 1;
             });
+            var routeSelected = index === selectedFlightIndex || (selectedAirportCode
+                && (flight.origin.airport === selectedAirportCode
+                    || flight.destination.airport === selectedAirportCode));
             features.push({
                 type: "Feature",
-                properties: { kind: "route", index: index, selected: index === selectedFlightIndex },
+                properties: { kind: "route", index: index, selected: Boolean(routeSelected) },
                 geometry: {
                     type: "MultiLineString",
                     coordinates: createGreatCircleSegments(origin, destination)
@@ -423,6 +430,7 @@
                     kind: "airport",
                     airport: airport.airport,
                     flightCount: airport.flightCount,
+                    livedHere: Boolean(livedAirportCodes[code]),
                     selected: selected
                 },
                 geometry: {
@@ -571,6 +579,7 @@
         var showCities = mode === "cities";
         elements.cityView.hidden = !showCities;
         elements.flightView.hidden = showCities;
+        elements.flightStats.hidden = showCities;
         elements.citiesButton.classList.toggle("is-active", showCities);
         elements.citiesButton.setAttribute("aria-pressed", String(showCities));
         elements.flightsButton.classList.toggle("is-active", !showCities);
@@ -580,6 +589,41 @@
         if (!showCities && selectedFlightIndex < 0 && !selectedAirportCode) {
             showFlightEmpty();
         }
+    }
+
+    function renderFlightStats(flightList) {
+        var countries = Object.create(null);
+        var airportCodes = Object.create(null);
+        var routes = Object.create(null);
+        var airlines = Object.create(null);
+        flightList.forEach(function (flight) {
+            [flight.origin, flight.destination].forEach(function (endpoint) {
+                if (endpoint.country) countries[endpoint.country.trim().toLocaleLowerCase()] = true;
+                airportCodes[endpoint.airport] = true;
+            });
+            var route = [flight.origin.airport, flight.destination.airport].sort().join("|");
+            routes[route] = true;
+            if (flight.airline && flight.airline.trim()) {
+                airlines[flight.airline.trim().toLocaleLowerCase()] = true;
+            }
+        });
+        [
+            ["Countries / regions", Object.keys(countries).length],
+            ["Airports", Object.keys(airportCodes).length],
+            ["Flights", flightList.length],
+            ["Routes", Object.keys(routes).length],
+            ["Airlines", Object.keys(airlines).length]
+        ].forEach(function (stat) {
+            var row = document.createElement("tr");
+            var label = document.createElement("th");
+            label.scope = "row";
+            label.textContent = stat[0];
+            var value = document.createElement("td");
+            value.textContent = String(stat[1]);
+            row.appendChild(label);
+            row.appendChild(value);
+            elements.flightStatsList.appendChild(row);
+        });
     }
 
     function setMapViewVisibility() {

@@ -160,6 +160,57 @@ main {
     backdrop-filter: blur(12px);
 }
 
+.travel-map__flight-stats {
+    position: absolute;
+    z-index: 1;
+    top: 96px;
+    right: 28px;
+    width: min(230px, calc(100% - 56px));
+    padding: 16px 18px;
+    border: 1px solid rgba(226, 228, 221, 0.92);
+    border-radius: 5px;
+    background: rgba(255, 255, 253, 0.94);
+    box-shadow: 0 4px 18px rgba(34, 50, 43, 0.07);
+    backdrop-filter: blur(12px);
+}
+
+.travel-map__flight-stats[hidden] {
+    display: none;
+}
+
+.travel-map__flight-stats h2 {
+    margin: 0 0 9px;
+    color: #293b36;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.travel-map__flight-stats table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #53645c;
+    font-size: 0.75rem;
+}
+
+.travel-map__flight-stats th,
+.travel-map__flight-stats td {
+    padding: 5px 0;
+    border-top: 1px solid #e8e9e4;
+}
+
+.travel-map__flight-stats th {
+    font-weight: 400;
+    text-align: left;
+}
+
+.travel-map__flight-stats td {
+    color: #293b36;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    text-align: right;
+}
+
 .travel-map__visually-hidden {
     position: absolute;
     width: 1px;
@@ -237,6 +288,14 @@ main {
     height: 13px;
     background: #0065bd;
     box-shadow: 0 0 0 3px rgba(0, 101, 189, 0.18);
+}
+
+.travel-map__legend-mark--route {
+    width: 18px;
+    height: 3px;
+    border: 0;
+    border-radius: 2px;
+    background: #7c3aed;
 }
 
 .travel-map__residences {
@@ -593,5 +652,13 @@ main {
         width: min(300px, calc(100% - 28px));
         max-height: calc(100% - 28px);
         padding: 17px;
+    }
+
+    .travel-map__flight-stats {
+        top: auto;
+        right: 14px;
+        bottom: 14px;
+        width: min(190px, calc(100% - 28px));
+        padding: 12px 14px;
     }
 }

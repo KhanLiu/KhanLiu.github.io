@@ -52,6 +52,11 @@
             </div>
         </div>
         <div id="travel-flight-view" hidden>
+            <div class="travel-map__legend" aria-label="Flight map legend">
+                <span><i class="travel-map__legend-mark travel-map__legend-mark--route" aria-hidden="true"></i>Flight routes</span>
+                <span><i class="travel-map__legend-mark travel-map__legend-mark--lived" aria-hidden="true"></i>Lived here</span>
+                <span><i class="travel-map__legend-mark travel-map__legend-mark--travel" aria-hidden="true"></i>Other airports</span>
+            </div>
             <div class="travel-map__story">
                 <div id="travel-flight-empty" class="travel-map__empty">
                     <p>Select a route or an airport code to explore its flight history.</p>
@@ -65,5 +70,11 @@
                 </div>
             </div>
         </div>
+    </aside>
+    <aside id="travel-flight-stats" class="travel-map__flight-stats" aria-label="Flight statistics" hidden>
+        <h2>Flight summary</h2>
+        <table>
+            <tbody id="travel-flight-stats-list"></tbody>
+        </table>
     </aside>
 </section>
