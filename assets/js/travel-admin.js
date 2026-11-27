@@ -44,7 +44,13 @@
         }
         if (error) {
             window.history.replaceState(null, "", window.location.pathname);
-            setStatus("GitHub sign-in failed. Please try again.", true);
+            var messages = {
+                invalid_state: "Sign-in expired or could not be verified. Start again and finish within ten minutes.",
+                oauth_denied: "GitHub sign-in was cancelled or not approved.",
+                oauth_exchange: "GitHub could not complete sign-in. Check the OAuth app secret and callback URL.",
+                not_authorized: "This GitHub account is not authorized to edit these travel records."
+            };
+            setStatus(messages[error] || "GitHub sign-in failed (" + error + ").", true);
         }
     }
 
