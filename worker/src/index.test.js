@@ -74,6 +74,7 @@ test("parses the current public stay data and preserves month-level dates", () =
         .map((trip) => trip.city + "|" + trip.country));
     assert.deepEqual(Array.from(livedPlaces).sort(), [
         "Dresden|Germany",
+        "Jinan|China",
         "Munich|Germany",
         "Vienna|Austria",
         "Wuhan|China",

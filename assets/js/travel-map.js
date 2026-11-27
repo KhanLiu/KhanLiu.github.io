@@ -156,7 +156,7 @@
             container: elements.canvas,
             style: "https://tiles.openfreemap.org/styles/positron",
             center: initialMapCenter(),
-            zoom: 1.1,
+            zoom: 1.3,
             minZoom: 0.8,
             maxZoom: 12,
             projection: { type: "globe" },
@@ -610,15 +610,12 @@
     function renderFlightStats(flightList) {
         var countries = Object.create(null);
         var airportCodes = Object.create(null);
-        var routes = Object.create(null);
         var airlines = Object.create(null);
         flightList.forEach(function (flight) {
             [flight.origin, flight.destination].forEach(function (endpoint) {
                 if (endpoint.country) countries[endpoint.country.trim().toLocaleLowerCase()] = true;
                 airportCodes[endpoint.airport] = true;
             });
-            var route = [flight.origin.airport, flight.destination.airport].sort().join("|");
-            routes[route] = true;
             if (flight.airline && flight.airline.trim()) {
                 airlines[flight.airline.trim().toLocaleLowerCase()] = true;
             }
@@ -627,7 +624,6 @@
             ["Countries / regions", Object.keys(countries).length],
             ["Airports", Object.keys(airportCodes).length],
             ["Flights", flightList.length],
-            ["Routes", Object.keys(routes).length],
             ["Airlines", Object.keys(airlines).length]
         ].forEach(function (stat) {
             var row = document.createElement("tr");

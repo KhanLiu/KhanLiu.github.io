@@ -172,6 +172,7 @@
   country: "China"
   coordinates: [36.67, 117.00]
   stay_days: 1
+  lived_here: true
 - date: "2018-08-01"
   date_precision: month
   city: "Wuhan"
